@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<title>Getting Started with Galaxy on SCINet | SCINet | USDA Scientific Computing Initiative</title>
+
+
+
+<meta name="description" content="Using Galaxy">
+
+
+
+<link rel="shortcut icon" type="image/ico"
+  href="/assets/uswds/img/favicons/favicon.ico">
+
+<link rel="icon" type="image/png"
+  href="/assets/uswds/img/favicons/favicon.png">
+
+<link rel="icon" type="image/png"
+  sizes="192x192"
+  href="/assets/uswds/img/favicons/favicon-192.png">
+
+<link rel="apple-touch-icon-precomposed" type=""
+  href="/assets/uswds/img/favicons/favicon-57.png">
+
+<link rel="apple-touch-icon-precomposed" type=""
+  sizes="72x72"
+  href="/assets/uswds/img/favicons/favicon-72.png">
+
+<link rel="apple-touch-icon-precomposed" type=""
+  sizes="114x114"
+  href="/assets/uswds/img/favicons/favicon-114.png">
+
+<link rel="apple-touch-icon-precomposed" type=""
+  sizes="144x144"
+  href="/assets/uswds/img/favicons/favicon-144.png">
+
+
+
+    
+
+
+
+<link rel="stylesheet"
+  href="/assets/css/uswds-theme.css"
+  media="screen">
+
+
+    
+      
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-27627304-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { dataLayer.push(arguments); }
+  gtag('js', new Date());
+
+  // `forceSSL` was used for analytics.js (the older Google Analytics script). It isn't documented for gtag.js, but the term occurs in the gtag.js code; figure it doesn't hurt to leave it in. -@afeld, 5/29/19
+  gtag('config', 'UA-27627304-1', { 'anonymize_ip': true, 'forceSSL': true });
+</script>
+
+
+
+<!-- Digital Analytics Program roll-up, see https://analytics.usa.gov for data -->
+<script id="_fed_an_ua_tag" src="https://dap.digitalgov.gov/Universal-Federated-Analytics-Min.js?agency=USDA&subagency=ARS"></script>
+
+
+    
+  </head>
+  <body class="  site-90%">
+
+    <a class="usa-skipnav" href="#main-content">Skip to main content</a>
+
+    
+
+
+  <section class="usa-banner" aria-label="Official government website">
+  <div class="usa-accordion">
+    <header class="usa-banner__header">
+      <div class="usa-banner__inner">
+        <div class="grid-col-auto">
+          <img class="usa-banner__header-flag" src="/assets/uswds/img/us_flag_small.png" alt="U.S. flag">
+        </div>
+        <div class="grid-col-fill tablet:grid-col-auto">
+          <p class="usa-banner__header-text">An official website of the United States government</p>
+          <p class="usa-banner__header-action" aria-hidden="true">Here’s how you know</p>
+        </div>
+        <button class="usa-accordion__button usa-banner__button"
+          aria-expanded="false" aria-controls="gov-banner">
+          <span class="usa-banner__button-text">Here’s how you know</span>
+        </button>
+      </div>
+    </header>
+    <div class="usa-banner__content usa-accordion__content" id="gov-banner">
+      <div class="grid-row grid-gap-lg">
+        <div class="usa-banner__guidance tablet:grid-col-6">
+          <img class="usa-banner__icon usa-media-block__img" src="/assets/uswds/img/icon-dot-gov.svg" role="img" alt="Dot gov">
+          <div class="usa-media-block__body">
+            <p>
+              <strong>Official websites use .gov</strong>
+              <br/>
+              A <strong>.gov</strong> website belongs to an official government organization in the United States.
+            </p>
+          </div>
+        </div>
+        <div class="usa-banner__guidance tablet:grid-col-6">
+          <img class="usa-banner__icon usa-media-block__img" src="/assets/uswds/img/icon-https.svg" role="img" alt="Https">
+          <div class="usa-media-block__body">
+            <p>
+              <strong>Secure .gov websites use HTTPS</strong>
+              <br/>
+              A <strong>lock</strong> (
+<span class="icon-lock"><svg xmlns="http://www.w3.org/2000/svg" width="52" height="64" viewBox="0 0 52 64" class="usa-banner__lock-image" role="img" aria-labelledby="banner-lock-title banner-lock-description"><title id="banner-lock-title">Lock</title><desc id="banner-lock-description">A locked padlock</desc><path fill="#000000" fill-rule="evenodd" d="M26 0c10.493 0 19 8.507 19 19v9h3a4 4 0 0 1 4 4v28a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4V32a4 4 0 0 1 4-4h3v-9C7 8.507 15.507 0 26 0zm0 8c-5.979 0-10.843 4.77-10.996 10.712L15 19v9h22v-9c0-6.075-4.925-11-11-11z"/></svg></span>
+) or <strong>https://</strong> means you’ve safely connected to the .gov website. Share sensitive information only on official, secure websites.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+  <div class="usa-overlay"></div>
+
+  <header class="usa-header usa-header--extended" role="banner">
+
+
+  
+    <div class="usa-navbar">
+      <div class="usa-logo" id="header-logo">
+        <a
+          href="/"
+          title="Home">
+          
+            <img
+              class="usa-logo-img"
+              src="/assets/img/usda-symbol-rgb-color.svg"
+              alt="USDA-ARS">
+          
+          <em class="usa-logo__text">
+            SCINet Scientific Computing
+          </em>
+        </a>
+      </div>
+      <button class="usa-menu-btn">Menu</button>
+    </div>
+
+    <nav role="navigation" class="usa-nav">
+      <div class="usa-nav__inner">
+        <button class="usa-nav__close">
+          <img src="/assets/uswds/img/close.svg" alt="close">
+        </button>
+
+        
+        
+        
+        <ul class="usa-nav__primary usa-accordion">
+          
+          <li class="usa-nav__primary-item">
+            
+              <a class=" usa-nav__link  " href="/signup/">
+                <span>Sign up for an account</span>
+              </a>
+            
+          </li>
+          
+          <li class="usa-nav__primary-item">
+            
+              
+              
+              
+            <button class="usa-accordion__button usa-nav__link" aria-expanded="false" aria-controls="nav-2">
+              <span>News</span>
+            </button>
+            
+            <ul id="nav-2" class="usa-nav__submenu">
+            
+            
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/downtime/">System Downtime</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/announcements/">Announcements</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/stories/">User Stories</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/newsletter/">Newsletter</a>
+                </li>
+                
+              
+            
+            </ul>
+            
+            
+            
+          </li>
+          
+          <li class="usa-nav__primary-item">
+            
+              
+              
+              
+            <button class="usa-accordion__button usa-nav__link" aria-expanded="false" aria-controls="nav-3">
+              <span>User Guides</span>
+            </button>
+            
+            <ul id="nav-3" class="usa-nav__submenu">
+            
+            
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/quickstart">Quick Start</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/ceres">Ceres HPC User manual</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="https://www.hpc.msstate.edu/computing/atlas">Atlas HPC User Guide</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/multifactor">Set up multifactor authentication</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/storage">SCINet Storage Guide</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/software">Software Overview</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/packageinstall">Installing R/Python/Perl Packages</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/conda">Installing Software with Conda</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/file-transfer">Transferring files</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/rclone">Rclone</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/clc">CLC Workbench</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/jupyter">Jupyter</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/rstudio">Rstudio</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/geneious">Geneious</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/galaxy">Galaxy on SCINet</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/singularity">Containers</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/smrtlink">SMRTLink using Command Line</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/AWS/documentation">AWS Resources</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/vpn">SCINet VPN</a>
+                </li>
+                
+              
+            
+            </ul>
+            
+            
+            
+          </li>
+          
+          <li class="usa-nav__primary-item">
+            
+              
+              
+              
+            <button class="usa-accordion__button usa-nav__link" aria-expanded="false" aria-controls="nav-4">
+              <span>Working Groups</span>
+            </button>
+            
+            <ul id="nav-4" class="usa-nav__submenu">
+            
+            
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/working-groups">Overview</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/working-groups/ag100pest">Ag100Pest</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/working-groups/arthropods">Arthropod Genomics</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/working-groups/geospatial">Geospatial Research</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/working-groups/microbiome">Microbiome</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/working-groups/LTARphenology">LTAR Phenology</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/working-groups/policy">SCINet Policy Committee</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/working-groups/webdev">SCINet Website Developers</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/working-groups/workbooks">Workbook Developers</a>
+                </li>
+                
+              
+            
+            </ul>
+            
+            
+            
+          </li>
+          
+          <li class="usa-nav__primary-item">
+            
+              
+              
+              
+            <button class="usa-accordion__button usa-nav__link" aria-expanded="false" aria-controls="nav-5">
+              <span>Training</span>
+            </button>
+            
+            <ul id="nav-5" class="usa-nav__submenu">
+            
+            
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/training/">Overview</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/training/tutorials/">ARS Science Tutorials</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/training/free-online-training">Free Online Training</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/training-archive/">Training Event Archive</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/training/bioinformatics-workbook">Bioinformatics Workbook</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/training/useful-links">Useful Links</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/training/coursera">Coursera</a>
+                </li>
+                
+              
+            
+            </ul>
+            
+            
+            
+          </li>
+          
+          <li class="usa-nav__primary-item">
+            
+              
+              
+              
+            <button class="usa-accordion__button usa-nav__link" aria-expanded="false" aria-controls="nav-6">
+              <span>Use Cases</span>
+            </button>
+            
+            <ul id="nav-6" class="usa-nav__submenu">
+            
+            
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/user/genomics/">Genomics</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/user/plant-breeding/">Plant breeding</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/user/geospatial/">Geospatial</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/user/hydrology/">Hydrology</a>
+                </li>
+                
+              
+            
+            </ul>
+            
+            
+            
+          </li>
+          
+          <li class="usa-nav__primary-item">
+            
+              
+              
+              
+            <button class="usa-accordion__button usa-nav__link" aria-expanded="false" aria-controls="nav-7">
+              <span>Support</span>
+            </button>
+            
+            <ul id="nav-7" class="usa-nav__submenu">
+            
+            
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/support/vrsc/">Virtual Research Support Core (VSRC)</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/support/faq/">FAQ's</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="https://forum.scinet.usda.gov">USDA-ARS SCINet Forum</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/support/request-storage">Request Project Storage</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/support/request-software">Request Software</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/support/request-AWS">Request AWS</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/support/ceres-job-script">Ceres Job Script Generator</a>
+                </li>
+                
+              
+            
+            </ul>
+            
+            
+            
+          </li>
+          
+          <li class="usa-nav__primary-item">
+            
+              
+              
+              
+            <button class="usa-accordion__button usa-nav__link" aria-expanded="false" aria-controls="nav-8">
+              <span>About</span>
+            </button>
+            
+            <ul id="nav-8" class="usa-nav__submenu">
+            
+            
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/about/compute">Computer Systems</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/about/organization">Organization</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/about/contact">Contact</a>
+                </li>
+                
+              
+            
+            </ul>
+            
+            
+            
+          </li>
+          
+          <li class="usa-nav__primary-item">
+            
+              
+              
+              
+            <button class="usa-accordion__button usa-nav__link" aria-expanded="false" aria-controls="nav-9">
+              <span>Opportunities</span>
+            </button>
+            
+            <ul id="nav-9" class="usa-nav__submenu">
+            
+            
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/opportunities/SAC">SAC Membership</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/opportunities/request-workshop">Request a Workshop</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/opportunities/postdocs">Fellowships (PhD & MS)</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/opportunities/events">Upcoming Events</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/opportunities/ai-innovation">AI Innovation fund</a>
+                </li>
+                
+              
+            
+            </ul>
+            
+            
+            
+          </li>
+          
+        </ul>
+        
+
+        
+
+        
+          
+          <div class="usa-nav__secondary">
+            <ul class="usa-unstyled-list usa-nav__secondary-links">
+              
+              
+                <li class="usa-nav__secondary-item">
+                  <a href=""
+                  >
+                    
+                  </a>
+                </li>
+              
+            </ul>
+            
+              <form
+                accept-charset="UTF-8"
+                action="https://search.usa.gov/search"
+                id="search_form"
+                method="get"
+                class="usa-search usa-search--small js-search-form">
+              <input
+                name="utf8"
+                type="hidden"
+                value="&#x2713;" />
+              <input
+                type="hidden"
+                name="affiliate"
+                id="affiliate"
+                value="scinet-usda" />
+                <div role="search">
+                  <label
+                    for="query" class="usa-sr-only">Enter search terms</label>
+                  <input
+                    autocomplete="off"
+                    class="usa-input usagov-search-autocomplete"
+                    id="query"
+                    name="query"
+                    type="search" />
+                  <button
+                    class="usa-button"
+                    type="submit"
+                    name="commit">
+                    <span class="usa-sr-only">Search</span>
+                  </button>
+                </div>
+              </form>
+            
+          </div>
+          
+
+
+        </div>
+      </div>
+    </nav>
+  
+  </header>
+
+
+
+
+    
+    
+
+
+    
+
+    
+
+    
+      
+      
+
+
+
+
+    
+    
+
+    
+      <main id="main-content" class="usa-layout-docs usa-layout-docs__main desktop:grid-col-9 usa-prose">
+        <div class="usa-section">
+  <div class="grid-container">
+    <div class="grid-row grid-gap flex-align-start">
+      
+      
+
+      <main class="usa-layout-docs usa-layout-docs__main usa-prose" id="main-content">
+        
+          <h1>Getting Started with Galaxy on SCINet</h1>
+        
+        <style>
+.cmd {
+    background-color: rgb(245, 245, 245);
+    padding-left: 5px;
+    padding-right: 5px;
+}
+</style>
+
+<h4 id="table-of-contents">Table of Contents</h4>
+<ul>
+  <li><a href="#introduction">Introduction</a></li>
+  <li><a href="#logging-on">Logging On</a></li>
+  <li><a href="#import-data-to-ceres-galaxy">Import data to Ceres Galaxy</a></li>
+  <li><a href="#using-galaxy">Using Galaxy</a></li>
+  <li><a href="#sharing-your-data-and-analysis">Sharing Your Data and Analysis</a></li>
+  <li><a href="#cant-find-a-tool-you-need">Can’t Find a Tool You Need?</a></li>
+</ul>
+
+<h1 id="introduction">Introduction</h1>
+
+<p><strong>For support contact: scinet_vrsc@usda.gov</strong></p>
+
+<p>First, a quick note on the terms “Ceres” and “SCINet”: “SCINet” is the network through which you access the high-performance computer named “Ceres”. Generally, we will refer to Ceres accounts in this tutorial because most people think of having an account on a computer, but the account is, more broadly, a network account on SCINet.</p>
+
+<p>There are a few compelling reasons why we think you’re going to like using Galaxy on Ceres:</p>
+<ol>
+  <li>It is a great bioinformatics alternative for those who prefer a graphical user interface.</li>
+  <li>You don’t have to worry with defining queues and number of nodes in a batch command file. We have tried hard to establish appropriate default parameters to take advantage of Ceres’s parallel processing power.</li>
+  <li>FTP transfer is tightly integrated in the Ceres Galaxy framework, so file transfer is intuitive, and you don’t run into data limit bottlenecks as quickly.</li>
+  <li>Galaxy makes it easy to share your analysis with bioinformatic support should the need arise. In addition, you can share with collaborators assuming that they have a Ceres account.</li>
+  <li>There is plenty of external documentation covering almost all conventional bioinformatic analyses. In fact, many workflows (see below) probably already exist that you can use directly on your data.</li>
+  <li>If you don’t see a tool in the current interface, it probably is in the Toolshed (see below). You can then request that an administrator install it.</li>
+</ol>
+
+<p>In order to use SCINet Galaxy, you need an account on Ceres. <a href="/signup/">Sign up for a SCINet account</a> to start that process. New accounts will automatically get a Galaxy user name and directory. The user name should match the email you used when registering for your Ceres account and the password will match your Ceres password.</p>
+
+<p><b>NOTE: </b>All uploaded and output files are removed after<b><i> 90 Days </i></b>so it is<b> recommended </b>users save their data outside of galaxy.</p>
+
+<h1 id="logging-on">Logging On</h1>
+
+<p>Ceres Galaxy is public facing, so to access it you just type or paste “https://galaxy.scinet.usda.gov” into the address bar of a web browser.  We recommend Firefox, Chrome, or Safari. MAKE SURE TO TYPE THE “https://” prefix and note the “s”.</p>
+
+<p>You will be presented with the following login screen, with boxes on the right to enter your username and password:</p>
+
+<p><img src="/assets/img/galaxy-user-guide/galaxy-logging-on-1_1280.jpg" alt="screenshot of galaxy login screen" /></p>
+
+<p>Your user name should match the full email address you used when registering for your Ceres account and the password should match your Ceres password followed by the Google Authenticator code (Example: password123456). After logging in, the standard Galaxy home screen should appear:</p>
+
+<p><img src="/assets/img/galaxy-user-guide/galaxy-logging-on-2_1280.jpg" alt="screenshot of galaxy home screen" /></p>
+
+<p>The “Tools” bar in the left window frame is where you can load, manipulate, and analyze data. The central window frame is where you will see options and parameters programs that you will be running. The right “History” frame shows all the imported files and programs you have run.  In order to begin, you need to upload data. Often data of general interest, such a genome sequences or annotations, are already available in Galaxy under the “Get Data” tab. More commonly, you will be using data that you have generated.</p>
+
+<p>You will import files into Galaxy by clicking on the “Tools” sub-heading “Get Data” and then “Upload File” under “Get Data”.  The following download/upload screen should appear:</p>
+
+<p><img src="/assets/img/galaxy-user-guide/galaxy-logging-on-3_1280.jpg" alt="screen shot of galaxy tool to download or upload data" /></p>
+
+<p>Galaxy offers a method to import data directly from your computer as “Choose local file” button. Feel free to experiment with this direct method, but we find it can be slower and fickler than FTP transfer. To that end, we will mainly focus on uploading files using a file transfer program, such as Globus or Filezilla. If you click on “Choose FTP file”, Galaxy will look in your FTP upload folder on Ceres (/galaxy/upload/ceres_email_ID) for files you have uploaded, so you must first upload your data to that folder.</p>
+
+<h1 id="import-data-to-ceres-galaxy">Import data to Ceres Galaxy</h1>
+
+<p>You need to move or copy your data files to the Galaxy folder in your home directory on Ceres to make them “visible” to Galaxy. Then, you will be able to upload/import the files using Galaxy. Remember, the default quota in SCINet galaxy is only 100 GB. Please contact us to increase your default quota.</p>
+
+<p>We recommend using Globus to move files to your Galaxy folder on Ceres. For instructions please see the <a href="/guide/file-transfer/">Transferring Files Guide</a>.</p>
+
+<p><b>NOTE: </b>If you already have data on Ceres, simply copy files into your Galaxy folder on Ceres either via command-line (<i class="cmd">cp</i> command) or by using a Filezilla-like tool. These files will appear as if you had uploaded them via FTP and can be imported using the approach described below.</p>
+
+<p><b>IMPORTANT NOTE: </b>Make sure when transfering files to consider<i> how </i>the files are being transfered, i.e. using<i> cp </i> or <i>mv</i>. Moving (<i class="cmd">mv</i>) instead of copying(<i class="cmd">cp</i>) will<b> REMOVE </b> the original files so it is recommended to use <i class="cmd"> cp </i> or review how you want your files to be handled before moving.</p>
+
+<p>Once your data files are in your Galaxy folder in your home directory on Ceres, go back to the “Upload File” screen and click “Choose FTP site”. You will see the download/upload screen with a list of your files:</p>
+
+<p><img src="/assets/img/galaxy-user-guide/galaxy-ftp-transfer-1_1280.jpg" alt="screen shot of galaxy tool to download data from ftp" /></p>
+
+<p>Select the file you want to import and hit “Start”.</p>
+
+<p><b>NOTE: </b>Importing the data into galaxy will<b> REMOVE </b> the file that you moved via FTP.
+<b>NOTE: </b>Uploading directly from disk is <i>slower</i> than the other methods of tranfering.</p>
+
+<p>You can close this window and the file will appear in the History pane on the right of your home screen:</p>
+
+<p><img src="/assets/img/galaxy-user-guide/galaxy-ftp-transfer-2_1280.jpg" alt="screen shot of galaxy home screen with history pane" /></p>
+
+<p>This is a generic way to import files and can be used regardless of file format.  You are now ready to process your data.</p>
+
+<h1 id="using-galaxy">Using Galaxy</h1>
+
+<p>We have tried to focus on aspects of using Galaxy that are specific to USDA-ARS’s Ceres installation. There are hundreds of tutorials and videos to introduce you to the Galaxy framework, which is essentially the same no matter where it is installed. We suggest that you start at <a href="https://galaxyproject.org/learn/">https://galaxyproject.org/learn/</a>. A nice interactive introduction is also available at Help &gt; Interactive Tours, or <a href="https://galaxy.scinet.usda.gov/tours">https://galaxy.scinet.usda.gov/tours</a>.</p>
+
+<p>A common initial hang-up is getting your uploaded data in the right format. For sequencing data, you usually need to make clear what quality-scale you are using. For illumina reads, review the following link: <a href="https://galaxyproject.org/support/fastqsanger/">https://galaxyproject.org/support/fastqsanger/</a>. In addition, it is common for sample data from sequencing centers to be spread across multiple lanes. If you only have a few samples, you can concatenate these in Galaxy using Concatenate – Text Manipulation tool. If you have many samples, it will probably be best to concatenate those files prior to uploading using the commandline function <em>cat</em>.</p>
+
+<p>For example, for files ‘samp1_L1_R1.fq’, ‘samp1_L2_R1.fq’ use</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[jane.user@sn-cn-18-0 ~]$ cat *R1.fq &gt;sample1_R1.fq
+</code></pre></div></div>
+<p>Also note, .gz compressed files can be concatenated using the same approach without having to uncompress them first.</p>
+
+<p>You will usually want to structure your data into Collections for batch processing and downstream analysis. See <a href="https://galaxyproject.org/tutorials/collections/">https://galaxyproject.org/tutorials/collections/</a> or, for a worked example, <a href="https://depot.galaxyproject.org/hub/attachments/documents/presentations/gcc2014/Chilton.pdf">https://depot.galaxyproject.org/hub/attachments/documents/presentations/gcc2014/Chilton.pdf</a>. Alternatively, most tools will allow you to run the same process on multiple datasets of the same format without combining them as Collections.</p>
+
+<p>Some links to common analyses are given below. Many of these analyses already exist as published workflows and can be used directly. See <a href="https://usegalaxy.org/workflow/list_published">https://usegalaxy.org/workflow/list_published</a> for a searchable list. To use, download the workflow of interest, click on the “Workflow” tab at the top of your main screen, and then import the workflow according to the instructions. An example of usage is available here: <a href="http://sepsis-omics.github.io/tutorials/modules/workflows/">http://sepsis-omics.github.io/tutorials/modules/workflows/</a>. For those wanting to develop their own worflows, a graphic editor is available, as described here: <a href="https://galaxyproject.org/tutorials/g101/#opening-workflow-editor">https://galaxyproject.org/tutorials/g101/#opening-workflow-editor</a>.</p>
+
+<p><strong>RNA-seq</strong> – general overview (<a href="https://galaxyproject.org/tutorials/rb_rnaseq/">https://galaxyproject.org/tutorials/rb_rnaseq/</a>) and galaxy specific pipeline (<a href="https://galaxyproject.org/tutorials/nt_rnaseq">https://galaxyproject.org/tutorials/nt_rnaseq</a>). Also check out <a href="https://sites.google.com/site/princetonhtseq/tutorials/rna-seq">https://sites.google.com/site/princetonhtseq/tutorials/rna-seq</a>.</p>
+
+<p><strong>SNP-calling</strong> – <a href="https://galaxyproject.org/tutorials/var_dip/">https://galaxyproject.org/tutorials/var_dip/</a> for diploid genomes and <a href="https://galaxyproject.org/tutorials/var_hap/">https://galaxyproject.org/tutorials/var_hap/</a> for haploid genomes.</p>
+
+<p><strong>IMPORTANT:</strong> If you receive the job error “This job was terminated because it ran longer than the maximum allowed job run time” it means that the tool has not been appropriately configured to run on Ceres using the scale of data that you have provided. Please contact scinet_vrsc@usda.gov and we can optimize these parameters for you and for future users.</p>
+
+<h1 id="sharing-your-data-and-analysis">Sharing Your Data and Analysis</h1>
+
+<p>If you need some consultation on your results or on parameter settings, it can be very useful to share your analysis with someone so that you can both be viewing the same thing. To that end, we will give this aspect special emphasis. You can see a short introduction to this option at <a href="https://galaxyproject.org/learn/share">https://galaxyproject.org/learn/share</a>.</p>
+
+<p>Briefly, if you are in the appropriate history, follow the clicks on the History pane indicated in red (select Settings gear icon, then select “Share or Publish” on the settings menu):</p>
+
+<p><img src="/assets/img/galaxy-user-guide/galaxy-sharing-data-1_1280.jpg" alt="screenshot of galaxy home screen indicating to click the gear icon on the history pane" /></p>
+
+<p><img src="/assets/img/galaxy-user-guide/galaxy-sharing-data-2_1280.jpg" alt="screenshot indicating to click Share and Publish on the settings menu" /></p>
+
+<p>You will see the “Share or Publsish History Galaxy_Walkthru” screem:</p>
+
+<p><img src="/assets/img/galaxy-user-guide/galaxy-sharing-data-3_1280.jpg" alt="screenshot of the Share or Publish History Galaxy_Walkthru screen" /></p>
+
+<p>You can manually enter the user name you wish to share with in the drop-down space. Be careful that the user-name is exact and appropriate capitalization is observed.</p>
+
+<p>After you have gone through these steps, the person you have shared your history with will need to go to the same gear icon used above but instead click on “Histories Shared With Me”. The shared history should be present on the resultant interface.</p>
+
+<h1 id="cant-find-a-tool-you-need">Can’t Find a Tool You Need?</h1>
+
+<p>We have loaded a core subset of all tools that are available on the public Galaxy server (<a href="https://usegalaxy.org">https://usegalaxy.org</a>). If you do not see a tool you need and cannot use a good alternative, you should search in the Toolshed (<a href="https://toolshed.g2.bx.psu.edu">https://toolshed.g2.bx.psu.edu</a>). After identifying the relevant tool, email a Ceres Galaxy administrator: scinet_vrsc@usda.gov. If there are multiple options, we encourage the use of tools developed by either “devteam” or “iuc”. Depending on the nature of the tool you are requesting, we may ask you to supply a sample dataset for testing purposes, so anticipate having that data available.</p>
+
+<p>Additionally, there is an option for galaxy install as well on the application to <a href="/support/request-software">request software</a> installation by the VRSC. Select the Galaxy checkbox in the “Type of Application” section:</p>
+
+<p><img src="/assets/img/galaxy-user-guide/galaxy-cant-find-a-tool-1_640.jpg" alt="screen shot of the software request form section type of application" /></p>
+
+      </main>
+    </div>
+  </div>
+</div>
+
+      </main>
+    
+
+    
+
+    
+
+
+  
+<footer class="usa-footer usa-footer--big">
+
+  
+    <div class="grid-container">
+      <p>Last updated: April 15, 2021 at 08:28 PM</p>
+    </div>
+  
+
+  
+    <div class="grid-container usa-footer__return-to-top">
+      <a href="#">Return to top</a>
+    </div>
+  
+
+
+
+  
+    
+    
+    
+  <div class="usa-footer__primary-section">
+    <div class="grid-container">
+      <div class="grid-row grid-gap">
+        <div class="">
+          <nav class="usa-footer__nav" aria-label="Footer navigation">
+            <div class="grid-row grid-gap-4">
+              
+              <div class="mobile-lg:grid-col-6 desktop:grid-col-4">
+                <section class="usa-footer__primary-content usa-footer__primary-content--collapsible">
+                  
+                    <h4 class="usa-footer__primary-link"></h4>
+                    <ul class="usa-list usa-list--unstyled">
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://usda.gov/policies-and-links">
+                          Policies and Links
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://usda.gov/our-agency/about-usda/performance">
+                          Our Performance
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://www.usda.gov/our-agency/careers">
+                          Careers
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://www.usda.gov/oig/forms/contractor-fraud">
+                          Report Fraud on USDA
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://www.usda.gov/oig/">
+                          Visit OIG
+                        </a>
+                      </li>
+                      
+                    </ul>
+                  
+                </section>
+              </div>
+              
+              <div class="mobile-lg:grid-col-6 desktop:grid-col-4">
+                <section class="usa-footer__primary-content usa-footer__primary-content--collapsible">
+                  
+                    <h4 class="usa-footer__primary-link"></h4>
+                    <ul class="usa-list usa-list--unstyled">
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://usda.gov/plain-writing">
+                          Plain Writing
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://usda.gov/open">
+                          Open
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://www.dm.usda.gov/foia/">
+                          FOIA
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://usda.gov/accessibility-statement">
+                          Accessibility Statement
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://usda.gov/privacy-policy">
+                          Privacy Policy
+                        </a>
+                      </li>
+                      
+                    </ul>
+                  
+                </section>
+              </div>
+              
+              <div class="mobile-lg:grid-col-6 desktop:grid-col-4">
+                <section class="usa-footer__primary-content usa-footer__primary-content--collapsible">
+                  
+                    <h4 class="usa-footer__primary-link"></h4>
+                    <ul class="usa-list usa-list--unstyled">
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://usda.gov/non-discrimination-statement">
+                          Non-Discrimination Statement
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://www.ascr.usda.gov/civil-rights-statements">
+                          Anti-Harassment Policy
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://www.ocio.usda.gov/policy-directives-records-forms/information-quality-activities">
+                          Information Quality
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://www.usa.gov">
+                          USA.gov
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://www.whitehouse.gov">
+                          WhiteHouse.gov
+                        </a>
+                      </li>
+                      
+                    </ul>
+                  
+                </section>
+              </div>
+              
+              <div class="mobile-lg:grid-col-6 desktop:grid-col-4">
+                <section class="usa-footer__primary-content usa-footer__primary-content--collapsible">
+                  
+                    <h4 class="usa-footer__primary-link"></h4>
+                    <ul class="usa-list usa-list--unstyled">
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://usda.gov/federal-web-site-inventory">
+                          eGov
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="mailto:scinet_vrsc@usda.gov">
+                          Feedback
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://usda.gov/nofear">
+                          No FEAR Act Data
+                        </a>
+                      </li>
+                      
+                    </ul>
+                  
+                </section>
+              </div>
+              
+            </div>
+          </nav>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  
+
+  
+  <div class="usa-footer__secondary-section">
+    <div class="grid-container">
+      <div class="grid-row grid-gap">
+        <div class="usa-footer__logo grid-row mobile-lg:grid-col-6 mobile-lg:grid-gap-2">
+          
+
+          
+          <div class="mobile-lg:grid-col-auto">
+            <h3 class="usa-footer__logo-heading">USDA Agricultural Research Service</h3>
+          </div>
+          
+        </div>
+
+        
+        <div class="usa-footer__contact-links mobile-lg:grid-col-6">
+          
+          
+            <div class="usa-footer__social-links grid-row grid-gap-1">
+              <div class="grid-col-auto">
+                
+                  <a class="usa-social-link usa-social-link--twitter" href="https://twitter.com/USDA_ARS">
+                    <span>Twitter</span>
+                  </a>
+                
+              </div>
+            </div>
+          
+          
+            <h3 class="usa-footer__contact-heading">Contact us</h3>
+            
+            
+              <address class="usa-footer__address">
+                
+                <div class="usa-footer__contact-info grid-row grid-gap">
+                
+                    <div class="grid-col-auto">
+                      <a href="mailto:scinet_vrsc@usda.gov">
+                        scinet_vrsc@usda.gov
+                      </a>
+                    </div>
+                
+                </div>
+              </address>
+          
+        
+      </div>
+      
+      </div>
+    </div>
+  </div>
+  
+
+</footer>
+
+
+
+
+
+    
+
+
+
+
+
+  
+    
+      <script src="/assets/uswds/js/uswds.min.js" async></script>
+    
+
+  
+    
+      <script src="/assets/js/vendor/anchor.min.js"></script>
+    
+
+  
+    
+      <script src="/assets/js/main.js"></script>
+    
+
+  
+    
+
+
+
+
+<script type="text/javascript">
+//<![CDATA[
+      var usasearch_config = { siteHandle:"scinet-usda" };
+
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src = "//search.usa.gov/javascripts/remote.loader.js";
+      document.getElementsByTagName("head")[0].appendChild(script);
+
+//]]>
+</script>
+
+
+
+  </body>
+</html>

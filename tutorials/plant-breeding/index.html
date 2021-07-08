@@ -1,0 +1,1221 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<title>Quantitative Trait Locus (QTL) Analysis for Breeding | SCINet | USDA Scientific Computing Initiative</title>
+
+
+
+<meta name="description" content="Quantitative Trait Locus Analysis for Breeding research">
+
+
+
+<link rel="shortcut icon" type="image/ico"
+  href="/assets/uswds/img/favicons/favicon.ico">
+
+<link rel="icon" type="image/png"
+  href="/assets/uswds/img/favicons/favicon.png">
+
+<link rel="icon" type="image/png"
+  sizes="192x192"
+  href="/assets/uswds/img/favicons/favicon-192.png">
+
+<link rel="apple-touch-icon-precomposed" type=""
+  href="/assets/uswds/img/favicons/favicon-57.png">
+
+<link rel="apple-touch-icon-precomposed" type=""
+  sizes="72x72"
+  href="/assets/uswds/img/favicons/favicon-72.png">
+
+<link rel="apple-touch-icon-precomposed" type=""
+  sizes="114x114"
+  href="/assets/uswds/img/favicons/favicon-114.png">
+
+<link rel="apple-touch-icon-precomposed" type=""
+  sizes="144x144"
+  href="/assets/uswds/img/favicons/favicon-144.png">
+
+
+
+    
+
+
+
+<link rel="stylesheet"
+  href="/assets/css/uswds-theme.css"
+  media="screen">
+
+
+    
+      
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-27627304-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { dataLayer.push(arguments); }
+  gtag('js', new Date());
+
+  // `forceSSL` was used for analytics.js (the older Google Analytics script). It isn't documented for gtag.js, but the term occurs in the gtag.js code; figure it doesn't hurt to leave it in. -@afeld, 5/29/19
+  gtag('config', 'UA-27627304-1', { 'anonymize_ip': true, 'forceSSL': true });
+</script>
+
+
+
+<!-- Digital Analytics Program roll-up, see https://analytics.usa.gov for data -->
+<script id="_fed_an_ua_tag" src="https://dap.digitalgov.gov/Universal-Federated-Analytics-Min.js?agency=USDA&subagency=ARS"></script>
+
+
+    
+  </head>
+  <body class="  site-90%">
+
+    <a class="usa-skipnav" href="#main-content">Skip to main content</a>
+
+    
+
+
+  <section class="usa-banner" aria-label="Official government website">
+  <div class="usa-accordion">
+    <header class="usa-banner__header">
+      <div class="usa-banner__inner">
+        <div class="grid-col-auto">
+          <img class="usa-banner__header-flag" src="/assets/uswds/img/us_flag_small.png" alt="U.S. flag">
+        </div>
+        <div class="grid-col-fill tablet:grid-col-auto">
+          <p class="usa-banner__header-text">An official website of the United States government</p>
+          <p class="usa-banner__header-action" aria-hidden="true">Here’s how you know</p>
+        </div>
+        <button class="usa-accordion__button usa-banner__button"
+          aria-expanded="false" aria-controls="gov-banner">
+          <span class="usa-banner__button-text">Here’s how you know</span>
+        </button>
+      </div>
+    </header>
+    <div class="usa-banner__content usa-accordion__content" id="gov-banner">
+      <div class="grid-row grid-gap-lg">
+        <div class="usa-banner__guidance tablet:grid-col-6">
+          <img class="usa-banner__icon usa-media-block__img" src="/assets/uswds/img/icon-dot-gov.svg" role="img" alt="Dot gov">
+          <div class="usa-media-block__body">
+            <p>
+              <strong>Official websites use .gov</strong>
+              <br/>
+              A <strong>.gov</strong> website belongs to an official government organization in the United States.
+            </p>
+          </div>
+        </div>
+        <div class="usa-banner__guidance tablet:grid-col-6">
+          <img class="usa-banner__icon usa-media-block__img" src="/assets/uswds/img/icon-https.svg" role="img" alt="Https">
+          <div class="usa-media-block__body">
+            <p>
+              <strong>Secure .gov websites use HTTPS</strong>
+              <br/>
+              A <strong>lock</strong> (
+<span class="icon-lock"><svg xmlns="http://www.w3.org/2000/svg" width="52" height="64" viewBox="0 0 52 64" class="usa-banner__lock-image" role="img" aria-labelledby="banner-lock-title banner-lock-description"><title id="banner-lock-title">Lock</title><desc id="banner-lock-description">A locked padlock</desc><path fill="#000000" fill-rule="evenodd" d="M26 0c10.493 0 19 8.507 19 19v9h3a4 4 0 0 1 4 4v28a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4V32a4 4 0 0 1 4-4h3v-9C7 8.507 15.507 0 26 0zm0 8c-5.979 0-10.843 4.77-10.996 10.712L15 19v9h22v-9c0-6.075-4.925-11-11-11z"/></svg></span>
+) or <strong>https://</strong> means you’ve safely connected to the .gov website. Share sensitive information only on official, secure websites.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+  <div class="usa-overlay"></div>
+
+  <header class="usa-header usa-header--extended" role="banner">
+
+
+  
+    <div class="usa-navbar">
+      <div class="usa-logo" id="header-logo">
+        <a
+          href="/"
+          title="Home">
+          
+            <img
+              class="usa-logo-img"
+              src="/assets/img/usda-symbol-rgb-color.svg"
+              alt="USDA-ARS">
+          
+          <em class="usa-logo__text">
+            SCINet Scientific Computing
+          </em>
+        </a>
+      </div>
+      <button class="usa-menu-btn">Menu</button>
+    </div>
+
+    <nav role="navigation" class="usa-nav">
+      <div class="usa-nav__inner">
+        <button class="usa-nav__close">
+          <img src="/assets/uswds/img/close.svg" alt="close">
+        </button>
+
+        
+        
+        
+        <ul class="usa-nav__primary usa-accordion">
+          
+          <li class="usa-nav__primary-item">
+            
+              <a class=" usa-nav__link  " href="/signup/">
+                <span>Sign up for an account</span>
+              </a>
+            
+          </li>
+          
+          <li class="usa-nav__primary-item">
+            
+              
+              
+              
+            <button class="usa-accordion__button usa-nav__link" aria-expanded="false" aria-controls="nav-2">
+              <span>News</span>
+            </button>
+            
+            <ul id="nav-2" class="usa-nav__submenu">
+            
+            
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/downtime/">System Downtime</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/announcements/">Announcements</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/stories/">User Stories</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/newsletter/">Newsletter</a>
+                </li>
+                
+              
+            
+            </ul>
+            
+            
+            
+          </li>
+          
+          <li class="usa-nav__primary-item">
+            
+              
+              
+              
+            <button class="usa-accordion__button usa-nav__link" aria-expanded="false" aria-controls="nav-3">
+              <span>User Guides</span>
+            </button>
+            
+            <ul id="nav-3" class="usa-nav__submenu">
+            
+            
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/quickstart">Quick Start</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/ceres">Ceres HPC User manual</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="https://www.hpc.msstate.edu/computing/atlas">Atlas HPC User Guide</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/multifactor">Set up multifactor authentication</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/storage">SCINet Storage Guide</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/software">Software Overview</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/packageinstall">Installing R/Python/Perl Packages</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/conda">Installing Software with Conda</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/file-transfer">Transferring files</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/rclone">Rclone</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/clc">CLC Workbench</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/jupyter">Jupyter</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/rstudio">Rstudio</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/geneious">Geneious</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/galaxy">Galaxy on SCINet</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/singularity">Containers</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/smrtlink">SMRTLink using Command Line</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/AWS/documentation">AWS Resources</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/vpn">SCINet VPN</a>
+                </li>
+                
+              
+            
+            </ul>
+            
+            
+            
+          </li>
+          
+          <li class="usa-nav__primary-item">
+            
+              
+              
+              
+            <button class="usa-accordion__button usa-nav__link" aria-expanded="false" aria-controls="nav-4">
+              <span>Working Groups</span>
+            </button>
+            
+            <ul id="nav-4" class="usa-nav__submenu">
+            
+            
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/working-groups">Overview</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/working-groups/ag100pest">Ag100Pest</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/working-groups/arthropods">Arthropod Genomics</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/working-groups/geospatial">Geospatial Research</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/working-groups/microbiome">Microbiome</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/working-groups/LTARphenology">LTAR Phenology</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/working-groups/policy">SCINet Policy Committee</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/working-groups/webdev">SCINet Website Developers</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/working-groups/workbooks">Workbook Developers</a>
+                </li>
+                
+              
+            
+            </ul>
+            
+            
+            
+          </li>
+          
+          <li class="usa-nav__primary-item">
+            
+              
+              
+              
+            <button class="usa-accordion__button usa-nav__link" aria-expanded="false" aria-controls="nav-5">
+              <span>Training</span>
+            </button>
+            
+            <ul id="nav-5" class="usa-nav__submenu">
+            
+            
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/training/">Overview</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/training/tutorials/">ARS Science Tutorials</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/training/free-online-training">Free Online Training</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/training-archive/">Training Event Archive</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/training/bioinformatics-workbook">Bioinformatics Workbook</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/training/useful-links">Useful Links</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/training/coursera">Coursera</a>
+                </li>
+                
+              
+            
+            </ul>
+            
+            
+            
+          </li>
+          
+          <li class="usa-nav__primary-item">
+            
+              
+              
+              
+            <button class="usa-accordion__button usa-nav__link" aria-expanded="false" aria-controls="nav-6">
+              <span>Use Cases</span>
+            </button>
+            
+            <ul id="nav-6" class="usa-nav__submenu">
+            
+            
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/user/genomics/">Genomics</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/user/plant-breeding/">Plant breeding</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/user/geospatial/">Geospatial</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/user/hydrology/">Hydrology</a>
+                </li>
+                
+              
+            
+            </ul>
+            
+            
+            
+          </li>
+          
+          <li class="usa-nav__primary-item">
+            
+              
+              
+              
+            <button class="usa-accordion__button usa-nav__link" aria-expanded="false" aria-controls="nav-7">
+              <span>Support</span>
+            </button>
+            
+            <ul id="nav-7" class="usa-nav__submenu">
+            
+            
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/support/vrsc/">Virtual Research Support Core (VSRC)</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/support/faq/">FAQ's</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="https://forum.scinet.usda.gov">USDA-ARS SCINet Forum</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/support/request-storage">Request Project Storage</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/support/request-software">Request Software</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/support/request-AWS">Request AWS</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/support/ceres-job-script">Ceres Job Script Generator</a>
+                </li>
+                
+              
+            
+            </ul>
+            
+            
+            
+          </li>
+          
+          <li class="usa-nav__primary-item">
+            
+              
+              
+              
+            <button class="usa-accordion__button usa-nav__link" aria-expanded="false" aria-controls="nav-8">
+              <span>About</span>
+            </button>
+            
+            <ul id="nav-8" class="usa-nav__submenu">
+            
+            
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/about/compute">Computer Systems</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/about/organization">Organization</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/about/contact">Contact</a>
+                </li>
+                
+              
+            
+            </ul>
+            
+            
+            
+          </li>
+          
+          <li class="usa-nav__primary-item">
+            
+              
+              
+              
+            <button class="usa-accordion__button usa-nav__link" aria-expanded="false" aria-controls="nav-9">
+              <span>Opportunities</span>
+            </button>
+            
+            <ul id="nav-9" class="usa-nav__submenu">
+            
+            
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/opportunities/SAC">SAC Membership</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/opportunities/request-workshop">Request a Workshop</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/opportunities/postdocs">Fellowships (PhD & MS)</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/opportunities/events">Upcoming Events</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/opportunities/ai-innovation">AI Innovation fund</a>
+                </li>
+                
+              
+            
+            </ul>
+            
+            
+            
+          </li>
+          
+        </ul>
+        
+
+        
+
+        
+          
+          <div class="usa-nav__secondary">
+            <ul class="usa-unstyled-list usa-nav__secondary-links">
+              
+              
+                <li class="usa-nav__secondary-item">
+                  <a href=""
+                  >
+                    
+                  </a>
+                </li>
+              
+            </ul>
+            
+              <form
+                accept-charset="UTF-8"
+                action="https://search.usa.gov/search"
+                id="search_form"
+                method="get"
+                class="usa-search usa-search--small js-search-form">
+              <input
+                name="utf8"
+                type="hidden"
+                value="&#x2713;" />
+              <input
+                type="hidden"
+                name="affiliate"
+                id="affiliate"
+                value="scinet-usda" />
+                <div role="search">
+                  <label
+                    for="query" class="usa-sr-only">Enter search terms</label>
+                  <input
+                    autocomplete="off"
+                    class="usa-input usagov-search-autocomplete"
+                    id="query"
+                    name="query"
+                    type="search" />
+                  <button
+                    class="usa-button"
+                    type="submit"
+                    name="commit">
+                    <span class="usa-sr-only">Search</span>
+                  </button>
+                </div>
+              </form>
+            
+          </div>
+          
+
+
+        </div>
+      </div>
+    </nav>
+  
+  </header>
+
+
+
+
+    
+    
+
+
+    
+
+    
+
+    
+      
+      
+
+
+
+
+    
+    
+
+    
+      <main id="main-content" class="usa-layout-docs usa-layout-docs__main desktop:grid-col-9 usa-prose">
+        <div class="usa-section">
+  <div class="grid-container">
+    <div class="grid-row grid-gap flex-align-start">
+      
+      
+
+      <main class="usa-layout-docs usa-layout-docs__main usa-prose" id="main-content">
+        
+          <h1>Quantitative Trait Locus (QTL) Analysis for Breeding</h1>
+        
+        <p>By: Justin Vaughn</p>
+
+<h4 id="table-of-contents">Table of Contents</h4>
+<ul>
+  <li><a href="#performing-qtl-seq-data-processing-on-ceres">Performing QTL-seq data processing on Ceres</a>
+    <ul>
+      <li><a href="#what-is-qtl-seq">What is QTL-seq</a></li>
+      <li><a href="#getting-everything-ready-to-run-this-pipeline">Getting everything ready to run this pipeline</a></li>
+      <li><a href="#processing-raw-reads-to-get-allele-depth-in-each-bulk">Processing raw reads to get allele depth in each bulk</a></li>
+      <li><a href="#examining-differential-frequency-of-alleles-visually-and-identifying-peak-genomic-regions">Examining differential frequency of alleles visually and identifying peak genomic regions</a></li>
+    </ul>
+  </li>
+  <li><a href="#using-rstudio-on-scinet-ceres-in-3-steps">Using Rstudio on Scinet CERES in 3 steps</a>
+    <ul>
+      <li><a href="#log-into-ceres-and-run-a-pre-made-rstudio-script">Log into CERES, and run a pre-made Rstudio script</a></li>
+      <li><a href="#submit-the-job-and-read-the-instructions-in-the-generated-rstudio-out-file">Submit the job and read the instructions in the generated rstudio-out file</a></li>
+      <li><a href="#log-into-the-rstudio-server">Log into the Rstudio server</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="performing-qtl-seq-data-processing-on-ceres">Performing QTL-seq data processing on Ceres</h1>
+
+<h2 id="what-is-qtl-seq">What is QTL-seq?</h2>
+
+<p>Bulk segregant analysis (BSA) is used to find genes by identifying biased allele frequencies between two population that have been pooled based on distinctive phenotypes.  The technique has historically been limited by the qualitative nature of older genotyping platforms.  Next-generation sequencing allows for more precise characterization of allele frequencies in a population. This capacity was first realized in yeast studies, where extremely large populations sizes (&gt;100,000) individuals were used and extreme individuals within the population were pooled and resequenced (Ehrenreich et al., 2010).  Plant researchers quickly attempted to apply the above approach, commonly referred to as “QTL-seq”, to quantitative traits such as cold-tolerance (Yang et al., 2013), fungal rice blast (Takagi et al., 2013), and wheat grain protein (Trick et al., 2012), among others.  Though much of the work in QTL-seq is in the field and lab, the last portion does require bioinformatics.  To that end, we provide the following work-flow.</p>
+
+<h2 id="getting-everything-ready-to-run-this-pipeline">Getting everything ready to run this pipeline</h2>
+<p>(aka: things I won’t discuss how to do)</p>
+
+<ol>
+  <li>Get sequencing data on Ceres and in a working directory</li>
+  <li>Combine reads across sequencing lanes, if needed</li>
+  <li>Create and run job scripts</li>
+</ol>
+
+<h2 id="processing-raw-reads-to-get-allele-depth-in-each-bulk">Processing raw reads to get allele depth in each bulk</h2>
+
+<p>Sequencing data for each bulk should be mapped to a reference genome using bowtie or bwa with appropriate parameters.  A plausible job script might look something like this:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+
+<span class="c">#SBATCH --job-name="qtl_seq"</span>
+<span class="c">#SBATCH -p short</span>
+<span class="c">#SBATCH -N 1</span>
+<span class="c">#SBATCH -n 40</span>
+<span class="c">#SBATCH -t 48:00:00</span>
+<span class="c">#SBATCH --mail-user=your.email@usda.gov</span>
+<span class="c">#SBATCH --mail-type=BEGIN,END,FAIL</span>
+<span class="c">#SBATCH -o "stdout.%j.%N"</span>
+<span class="c">#SBATCH -e "stderr.%j.%N"</span>
+
+module load bwa
+module load samtools
+
+<span class="c">#map reads from low bulk sample</span>
+bwa mem <span class="nt">-t</span> 40 reference.fasta lowBulk_R1.fastq.gz lowBulk_R2.fastq.gz | samtools view -
+bS - | samtools <span class="nb">sort</span> - <span class="o">&gt;</span> lowBulk.sort.bam
+samtools index lowBulk.sort.bam
+
+<span class="c">#map reads from high bulk sample</span>
+bwa mem <span class="nt">-t</span> 40 reference.fasta highBulk_R1.fastq.gz highBulk_R2.fastq.gz | samtools view -
+bS - | samtools <span class="nb">sort</span> - <span class="o">&gt;</span> highBulk.sort.bam
+samtools index highBulk.sort.bam
+
+<span class="c">#End of file</span>
+</code></pre></div></div>
+
+<p>Call variants and add information about the allele frequency in each sample:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+
+<span class="c">#SBATCH --job-name="qtl_seq"</span>
+<span class="c">#SBATCH -p short</span>
+<span class="c">#SBATCH -N 1</span>
+<span class="c">#SBATCH -n 40</span>
+<span class="c">#SBATCH -t 48:00:00</span>
+<span class="c">#SBATCH --mail-user=your.email@usda.gov</span>
+<span class="c">#SBATCH --mail-type=BEGIN,END,FAIL</span>
+<span class="c">#SBATCH -o "stdout.%j.%N"</span>
+<span class="c">#SBATCH -e "stderr.%j.%N"</span>
+
+module load samtools
+module load bcftools
+
+<span class="c">#map reads to reference.fa using bwa or bowtie to generate highBulk.bam and lowBulk.bam</span>
+samtools faidx reference.fasta <span class="c">#creates index</span>
+samtools mpileup <span class="nt">-g</span> <span class="nt">-t</span> AD <span class="nt">-f</span> reference.fasta highBulk.sort.bam lowBulk.sort.bam <span class="o">&gt;</span> output.bcf <span class="c">#calls variants and adds fequency information</span>
+bcftools call <span class="nt">-vc</span> <span class="nt">-V</span> indels output.bcf <span class="o">&gt;</span> output_snps.bcf <span class="c">#filter to snps</span>
+<span class="c">#The inclusion of repeats in your experiment can dramatically reduce your signal strength; therefore, poor mapping quality and excess depth of coverage are two key features to filter on.  So the next step is optional but something like it is highly recommended</span>
+bcftools filter <span class="nt">-i</span> <span class="s1">'MQ&gt;50 &amp;&amp; DP&gt;5 &amp;&amp; DP&lt;60'</span> <span class="nt">-O</span> b output_snps.bcf <span class="o">&gt;</span> filt_output_snps.bcf
+bcftools convert filt_output_snps.bcf <span class="nt">-O</span> z <span class="nt">-o</span> output_snps.vcf.gz <span class="c">#convert to compressed VCF</span>
+</code></pre></div></div>
+
+<h2 id="examining-differential-frequency-of-alleles-visually-and-identifying-peak-genomic-regions">Examining differential frequency of alleles visually and identifying peak genomic regions</h2>
+
+<p>From this point, it may be worthwile to download your resultant compressed VCF file and then run processing and viewing programs locally. Alternatively, you can also use RStudio on Ceres as documented in the auxiliary section below <a href="#using-rstudio-on-scinet-ceres-in-3-steps">Using Rstudio on Scinet CERES in 3 steps</a>.</p>
+
+<p>We focus on a QTL-seq analysis software called QTLSurge. Many others exist, such as <a href="https://github.com/bmansfeld/QTLseqr">QTLseqr</a>.  Importantly, these other programs may not be completely compatible with the pipeline we have described above.</p>
+
+<p>QTLsurge is designed to be run under RStudio as a Shiny app and requires some dependent libraries. These are already installed on Ceres, so you can skip step 1 if working on Ceres:</p>
+
+<ol>
+  <li>Install dependencies: <a href="https://www.rstudio.com/products/rstudio/download/">RStudio</a> then, using Rstudio package manager, install zoo, ggplot2, and shiny libraries.</li>
+  <li>Download the programs: QTLsurge.R and vcf2freq.pl from <a href="https://github.com/USDA-ARS-GBRU/QTLsurge">QTLsurge</a> and put in an appropriate folder.</li>
+  <li>Open QTLsurge.R in RStudio</li>
+  <li>Press “Run App” button</li>
+  <li>If using a Windows machine (not Ceres), you may also have to <a href="https://learn.perl.org/installing/windows.html">install Perl.</a></li>
+</ol>
+
+<p>QTLsurge requires a tab delimited file containing chromosome ID in the first column, SNP location in the second column, high-bulk allele frequency in the third column, low-bulk allele frequency in the fourth column, deltaSNP (difference between high and low frequency) value in the fifth column, and cycle number in sixth column (see <code class="language-plaintext highlighter-rouge">test/test.freq</code>). Regardless of sign, all deltaSNP values are converted to absolute values for plotting and window calculation.</p>
+
+<p>A testing file (<code class="language-plaintext highlighter-rouge">test/test.freq</code>) is located on the QTLsurge github page. This file demonstrates the required input format and can be used to test that your app is working correctly.</p>
+
+<p>Create such a file from the data produced above:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">gunzip </span>output_snps.vcf.gz <span class="c">#uncompresses as output_snps.vcf and removes output_snps.vcf.gz</span>
+perl vcf2freq.pl output_snps.vcf 0 <span class="o">&gt;</span>output_frequency_file.txt <span class="c">#vcf2freq.pl is supplied as a helper program, converts to QTLsurge format.  The last argument is the cycle you are on.  Use 0 if this is your initial, standard QTL-seq experiment.  This script is not robust to variation in genotype format and only accepts "GT:PL:AD" format that results from the pipeline described above.</span>
+</code></pre></div></div>
+
+<p>Browse to this file and open it. A graph, similar to the one below will appear momentarily. You can step through each chromosome using the interface and look for peaks that are above the genome-wide threshold (95th percentile based on raw deltaSNP values). Because raw data of this kind is very noisy, a sliding window average is supplied. The appropriate window size is a function of population size, recombination rate, marker density, and read depth. Generally, if read depth is &gt;40x, your window size should decrease as your population size increases. A good rule-of-thumb is that few windows should have an average that extends beyond 3 standard error units of a directly adjacent window, assuming your overlap-to-window-size is ~20%. The red line indicates the average of window and the gray shading indicates 3 standard error units. Note: Setting the overlap size very low will cause QTLSurge to respond slowly and should only be used when zoomed in to a &lt;1MB range.</p>
+
+<p><img src="/assets/img/loadedFileOverview.png" alt="screen shot of QTLsurge software" /></p>
+
+<p>For a standard QTL-seq experiment, this might be a stopping point for publication. QTLsurge provides further support for iterative rounds of genotyping that allow a researcher to further pinpoint genes and/or confirm the peaks that they have discovered. The QTLsurge page describes these possible experiments and analyses in more detail.</p>
+
+<h1 id="using-rstudio-on-scinet-ceres-in-3-steps">Using Rstudio on Scinet CERES in 3 steps</h1>
+
+<p>see also the <a href="/guide/rstudio/">RStudio Server User Guide</a></p>
+
+<h2 id="log-into-ceres-and-run-a-pre-made-rstudio-script">Log into CERES, and run a pre-made Rstudio script</h2>
+
+<p>Open up two terminals or putty windows (important for later) and use one to connect to &lt;username&gt;@scinet.science. Then, either use the file /reference/containers/RStudio/3.6.0/rstudio.job, or create an Rstudio script using the <a href="https://e.arsnet.usda.gov/sites/OCIO/scinet/accounts/ceres_job_script_generator/Home.aspx">Ceres Job Script Generator</a> (eAuthentication required).</p>
+
+<p>If using the generator, make sure you select “Rstudio” in the “Job Script template” dropdown menu). I recommend copying the /reference/ or generated script into your desired working directory. You should now edit the script to request the time and resources you want. Some R modules, like those for coexpression analysis, need many threads and lots of memory, so you’ll want to edit the “–mem” and “–nodes” lines in the script to request the memory and CPUs you need. Also, for the next step, you may wish to edit the “–output” line to change the default location for the output instructions from /home/&lt;username&gt; to whichever working directory you want. The output instructions will tell you what to do next in detail.</p>
+
+<h2 id="submit-the-job-and-read-the-instructions-in-the-generated-rstudio-out-file">Submit the job and read the instructions in the generated rstudio-out file</h2>
+
+<p>The outputted “rstudio-&lt;lots of numbers&gt;.out” file will have instructions on how to connect to your now-running Rstudio session. You can either a) create an ssh tunnel with an  <code class="language-plaintext highlighter-rouge">ssh -N -L 8787:hostname:port</code>  command, then open a browser window at “localhost:8787” (you can then minimize the terminal window you used to do the <code class="language-plaintext highlighter-rouge">ssh</code> command); or b) connect to the SCINet VPN, and go to the hostname:8787 address indicated in the rstudio.out file in your browser of choice.</p>
+
+<h2 id="log-into-the-rstudio-server">Log into the Rstudio server</h2>
+
+<p>If you did the above step correctly, your browser should be presenting you with an Rstudio login screen. Following the instructions in the same output file above, log into the server in the browser window using the credentials supplied in that file (your Scinet user name and a randomly-generated one-time password).</p>
+
+      </main>
+    </div>
+  </div>
+</div>
+
+      </main>
+    
+
+    
+
+    
+
+
+  
+<footer class="usa-footer usa-footer--big">
+
+  
+    <div class="grid-container">
+      <p>Last updated: April 15, 2021 at 08:28 PM</p>
+    </div>
+  
+
+  
+    <div class="grid-container usa-footer__return-to-top">
+      <a href="#">Return to top</a>
+    </div>
+  
+
+
+
+  
+    
+    
+    
+  <div class="usa-footer__primary-section">
+    <div class="grid-container">
+      <div class="grid-row grid-gap">
+        <div class="">
+          <nav class="usa-footer__nav" aria-label="Footer navigation">
+            <div class="grid-row grid-gap-4">
+              
+              <div class="mobile-lg:grid-col-6 desktop:grid-col-4">
+                <section class="usa-footer__primary-content usa-footer__primary-content--collapsible">
+                  
+                    <h4 class="usa-footer__primary-link"></h4>
+                    <ul class="usa-list usa-list--unstyled">
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://usda.gov/policies-and-links">
+                          Policies and Links
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://usda.gov/our-agency/about-usda/performance">
+                          Our Performance
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://www.usda.gov/our-agency/careers">
+                          Careers
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://www.usda.gov/oig/forms/contractor-fraud">
+                          Report Fraud on USDA
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://www.usda.gov/oig/">
+                          Visit OIG
+                        </a>
+                      </li>
+                      
+                    </ul>
+                  
+                </section>
+              </div>
+              
+              <div class="mobile-lg:grid-col-6 desktop:grid-col-4">
+                <section class="usa-footer__primary-content usa-footer__primary-content--collapsible">
+                  
+                    <h4 class="usa-footer__primary-link"></h4>
+                    <ul class="usa-list usa-list--unstyled">
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://usda.gov/plain-writing">
+                          Plain Writing
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://usda.gov/open">
+                          Open
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://www.dm.usda.gov/foia/">
+                          FOIA
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://usda.gov/accessibility-statement">
+                          Accessibility Statement
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://usda.gov/privacy-policy">
+                          Privacy Policy
+                        </a>
+                      </li>
+                      
+                    </ul>
+                  
+                </section>
+              </div>
+              
+              <div class="mobile-lg:grid-col-6 desktop:grid-col-4">
+                <section class="usa-footer__primary-content usa-footer__primary-content--collapsible">
+                  
+                    <h4 class="usa-footer__primary-link"></h4>
+                    <ul class="usa-list usa-list--unstyled">
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://usda.gov/non-discrimination-statement">
+                          Non-Discrimination Statement
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://www.ascr.usda.gov/civil-rights-statements">
+                          Anti-Harassment Policy
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://www.ocio.usda.gov/policy-directives-records-forms/information-quality-activities">
+                          Information Quality
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://www.usa.gov">
+                          USA.gov
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://www.whitehouse.gov">
+                          WhiteHouse.gov
+                        </a>
+                      </li>
+                      
+                    </ul>
+                  
+                </section>
+              </div>
+              
+              <div class="mobile-lg:grid-col-6 desktop:grid-col-4">
+                <section class="usa-footer__primary-content usa-footer__primary-content--collapsible">
+                  
+                    <h4 class="usa-footer__primary-link"></h4>
+                    <ul class="usa-list usa-list--unstyled">
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://usda.gov/federal-web-site-inventory">
+                          eGov
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="mailto:scinet_vrsc@usda.gov">
+                          Feedback
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://usda.gov/nofear">
+                          No FEAR Act Data
+                        </a>
+                      </li>
+                      
+                    </ul>
+                  
+                </section>
+              </div>
+              
+            </div>
+          </nav>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  
+
+  
+  <div class="usa-footer__secondary-section">
+    <div class="grid-container">
+      <div class="grid-row grid-gap">
+        <div class="usa-footer__logo grid-row mobile-lg:grid-col-6 mobile-lg:grid-gap-2">
+          
+
+          
+          <div class="mobile-lg:grid-col-auto">
+            <h3 class="usa-footer__logo-heading">USDA Agricultural Research Service</h3>
+          </div>
+          
+        </div>
+
+        
+        <div class="usa-footer__contact-links mobile-lg:grid-col-6">
+          
+          
+            <div class="usa-footer__social-links grid-row grid-gap-1">
+              <div class="grid-col-auto">
+                
+                  <a class="usa-social-link usa-social-link--twitter" href="https://twitter.com/USDA_ARS">
+                    <span>Twitter</span>
+                  </a>
+                
+              </div>
+            </div>
+          
+          
+            <h3 class="usa-footer__contact-heading">Contact us</h3>
+            
+            
+              <address class="usa-footer__address">
+                
+                <div class="usa-footer__contact-info grid-row grid-gap">
+                
+                    <div class="grid-col-auto">
+                      <a href="mailto:scinet_vrsc@usda.gov">
+                        scinet_vrsc@usda.gov
+                      </a>
+                    </div>
+                
+                </div>
+              </address>
+          
+        
+      </div>
+      
+      </div>
+    </div>
+  </div>
+  
+
+</footer>
+
+
+
+
+
+    
+
+
+
+
+
+  
+    
+      <script src="/assets/uswds/js/uswds.min.js" async></script>
+    
+
+  
+    
+      <script src="/assets/js/vendor/anchor.min.js"></script>
+    
+
+  
+    
+      <script src="/assets/js/main.js"></script>
+    
+
+  
+    
+
+
+
+
+<script type="text/javascript">
+//<![CDATA[
+      var usasearch_config = { siteHandle:"scinet-usda" };
+
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src = "//search.usa.gov/javascripts/remote.loader.js";
+      document.getElementsByTagName("head")[0].appendChild(script);
+
+//]]>
+</script>
+
+
+
+  </body>
+</html>

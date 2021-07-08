@@ -1,0 +1,1577 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<title>A Quick Guide to getting started with SCINet | SCINet | USDA Scientific Computing Initiative</title>
+
+
+
+<meta name="description" content="A Quick Guide to getting started with SCINet">
+
+
+
+<link rel="shortcut icon" type="image/ico"
+  href="/assets/uswds/img/favicons/favicon.ico">
+
+<link rel="icon" type="image/png"
+  href="/assets/uswds/img/favicons/favicon.png">
+
+<link rel="icon" type="image/png"
+  sizes="192x192"
+  href="/assets/uswds/img/favicons/favicon-192.png">
+
+<link rel="apple-touch-icon-precomposed" type=""
+  href="/assets/uswds/img/favicons/favicon-57.png">
+
+<link rel="apple-touch-icon-precomposed" type=""
+  sizes="72x72"
+  href="/assets/uswds/img/favicons/favicon-72.png">
+
+<link rel="apple-touch-icon-precomposed" type=""
+  sizes="114x114"
+  href="/assets/uswds/img/favicons/favicon-114.png">
+
+<link rel="apple-touch-icon-precomposed" type=""
+  sizes="144x144"
+  href="/assets/uswds/img/favicons/favicon-144.png">
+
+
+
+    
+
+
+
+<link rel="stylesheet"
+  href="/assets/css/uswds-theme.css"
+  media="screen">
+
+
+    
+      
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-27627304-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { dataLayer.push(arguments); }
+  gtag('js', new Date());
+
+  // `forceSSL` was used for analytics.js (the older Google Analytics script). It isn't documented for gtag.js, but the term occurs in the gtag.js code; figure it doesn't hurt to leave it in. -@afeld, 5/29/19
+  gtag('config', 'UA-27627304-1', { 'anonymize_ip': true, 'forceSSL': true });
+</script>
+
+
+
+<!-- Digital Analytics Program roll-up, see https://analytics.usa.gov for data -->
+<script id="_fed_an_ua_tag" src="https://dap.digitalgov.gov/Universal-Federated-Analytics-Min.js?agency=USDA&subagency=ARS"></script>
+
+
+    
+  </head>
+  <body class="  site-90%">
+
+    <a class="usa-skipnav" href="#main-content">Skip to main content</a>
+
+    
+
+
+  <section class="usa-banner" aria-label="Official government website">
+  <div class="usa-accordion">
+    <header class="usa-banner__header">
+      <div class="usa-banner__inner">
+        <div class="grid-col-auto">
+          <img class="usa-banner__header-flag" src="/assets/uswds/img/us_flag_small.png" alt="U.S. flag">
+        </div>
+        <div class="grid-col-fill tablet:grid-col-auto">
+          <p class="usa-banner__header-text">An official website of the United States government</p>
+          <p class="usa-banner__header-action" aria-hidden="true">Here’s how you know</p>
+        </div>
+        <button class="usa-accordion__button usa-banner__button"
+          aria-expanded="false" aria-controls="gov-banner">
+          <span class="usa-banner__button-text">Here’s how you know</span>
+        </button>
+      </div>
+    </header>
+    <div class="usa-banner__content usa-accordion__content" id="gov-banner">
+      <div class="grid-row grid-gap-lg">
+        <div class="usa-banner__guidance tablet:grid-col-6">
+          <img class="usa-banner__icon usa-media-block__img" src="/assets/uswds/img/icon-dot-gov.svg" role="img" alt="Dot gov">
+          <div class="usa-media-block__body">
+            <p>
+              <strong>Official websites use .gov</strong>
+              <br/>
+              A <strong>.gov</strong> website belongs to an official government organization in the United States.
+            </p>
+          </div>
+        </div>
+        <div class="usa-banner__guidance tablet:grid-col-6">
+          <img class="usa-banner__icon usa-media-block__img" src="/assets/uswds/img/icon-https.svg" role="img" alt="Https">
+          <div class="usa-media-block__body">
+            <p>
+              <strong>Secure .gov websites use HTTPS</strong>
+              <br/>
+              A <strong>lock</strong> (
+<span class="icon-lock"><svg xmlns="http://www.w3.org/2000/svg" width="52" height="64" viewBox="0 0 52 64" class="usa-banner__lock-image" role="img" aria-labelledby="banner-lock-title banner-lock-description"><title id="banner-lock-title">Lock</title><desc id="banner-lock-description">A locked padlock</desc><path fill="#000000" fill-rule="evenodd" d="M26 0c10.493 0 19 8.507 19 19v9h3a4 4 0 0 1 4 4v28a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4V32a4 4 0 0 1 4-4h3v-9C7 8.507 15.507 0 26 0zm0 8c-5.979 0-10.843 4.77-10.996 10.712L15 19v9h22v-9c0-6.075-4.925-11-11-11z"/></svg></span>
+) or <strong>https://</strong> means you’ve safely connected to the .gov website. Share sensitive information only on official, secure websites.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+  <div class="usa-overlay"></div>
+
+  <header class="usa-header usa-header--extended" role="banner">
+
+
+  
+    <div class="usa-navbar">
+      <div class="usa-logo" id="header-logo">
+        <a
+          href="/"
+          title="Home">
+          
+            <img
+              class="usa-logo-img"
+              src="/assets/img/usda-symbol-rgb-color.svg"
+              alt="USDA-ARS">
+          
+          <em class="usa-logo__text">
+            SCINet Scientific Computing
+          </em>
+        </a>
+      </div>
+      <button class="usa-menu-btn">Menu</button>
+    </div>
+
+    <nav role="navigation" class="usa-nav">
+      <div class="usa-nav__inner">
+        <button class="usa-nav__close">
+          <img src="/assets/uswds/img/close.svg" alt="close">
+        </button>
+
+        
+        
+        
+        <ul class="usa-nav__primary usa-accordion">
+          
+          <li class="usa-nav__primary-item">
+            
+              <a class=" usa-nav__link  " href="/signup/">
+                <span>Sign up for an account</span>
+              </a>
+            
+          </li>
+          
+          <li class="usa-nav__primary-item">
+            
+              
+              
+              
+            <button class="usa-accordion__button usa-nav__link" aria-expanded="false" aria-controls="nav-2">
+              <span>News</span>
+            </button>
+            
+            <ul id="nav-2" class="usa-nav__submenu">
+            
+            
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/downtime/">System Downtime</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/announcements/">Announcements</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/stories/">User Stories</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/newsletter/">Newsletter</a>
+                </li>
+                
+              
+            
+            </ul>
+            
+            
+            
+          </li>
+          
+          <li class="usa-nav__primary-item">
+            
+              
+              
+              
+            <button class="usa-accordion__button usa-nav__link" aria-expanded="false" aria-controls="nav-3">
+              <span>User Guides</span>
+            </button>
+            
+            <ul id="nav-3" class="usa-nav__submenu">
+            
+            
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/quickstart">Quick Start</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/ceres">Ceres HPC User manual</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="https://www.hpc.msstate.edu/computing/atlas">Atlas HPC User Guide</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/multifactor">Set up multifactor authentication</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/storage">SCINet Storage Guide</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/software">Software Overview</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/packageinstall">Installing R/Python/Perl Packages</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/conda">Installing Software with Conda</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/file-transfer">Transferring files</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/rclone">Rclone</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/clc">CLC Workbench</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/jupyter">Jupyter</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/rstudio">Rstudio</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/geneious">Geneious</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/galaxy">Galaxy on SCINet</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/singularity">Containers</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/smrtlink">SMRTLink using Command Line</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/AWS/documentation">AWS Resources</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/vpn">SCINet VPN</a>
+                </li>
+                
+              
+            
+            </ul>
+            
+            
+            
+          </li>
+          
+          <li class="usa-nav__primary-item">
+            
+              
+              
+              
+            <button class="usa-accordion__button usa-nav__link" aria-expanded="false" aria-controls="nav-4">
+              <span>Working Groups</span>
+            </button>
+            
+            <ul id="nav-4" class="usa-nav__submenu">
+            
+            
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/working-groups">Overview</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/working-groups/ag100pest">Ag100Pest</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/working-groups/arthropods">Arthropod Genomics</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/working-groups/geospatial">Geospatial Research</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/working-groups/microbiome">Microbiome</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/working-groups/LTARphenology">LTAR Phenology</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/working-groups/policy">SCINet Policy Committee</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/working-groups/webdev">SCINet Website Developers</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/working-groups/workbooks">Workbook Developers</a>
+                </li>
+                
+              
+            
+            </ul>
+            
+            
+            
+          </li>
+          
+          <li class="usa-nav__primary-item">
+            
+              
+              
+              
+            <button class="usa-accordion__button usa-nav__link" aria-expanded="false" aria-controls="nav-5">
+              <span>Training</span>
+            </button>
+            
+            <ul id="nav-5" class="usa-nav__submenu">
+            
+            
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/training/">Overview</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/training/tutorials/">ARS Science Tutorials</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/training/free-online-training">Free Online Training</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/training-archive/">Training Event Archive</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/training/bioinformatics-workbook">Bioinformatics Workbook</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/training/useful-links">Useful Links</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/training/coursera">Coursera</a>
+                </li>
+                
+              
+            
+            </ul>
+            
+            
+            
+          </li>
+          
+          <li class="usa-nav__primary-item">
+            
+              
+              
+              
+            <button class="usa-accordion__button usa-nav__link" aria-expanded="false" aria-controls="nav-6">
+              <span>Use Cases</span>
+            </button>
+            
+            <ul id="nav-6" class="usa-nav__submenu">
+            
+            
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/user/genomics/">Genomics</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/user/plant-breeding/">Plant breeding</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/user/geospatial/">Geospatial</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/user/hydrology/">Hydrology</a>
+                </li>
+                
+              
+            
+            </ul>
+            
+            
+            
+          </li>
+          
+          <li class="usa-nav__primary-item">
+            
+              
+              
+              
+            <button class="usa-accordion__button usa-nav__link" aria-expanded="false" aria-controls="nav-7">
+              <span>Support</span>
+            </button>
+            
+            <ul id="nav-7" class="usa-nav__submenu">
+            
+            
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/support/vrsc/">Virtual Research Support Core (VSRC)</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/support/faq/">FAQ's</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="https://forum.scinet.usda.gov">USDA-ARS SCINet Forum</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/support/request-storage">Request Project Storage</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/support/request-software">Request Software</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/support/request-AWS">Request AWS</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/support/ceres-job-script">Ceres Job Script Generator</a>
+                </li>
+                
+              
+            
+            </ul>
+            
+            
+            
+          </li>
+          
+          <li class="usa-nav__primary-item">
+            
+              
+              
+              
+            <button class="usa-accordion__button usa-nav__link" aria-expanded="false" aria-controls="nav-8">
+              <span>About</span>
+            </button>
+            
+            <ul id="nav-8" class="usa-nav__submenu">
+            
+            
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/about/compute">Computer Systems</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/about/organization">Organization</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/about/contact">Contact</a>
+                </li>
+                
+              
+            
+            </ul>
+            
+            
+            
+          </li>
+          
+          <li class="usa-nav__primary-item">
+            
+              
+              
+              
+            <button class="usa-accordion__button usa-nav__link" aria-expanded="false" aria-controls="nav-9">
+              <span>Opportunities</span>
+            </button>
+            
+            <ul id="nav-9" class="usa-nav__submenu">
+            
+            
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/opportunities/SAC">SAC Membership</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/opportunities/request-workshop">Request a Workshop</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/opportunities/postdocs">Fellowships (PhD & MS)</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/opportunities/events">Upcoming Events</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/opportunities/ai-innovation">AI Innovation fund</a>
+                </li>
+                
+              
+            
+            </ul>
+            
+            
+            
+          </li>
+          
+        </ul>
+        
+
+        
+
+        
+          
+          <div class="usa-nav__secondary">
+            <ul class="usa-unstyled-list usa-nav__secondary-links">
+              
+              
+                <li class="usa-nav__secondary-item">
+                  <a href=""
+                  >
+                    
+                  </a>
+                </li>
+              
+            </ul>
+            
+              <form
+                accept-charset="UTF-8"
+                action="https://search.usa.gov/search"
+                id="search_form"
+                method="get"
+                class="usa-search usa-search--small js-search-form">
+              <input
+                name="utf8"
+                type="hidden"
+                value="&#x2713;" />
+              <input
+                type="hidden"
+                name="affiliate"
+                id="affiliate"
+                value="scinet-usda" />
+                <div role="search">
+                  <label
+                    for="query" class="usa-sr-only">Enter search terms</label>
+                  <input
+                    autocomplete="off"
+                    class="usa-input usagov-search-autocomplete"
+                    id="query"
+                    name="query"
+                    type="search" />
+                  <button
+                    class="usa-button"
+                    type="submit"
+                    name="commit">
+                    <span class="usa-sr-only">Search</span>
+                  </button>
+                </div>
+              </form>
+            
+          </div>
+          
+
+
+        </div>
+      </div>
+    </nav>
+  
+  </header>
+
+
+
+
+    
+    
+
+
+    
+
+    
+
+    
+      
+      
+
+
+
+
+    
+    
+
+    
+      <main id="main-content" class="usa-layout-docs usa-layout-docs__main desktop:grid-col-9 usa-prose">
+        <div class="usa-section">
+  <div class="grid-container">
+    <div class="grid-row grid-gap flex-align-start">
+      
+      
+
+      <main class="usa-layout-docs usa-layout-docs__main usa-prose" id="main-content">
+        
+          <h1>A Quick Guide to getting started with SCINet</h1>
+        
+        <p><a href="/signup/" class="usa-button usa-button-big">No account? Signup here.</a></p>
+
+<h4 id="table-of-contents">Table of Contents</h4>
+<ul>
+  <li><a href="#what-is-scinet">What is SCINet</a></li>
+  <li><a href="#set-up-multi-factor-authentication">Multi-Factor Authentication</a></li>
+  <li><a href="#hpc-clusters-on-scinet">HPC Clusters on SCINet</a></li>
+  <li><a href="#accessing-scinet">Accessing SCINet</a>
+    <ul>
+      <li><a href="#from-windows-10">Windows 10 Instructions</a></li>
+      <li><a href="#from-older-windows-versions">Older Windows Instructions</a></li>
+      <li><a href="#from-mac-and-linux">Mac and Linux Instructions</a></li>
+    </ul>
+  </li>
+  <li><a href="#password-requirements">Password Requirements</a></li>
+  <li><a href="#linux-command-line-interface">Linux Command Line Interface</a></li>
+  <li><a href="#data-storage">Storage</a>
+    <ul>
+      <li><a href="#quotas">Quotas</a></li>
+      <li><a href="#home-directories">Home Directories</a></li>
+      <li><a href="#project-directories">Project Directories</a></li>
+    </ul>
+  </li>
+  <li><a href="#data-transfer">Data Transfer</a>
+    <ul>
+      <li><a href="#globus-data-transfers">Globus</a></li>
+      <li><a href="#small-data-transfers">Small Files</a></li>
+      <li><a href="#shipping-hard-drives">Shipping Hard Drives</a></li>
+    </ul>
+  </li>
+  <li><a href="#tools-and-software">Tools and Software</a>
+    <ul>
+      <li><a href="#available-software">Available Software</a></li>
+      <li><a href="#reference-genome-assemblies">Reference Genome Assemblies</a></li>
+      <li><a href="#text-editors">Text Editors</a></li>
+    </ul>
+  </li>
+  <li><a href="#running-applications">Running Applications</a>
+    <ul>
+      <li><a href="#compute-nodes">Compute Nodes</a></li>
+      <li><a href="#interactive-mode">Interactive Mode</a></li>
+      <li><a href="#batch-mode">Batch Mode</a></li>
+      <li><a href="#job-script-generator">Job Script Generator</a></li>
+      <li><a href="#useful-slurm-commands">Useful SLURM Commands</a></li>
+    </ul>
+  </li>
+  <li><a href="#building-your-own-tools">Building Your Own Tools</a></li>
+  <li><a href="#scinet-citationacknowledgment-in-publications">SCINet Acknowledgement in Publications</a></li>
+</ul>
+
+<h1 id="what-is-scinet">What is SCINet</h1>
+
+<p>SCINet is the name for the USDA-ARS initiative for scientific computing. It consists of:</p>
+
+<ol>
+  <li>High performance computer clusters for running command-line and graphical programs. There are currently two clusters: Ceres cluster in Ames IA and Atlas cluster in Starkville MS. Another cluster at NAL in Beltsville MD will be coming online later this year. SCINet also offers AWS cloud computing. See <a href="/about/compute">SCINet HPC Systems</a> for more detail.</li>
+  <li>Network improvements across ARS.</li>
+  <li>Support for computing through the Virtual Research Support Core (VRSC). See <a href="/support/vrsc/">VRSC Support</a> for more detail.</li>
+  <li>Training and workshop opportunities in multiple areas of scientific computing. See <a href="/opportunities/events">Upcoming Events</a> and <a href="/training-archive/">Past Workshops</a> for more detail.</li>
+</ol>
+
+<h1 id="set-up-multi-factor-authentication">Set Up Multi-Factor Authentication</h1>
+
+<p>For security, SCINet requires multifactor authentication. See the setup instructions in the <a href="/guide/multifactor/">Multi-Factor Authentication User Guide</a>.</p>
+
+<h1 id="hpc-clusters-on-scinet">HPC Clusters on SCINet</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Cluster name</th>
+      <th>Location</th>
+      <th>Login Nodes</th>
+      <th>Transfer Nodes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Ceres</td>
+      <td>Ames, IA</td>
+      <td>ceres.scinet.usda.gov</td>
+      <td>ceres-dtn.scinet.usda.gov</td>
+    </tr>
+    <tr>
+      <td>Atlas</td>
+      <td>Starkville, MS</td>
+      <td>atlas-login.hpc.msstate.edu</td>
+      <td>atlas-dtn.hpc.msstate.edu</td>
+    </tr>
+    <tr>
+      <td>TBD</td>
+      <td>Beltsville, MD</td>
+      <td>TBD</td>
+      <td>TBD</td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="accessing-scinet">Accessing SCINet</h1>
+
+<p>All users should have received their login credentials in an email.  If you have not, please email the Virtual Research Support Core at <a href="mailto:scinet_vrsc@USDA.GOV?subject=account%20access">scinet_vrsc@USDA.GOV</a>. Before accessing various SCINet resources, new users need to ssh either to Ceres or Atlas cluster and change the temporary password. Note that home directories on Atlas are not created right away, so it is recommended to wait a day after receiving email with the credentials before logging to Atlas cluster.</p>
+
+<h2 id="from-windows-10">From Windows 10</h2>
+
+<p>Windows 10 that is up to date has an ssh client in the Windows Power Shell. To use that client, click on the Start button and start typing “power”. Select Windows PowerShell from the list. In the PowerShell window you can simply type</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ssh &lt;user.name&gt;@ceres.scinet.usda.gov
+</code></pre></div></div>
+<p>to login to Ceres and</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ssh &lt;user.name&gt;@atlas-login.hpc.msstate.edu
+</code></pre></div></div>
+<p>to login to Atlas.</p>
+
+<p>However we recommend creating a config file as described in the instructions for Mac and Linux in the next section. To create config file in <code class="language-plaintext highlighter-rouge">C: &gt; Users &gt; (your account) &gt; .ssh</code> on your Windows 10 computer use Notepad. Make sure to save file with no extension (simply <code class="language-plaintext highlighter-rouge">config</code> and not <code class="language-plaintext highlighter-rouge">config.txt</code>). If you don’t want to use config file, you can manually type longer ssh command described in the instructions for Mac and Linux below. The <code class="language-plaintext highlighter-rouge">-o</code> option is not required but helps to keep ssh connection alive.</p>
+
+<p>After typing ssh command, enter the 6-digit code generated by the Google Authenticator app when prompted for Verification code. Note that when you type the code or the password, nothing will be shown on the screen. If system accepts the code it will prompt you for password. If you made a mistake when typing 6-digit code, and are prompted for Verification code once again, wait for the new code to be generated.</p>
+
+<p>If your password has expired (new temporary passwords expire right away, and the passwords set by users expire after 60 days) you will be prompted to change your password. Note that when changing password, first you will need to enter the same password that you used to login, and only when prompted for a new password, you will enter a new one.</p>
+
+<h2 id="from-older-windows-versions">From Older Windows Versions</h2>
+
+<ol>
+  <li>Please download <a href="https://www.putty.org/">Putty.exe</a></li>
+  <li>Start PuTTY</li>
+  <li>In the left-hand menu select the ‘Session’ category, then on the right side type into the ‘Host Name’ either <code class="language-plaintext highlighter-rouge">ceres.scinet.usda.gov</code> (for Ceres connections) or <code class="language-plaintext highlighter-rouge">atlas-login.hpc.msstate.edu</code> (for Atlas connections).</li>
+  <li>In the left-hand menu select the ‘Connection’ category, then on the right side replace <code class="language-plaintext highlighter-rouge">0</code> with <code class="language-plaintext highlighter-rouge">60</code> for “Seconds between keepalives” and check the “Enable TCP keepalives”</li>
+  <li>In the left-hand menu select “Data” category under the ‘Connection’ category and type your username on the right side</li>
+  <li>To save these settings for later logins select the ‘Session’ category, and in the “Saved Sessions” type <code class="language-plaintext highlighter-rouge">SCINet Ceres</code> or <code class="language-plaintext highlighter-rouge">SCINet Atlas</code>, then click on “Save” button.</li>
+  <li>Hit “Open”</li>
+  <li>Enter the 6-digit code generated by the Google Authenticator app when prompted for Verification code. Note that when you type the code or the password, nothing will be shown on the screen. If system accepts the code it will prompt you for password. If you made a mistake when typing 6-digit code, and are prompted for Verification code once again, wait for the new code to be generated.</li>
+  <li>If your password has expired (new temporary passwords expire right away, and the passwords set by users expire after 90 days) you will be prompted to change your password. Note that when changing password, first you will need to enter the same password that you used to login, and only when prompted for a new password, you will enter a new one.</li>
+</ol>
+
+<p><img src="/assets/img/putty.png" alt="screenshot of Putty software" /></p>
+
+<h2 id="from-mac-and-linux">From Mac and Linux</h2>
+
+<p>Open a terminal window. We recommend setting up a config file to make logging in easier and use settings to provide a more stable connection.</p>
+
+<p>Create a ~/.ssh/config entry similar to this:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Host ceres-login
+HostName ceres.scinet.usda.gov
+User &lt;user.name&gt;
+TCPKeepAlive <span class="nb">yes
+</span>ServerAliveInterval 20
+ServerAliveCountMax 30
+
+Host atlas-login
+HostName atlas-login.hpc.msstate.edu
+User &lt;user.name&gt;
+TCPKeepAlive <span class="nb">yes
+</span>ServerAliveInterval 20
+ServerAliveCountMax 30
+</code></pre></div></div>
+
+<p>That will send a “keepalive” signal every 20 seconds and keep retrying for up to 30 failures. This also simplifies your login to just:</p>
+
+<p><code class="language-plaintext highlighter-rouge">ssh ceres-login</code>
+or
+<code class="language-plaintext highlighter-rouge">ssh atlas-login</code></p>
+
+<p>If you don’t want to use the config file method you can just add these options to the ssh command:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ssh <span class="nt">-o</span> <span class="nv">TCPKeepAlive</span><span class="o">=</span><span class="nb">yes</span> <span class="nt">-o</span> <span class="nv">ServerAliveInterval</span><span class="o">=</span>20 <span class="nt">-o</span> <span class="nv">ServerAliveCountMax</span><span class="o">=</span>30 &lt;user.name&gt;@ceres.scinet.usda.gov
+</code></pre></div></div>
+<p>and</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ssh <span class="nt">-o</span> <span class="nv">TCPKeepAlive</span><span class="o">=</span><span class="nb">yes</span> <span class="nt">-o</span> <span class="nv">ServerAliveInterval</span><span class="o">=</span>20 <span class="nt">-o</span> <span class="nv">ServerAliveCountMax</span><span class="o">=</span>30 &lt;user.name&gt;@atlas-login.hpc.msstate.edu
+</code></pre></div></div>
+
+<p>After typing ssh command, enter the 6-digit code generated by the Google Authenticator app when prompted for Verification code. Note that when you type the code or the password, nothing will be shown on the screen. If system accepts the code it will prompt you for password. If you made a mistake when typing 6-digit code, and are prompted for Verification code once again, wait for the new code to be generated.</p>
+
+<p>If your password has expired (new temporary passwords expire right away, and the passwords set by users expire after 60 days) you will be prompted to change your password. Note that when changing password, first you will need to enter the same password that you used to login, and only when prompted for a new password, you will enter a new one.</p>
+
+<h1 id="password-requirements">Password Requirements</h1>
+
+<ol>
+  <li>AT LEAST 12 characters long</li>
+  <li>AT LEAST 3 different character classes:[lower case letters, upper case letters, digits, symbols]</li>
+  <li>Different from the expired password: at least 5 character changes (inserts, removals, or replacements) are required</li>
+  <li>difficult to guess or brute force. Palindromes, passwords containing your username, and other patterns will be denied.</li>
+  <li>Older passwords CAN NOT be reused.</li>
+</ol>
+
+<h1 id="linux-command-line-interface">Linux Command Line Interface</h1>
+
+<p>SCINet HPC resources can be used via GUI tools such as Geneious, CLC Workbench, SmartAnalysis, JupyterHub, SCINet Galaxy etc., however users are limited by what these tools provide. One can do much more ssh-ing to a cluster and using Command Line Interface (CLI). If you’re not familiar with CLI, check out the following resources:</p>
+
+<ol>
+  <li><a href="https://bioinformaticsworkbook.org/Appendix/Unix/unix-basics-1.html">Introduction to Unix</a></li>
+  <li><a href="https://www.hpc.iastate.edu/guides/unix-introduction">Unix Tutorials</a></li>
+  <li><a href="/guide/CLI">The list of basic CLI commands</a></li>
+</ol>
+
+<h1 id="data-storage">Data Storage</h1>
+
+<p>There are multiple places to store data persistently on SCINet clusters. For more information about storage options, refer to <a href="/guide/storage">SCINet Storage Guide</a>.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Storage</th>
+      <th>Path</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>HOME</td>
+      <td>/home/user.name</td>
+    </tr>
+    <tr>
+      <td>PROJECT</td>
+      <td>/project</td>
+    </tr>
+    <tr>
+      <td>KEEP (on Ceres only)</td>
+      <td>/keep</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="quotas">Quotas</h2>
+<p>Home and project directories have quotas. Current usage and quotas for home and project directories that user belongs to are displayed at login. The <code class="language-plaintext highlighter-rouge">my_quotas</code> command provides the same information.</p>
+
+<h2 id="home-directories">Home Directories</h2>
+
+<p>Home directories are private, they are only accessible to you and the system administrators. When a user logs into Ceres, they are automatically logged into their home directory. Home directories have small quotas and should be mainly used for configuration and login files. Computations should be run from project directories. Files in home directories are automatically compressed and backed up. Due to backup method used on Ceres, space freed after deleting files in home directories, will become available only after 6 days.</p>
+
+<h2 id="project-directories">Project Directories</h2>
+
+<p>Project directories are intended as high-level workspaces. This is where large datasets would reside, sub-projects can be created, and collaborative analysis results stored. Project directories are usually associated with ARS Research Projects.</p>
+
+<p>To request a new project directory see <a href="/support/request-storage">Request Project Storage</a>. A direct link to the form (eAuthentication required) which includes submitting a Data Management Plan:</p>
+
+<p><a href="https://e.arsnet.usda.gov/sites/OCIO/scinet/accounts/SitePages/Project_Allocation_Request.aspx" class="usa-button">Request a project directory</a></p>
+
+<p>Users may not need to request a new project directory if they’re working with someone who already has a project directory. Instead the manager of the existing project directory will need to request access to the project directory for additional users by emailing <a href="mailto:scinet_vrsc@usda.gov?subject=add%20to%20project">scinet_vrsc@usda.gov</a></p>
+
+<p>Directories in <code class="language-plaintext highlighter-rouge">/project</code> are not backed up, however users can copy important data from a directory in <code class="language-plaintext highlighter-rouge">/project</code> to a corresponding directory in <code class="language-plaintext highlighter-rouge">/KEEP</code> on Ceres that is backed up nightly. It is not recommended to run jobs from a directory in <code class="language-plaintext highlighter-rouge">/KEEP</code>.</p>
+
+<h1 id="data-transfer">Data Transfer</h1>
+
+<p>Given the space and access limitations of a home directory, large amounts of data or data that will be used collaboratively should be transferred to a project directory. If you have issues with transferring data, please contact <a href="mailto:scinet_vrsc@usda.gov?subject=data%20transfer%20enquiry">scinet_vrsc@usda.gov</a>.</p>
+
+<h2 id="globus-data-transfers">Globus Data Transfers</h2>
+
+<p>We recommend using Globus Online to transfer data to and from Ceres cluster. It provides faster data transfer speeds compared to scp, has graphical interface and does not require to enter GA verification code for every file transfer. To transfer data to/from a local computer, users will need to install Globus Personal which does NOT require admin privileges. More information about Globus Online for SCINet clusters can be found in the <a href="/guide/file-transfer">Transferring Files User Guide</a>.</p>
+
+<h2 id="small-data-transfers">Small Data Transfers</h2>
+
+<p>While Globus is faster, you can also transfer data from your local machine to SCINet clusters using the scp command (the destination filenames are optional). It is recommended to transfer large files into your project directory (due to the limited space of home directories). Smaller files can be transferred to/from your home directory by replacing  <code class="language-plaintext highlighter-rouge">/project/yourproject</code>  in the examples below with  <code class="language-plaintext highlighter-rouge">~</code></p>
+
+<p>Transfer a file to your SCINet project directory:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>scp yourfile sally.doe@ceres-dtn.scinet.usda.gov:/project/yourproject
+</code></pre></div></div>
+<p>or</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>scp yourfile sally.doe@atlas-dtn.hpc.msstate.edu:/project/yourproject
+</code></pre></div></div>
+
+<p>Transfer a file from your SCINet project directory:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>scp sally.doe@ceres-dtn.scinet.usda.gov:/project/yourproject/yourfile <span class="nb">.</span>
+</code></pre></div></div>
+<p>or</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>scp sally.doe@atlas-dtn.hpc.msstate.edu:/project/yourproject/yourfile <span class="nb">.</span>
+</code></pre></div></div>
+
+<p>To transfer an entire directory, you can use the -r option with any one of the above commands and specify a directory to transfer.  All of the files in that directory will get transferred, for example:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>scp <span class="nt">-r</span> sequence_files sally.doe@ceres-dtn.scinet.usda.gov:/project/yourproject
+</code></pre></div></div>
+<p>or</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>scp <span class="nt">-r</span> sequence_files sally.doe@atlas-dtn.hpc.msstate.edu:/project/yourproject
+</code></pre></div></div>
+
+<p>You can view the full set of options and their descriptions by typing <code class="language-plaintext highlighter-rouge">man scp</code></p>
+
+<p>Other options for small data transfers include <a href="https://cyberduck.io/">Cyberduck</a> and <a href="https://filezilla-project.org/">FileZilla</a>.</p>
+
+<h2 id="shipping-hard-drives">Shipping Hard Drives</h2>
+
+<p>You can send hard drives containing data to the VRSC if you have very large amounts of data (typically greater than 50GB) to transfer to Ceres or if the network speed at your location is slow. Please follow the instructions for shipping hard drives in the <a href="/guide/file-transfer/#large-data-transfer-by-shipping-hard-drives">Transferring Files Guide</a>.</p>
+
+<h1 id="tools-and-software">Tools and Software</h1>
+
+<h2 id="available-software">Available Software</h2>
+
+<p>Many software applications are available as modules; see <a href="/guide/software">Software Overview</a> or type <code class="language-plaintext highlighter-rouge">module avail</code> on a cluster to see them.  Users can load the modules that they need to do their analysis.  We manage applications as modules to enable different versions of different applications to exist simulatneously and to be easily managed.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">module</code> command is used to work with the different software application modules. The following table lists some of the most common functions of the <code class="language-plaintext highlighter-rouge">module</code> command:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Command</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">module avail</code>  or  <code class="language-plaintext highlighter-rouge">module spider</code></td>
+      <td>List the modules that are available</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">module list</code></td>
+      <td>List the modules that are currently loaded</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">module unload &lt;module name&gt;</code></td>
+      <td>Remove <module name=""> from the environment</module></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">module load &lt;module name&gt;</code></td>
+      <td>Load <module name=""> into the environment</module></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">module swap &lt;module one&gt; &lt;module two&gt;</code></td>
+      <td>Replace <module one=""> with <module two=""> in the environment</module></module></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">module -h</code></td>
+      <td>Lists the full help menu for the module command</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="reference-genome-assemblies">Reference Genome Assemblies</h2>
+
+<p>NCBI and other databases, reference genome sequences of many agricultural species are stored in a central location to free space in user’s home and project directories.
+FASTA files of the sequences and associated index files for popular alignment tools (BLAST, SAMTools, BWA, Bowtie2, etc.) can be found in <code class="language-plaintext highlighter-rouge">/reference/data/XX/</code>.</p>
+
+<p>Additional sequences and index files can be added to the shared directory by contacting the Virtual Research Support Core at <a href="mailto:scinet_vrsc@USDA.GOV?subject=reference%20data">scinet_vrsc@USDA.GOV</a></p>
+
+<h2 id="text-editors">Text Editors</h2>
+<p>The following are a few of the common text editors that are available on the system:
+<code class="language-plaintext highlighter-rouge">vi</code>, <code class="language-plaintext highlighter-rouge">emacs</code>, <code class="language-plaintext highlighter-rouge">nano</code>.</p>
+
+<h1 id="running-applications">Running Applications</h1>
+
+<p>The login node is meant to be used for setting up analysis and tasks that are not computationally or memory intensive.
+If your job runs for longer than a few minutes then please use the interactive mode or batch mode described below.</p>
+
+<p>SCINet clusters use SLURM as the job scheduler. It is similar to SGE and PBS.</p>
+
+<h2 id="compute-nodes">Compute Nodes</h2>
+
+<p>There are different queues or partitions on the clusters. You will specify a queue when submitting batch jobs.</p>
+
+<p>Main partitions on Ceres are listed in the table below:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Nodes</th>
+      <th>Maximum Run Time</th>
+      <th>Function</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>short</td>
+      <td>100</td>
+      <td>48 hours</td>
+      <td>default queue, for short runs</td>
+    </tr>
+    <tr>
+      <td>medium</td>
+      <td>68</td>
+      <td>7 days</td>
+      <td>for medium-length runs</td>
+    </tr>
+    <tr>
+      <td>long</td>
+      <td>35</td>
+      <td>21 days</td>
+      <td>for long runs</td>
+    </tr>
+    <tr>
+      <td>mem</td>
+      <td>8</td>
+      <td>7 days</td>
+      <td>for applications requiring high memory</td>
+    </tr>
+    <tr>
+      <td>longmem</td>
+      <td>1</td>
+      <td>1000 hours</td>
+      <td>for high memory applications requiring more than a week</td>
+    </tr>
+    <tr>
+      <td>debug</td>
+      <td>1</td>
+      <td>1 hour</td>
+      <td>for testing</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>To learn about other partitions on Ceres, refer to <a href="/guide/ceres/#partitions-or-queues">Ceres User Manual</a>.</p>
+
+<p>To get current details on all partitions on a cluster use the following scontrol command:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>scontrol show partitions
+</code></pre></div></div>
+
+<p>At most 800 cores and 2100 GB of memory can be used by all simultaneously running jobs per user across all queues. Any additional jobs will be queued but won’t start. At times these limits can be lowered to prevent a small group of users overtaking the whole cluster.</p>
+
+<h2 id="interactive-mode">Interactive Mode</h2>
+
+<p>From the Ceres login node, request an interactive session by typing <code class="language-plaintext highlighter-rouge">salloc</code></p>
+
+<p>Now you are running interactively on a single hyper-threaded core (2 logical cores) with 6000 MB of allocated memory on one of the compute nodes. The session will last for 2 days, but will timeout after 1.5 hours of inactivity (no commands runnning).</p>
+
+<p>You can view and load modules for the applications you need, and execute applications from the command-line.</p>
+
+<p>When complete, return to the login node by typing <code class="language-plaintext highlighter-rouge">exit</code></p>
+
+<p>For more fine grained control over the interactive environment you can use the srun command. Issue the srun command from a login node of a SCINet cluster. Command syntax is:</p>
+
+<p><code class="language-plaintext highlighter-rouge">srun --pty -p queue -t hh:mm:ss -A account -n tasks -N nodes /bin/bash -l</code></p>
+
+<p>account is usually your project name. For example if your project directory is at /project/projectname, then specify “-A projectname” on the srun command. To view all your slurm accounts, issue “sacctmgr -Pns show user format=account”.</p>
+
+<p>On Ceres every user has a default Slurm account. If you have no project, then your default Slurm account is scinet, otherwise it’s a projectname. If you have access to more than one project, then one of the project names is set as your default Slurm account. To change your default Slurm account issue slurm-account-selector.sh on the Ceres login node.</p>
+
+<p>See the <a href="/guide/ceres/#running-application-jobs-on-compute-nodes">Ceres User Manual</a> for details on <code class="language-plaintext highlighter-rouge">srun</code>.</p>
+
+<h2 id="batch-mode">Batch Mode</h2>
+
+<p>You can run jobs on the cluster by writing short scripts that will get executed on the cluster. For more details about running jobs in batch mode, please see the detailed <a href="/guide/ceres/#batch-mode">Ceres User Manual</a>.</p>
+
+<p>Here is an example of a batch job submission bash script (e.g. <code class="language-plaintext highlighter-rouge">blast_job.sh</code>, for running BLAST):</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+<span class="c">#SBATCH --job-name="blastp" #name of the job submitted</span>
+<span class="c">#SBATCH -p short #name of the queue you are submitting job to</span>
+<span class="c">#SBATCH -N 1 #number of nodes in this job</span>
+<span class="c">#SBATCH -n 40 #number of cores/tasks in this job, you get all 20 cores with 2 threads per core with hyperthreading</span>
+<span class="c">#SBATCH -t 01:00:00 #time allocated for this job hours:mins:seconds</span>
+<span class="c">#SBATCH -A projectname  #substitute with the name of your project</span>
+<span class="c">#SBATCH --mail-user=emailAddress #enter your email address to receive emails</span>
+<span class="c">#SBATCH --mail-type=BEGIN,END,FAIL #will receive an email when job starts, ends or fails</span>
+<span class="c">#SBATCH -o "stdout.%j.%N" # standard out %j adds job number to outputfile name and %N adds the node name</span>
+<span class="c">#SBATCH -e "stderr.%j.%N" #optional but it prints our standard error</span>
+<span class="nb">date</span> <span class="c">#optional this command prints out timestamp when the job is starting in stdout file</span>
+module load blast+    <span class="c">#loading latest NCBI BLAST+ module</span>
+blastp <span class="nt">-db</span> nr <span class="nt">-query</span> blastInputs <span class="nt">-out</span> blastout <span class="c"># protein blast search against nr database</span>
+<span class="nb">date</span> <span class="c">#optional printing out timestamp when the job ends</span>
+</code></pre></div></div>
+
+<p>You would submit the script by typing: <code class="language-plaintext highlighter-rouge">sbatch blast_job.sh</code></p>
+
+<h2 id="job-script-generator">Job Script Generator</h2>
+
+<p>You can also use Ceres Job Script Generator to generate job scripts.</p>
+
+<p><a href="/support/ceres-job-script" class="usa-button">Ceres Job Script Generator</a></p>
+
+<h2 id="useful-slurm-commands">Useful SLURM Commands</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Command</th>
+      <th>Description</th>
+      <th>Examples</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">squeue</code></td>
+      <td>Gives information about jobs</td>
+      <td><code class="language-plaintext highlighter-rouge">squeue</code> or <code class="language-plaintext highlighter-rouge">squeue -u jane.webb</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">scancel</code></td>
+      <td>Stop and remove jobs</td>
+      <td><code class="language-plaintext highlighter-rouge">scancel 1256</code> or <code class="language-plaintext highlighter-rouge">scancel -u jane.webb</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">sinfo</code></td>
+      <td>Gives information about queues (partitions) or nodes</td>
+      <td><code class="language-plaintext highlighter-rouge">sinfo</code> or <code class="language-plaintext highlighter-rouge">sinfo -N -l</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="building-your-own-tools">Building Your Own Tools</h1>
+
+<p>Users can build and use their own tools. It is recommended to compile on compute nodes, and not on the login node.
+In addition, since home directories have a small quota, it is recommended to install software,
+such as Python, Perl, R packages and conda virtual environments in <code class="language-plaintext highlighter-rouge">/KEEP/project_name</code>.
+The <a href="https://scinet.usda.gov/guide/conda/#example-2-installing-tensorflow-into-a-keep-directory">Conda Guide</a> provides instructions
+on how to install conda virtual environments in <code class="language-plaintext highlighter-rouge">/KEEP</code>, while
+<a href="https://scinet.usda.gov/guide/packageinstall/">Guide to Installing R, Python, and Perl Packages</a> has examples of
+installing packages in a project directory.</p>
+
+<h1 id="scinet-citationacknowledgment-in-publications">SCINet Citation/Acknowledgment in Publications</h1>
+
+<p>Add the following sentence as an acknowledgment for using SCINet/Ceres as a resource in your manuscripts meant for publication:</p>
+
+<p><strong>“This research used resources provided by the SCINet project of the USDA Agricultural Research Service, ARS project number 0500-00093-001-00-D.”</strong></p>
+
+      </main>
+    </div>
+  </div>
+</div>
+
+      </main>
+    
+
+    
+
+    
+
+
+  
+<footer class="usa-footer usa-footer--big">
+
+  
+    <div class="grid-container">
+      <p>Last updated: May 20, 2021 at 08:38 PM</p>
+    </div>
+  
+
+  
+    <div class="grid-container usa-footer__return-to-top">
+      <a href="#">Return to top</a>
+    </div>
+  
+
+
+
+  
+    
+    
+    
+  <div class="usa-footer__primary-section">
+    <div class="grid-container">
+      <div class="grid-row grid-gap">
+        <div class="">
+          <nav class="usa-footer__nav" aria-label="Footer navigation">
+            <div class="grid-row grid-gap-4">
+              
+              <div class="mobile-lg:grid-col-6 desktop:grid-col-4">
+                <section class="usa-footer__primary-content usa-footer__primary-content--collapsible">
+                  
+                    <h4 class="usa-footer__primary-link"></h4>
+                    <ul class="usa-list usa-list--unstyled">
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://usda.gov/policies-and-links">
+                          Policies and Links
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://usda.gov/our-agency/about-usda/performance">
+                          Our Performance
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://www.usda.gov/our-agency/careers">
+                          Careers
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://www.usda.gov/oig/forms/contractor-fraud">
+                          Report Fraud on USDA
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://www.usda.gov/oig/">
+                          Visit OIG
+                        </a>
+                      </li>
+                      
+                    </ul>
+                  
+                </section>
+              </div>
+              
+              <div class="mobile-lg:grid-col-6 desktop:grid-col-4">
+                <section class="usa-footer__primary-content usa-footer__primary-content--collapsible">
+                  
+                    <h4 class="usa-footer__primary-link"></h4>
+                    <ul class="usa-list usa-list--unstyled">
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://usda.gov/plain-writing">
+                          Plain Writing
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://usda.gov/open">
+                          Open
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://www.dm.usda.gov/foia/">
+                          FOIA
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://usda.gov/accessibility-statement">
+                          Accessibility Statement
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://usda.gov/privacy-policy">
+                          Privacy Policy
+                        </a>
+                      </li>
+                      
+                    </ul>
+                  
+                </section>
+              </div>
+              
+              <div class="mobile-lg:grid-col-6 desktop:grid-col-4">
+                <section class="usa-footer__primary-content usa-footer__primary-content--collapsible">
+                  
+                    <h4 class="usa-footer__primary-link"></h4>
+                    <ul class="usa-list usa-list--unstyled">
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://usda.gov/non-discrimination-statement">
+                          Non-Discrimination Statement
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://www.ascr.usda.gov/civil-rights-statements">
+                          Anti-Harassment Policy
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://www.ocio.usda.gov/policy-directives-records-forms/information-quality-activities">
+                          Information Quality
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://www.usa.gov">
+                          USA.gov
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://www.whitehouse.gov">
+                          WhiteHouse.gov
+                        </a>
+                      </li>
+                      
+                    </ul>
+                  
+                </section>
+              </div>
+              
+              <div class="mobile-lg:grid-col-6 desktop:grid-col-4">
+                <section class="usa-footer__primary-content usa-footer__primary-content--collapsible">
+                  
+                    <h4 class="usa-footer__primary-link"></h4>
+                    <ul class="usa-list usa-list--unstyled">
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://usda.gov/federal-web-site-inventory">
+                          eGov
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="mailto:scinet_vrsc@usda.gov">
+                          Feedback
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://usda.gov/nofear">
+                          No FEAR Act Data
+                        </a>
+                      </li>
+                      
+                    </ul>
+                  
+                </section>
+              </div>
+              
+            </div>
+          </nav>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  
+
+  
+  <div class="usa-footer__secondary-section">
+    <div class="grid-container">
+      <div class="grid-row grid-gap">
+        <div class="usa-footer__logo grid-row mobile-lg:grid-col-6 mobile-lg:grid-gap-2">
+          
+
+          
+          <div class="mobile-lg:grid-col-auto">
+            <h3 class="usa-footer__logo-heading">USDA Agricultural Research Service</h3>
+          </div>
+          
+        </div>
+
+        
+        <div class="usa-footer__contact-links mobile-lg:grid-col-6">
+          
+          
+            <div class="usa-footer__social-links grid-row grid-gap-1">
+              <div class="grid-col-auto">
+                
+                  <a class="usa-social-link usa-social-link--twitter" href="https://twitter.com/USDA_ARS">
+                    <span>Twitter</span>
+                  </a>
+                
+              </div>
+            </div>
+          
+          
+            <h3 class="usa-footer__contact-heading">Contact us</h3>
+            
+            
+              <address class="usa-footer__address">
+                
+                <div class="usa-footer__contact-info grid-row grid-gap">
+                
+                    <div class="grid-col-auto">
+                      <a href="mailto:scinet_vrsc@usda.gov">
+                        scinet_vrsc@usda.gov
+                      </a>
+                    </div>
+                
+                </div>
+              </address>
+          
+        
+      </div>
+      
+      </div>
+    </div>
+  </div>
+  
+
+</footer>
+
+
+
+
+
+    
+
+
+
+
+
+  
+    
+      <script src="/assets/uswds/js/uswds.min.js" async></script>
+    
+
+  
+    
+      <script src="/assets/js/vendor/anchor.min.js"></script>
+    
+
+  
+    
+      <script src="/assets/js/main.js"></script>
+    
+
+  
+    
+
+
+
+
+<script type="text/javascript">
+//<![CDATA[
+      var usasearch_config = { siteHandle:"scinet-usda" };
+
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src = "//search.usa.gov/javascripts/remote.loader.js";
+      document.getElementsByTagName("head")[0].appendChild(script);
+
+//]]>
+</script>
+
+
+
+  </body>
+</html>

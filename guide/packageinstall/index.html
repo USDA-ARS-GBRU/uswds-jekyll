@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<title>Guide to Installing R, Python, and Perl Packages | SCINet | USDA Scientific Computing Initiative</title>
+
+
+
+<meta name="description" content="Installing R, Python, and Perl packages">
+
+
+
+<link rel="shortcut icon" type="image/ico"
+  href="/assets/uswds/img/favicons/favicon.ico">
+
+<link rel="icon" type="image/png"
+  href="/assets/uswds/img/favicons/favicon.png">
+
+<link rel="icon" type="image/png"
+  sizes="192x192"
+  href="/assets/uswds/img/favicons/favicon-192.png">
+
+<link rel="apple-touch-icon-precomposed" type=""
+  href="/assets/uswds/img/favicons/favicon-57.png">
+
+<link rel="apple-touch-icon-precomposed" type=""
+  sizes="72x72"
+  href="/assets/uswds/img/favicons/favicon-72.png">
+
+<link rel="apple-touch-icon-precomposed" type=""
+  sizes="114x114"
+  href="/assets/uswds/img/favicons/favicon-114.png">
+
+<link rel="apple-touch-icon-precomposed" type=""
+  sizes="144x144"
+  href="/assets/uswds/img/favicons/favicon-144.png">
+
+
+
+    
+
+
+
+<link rel="stylesheet"
+  href="/assets/css/uswds-theme.css"
+  media="screen">
+
+
+    
+      
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-27627304-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { dataLayer.push(arguments); }
+  gtag('js', new Date());
+
+  // `forceSSL` was used for analytics.js (the older Google Analytics script). It isn't documented for gtag.js, but the term occurs in the gtag.js code; figure it doesn't hurt to leave it in. -@afeld, 5/29/19
+  gtag('config', 'UA-27627304-1', { 'anonymize_ip': true, 'forceSSL': true });
+</script>
+
+
+
+<!-- Digital Analytics Program roll-up, see https://analytics.usa.gov for data -->
+<script id="_fed_an_ua_tag" src="https://dap.digitalgov.gov/Universal-Federated-Analytics-Min.js?agency=USDA&subagency=ARS"></script>
+
+
+    
+  </head>
+  <body class="  site-90%">
+
+    <a class="usa-skipnav" href="#main-content">Skip to main content</a>
+
+    
+
+
+  <section class="usa-banner" aria-label="Official government website">
+  <div class="usa-accordion">
+    <header class="usa-banner__header">
+      <div class="usa-banner__inner">
+        <div class="grid-col-auto">
+          <img class="usa-banner__header-flag" src="/assets/uswds/img/us_flag_small.png" alt="U.S. flag">
+        </div>
+        <div class="grid-col-fill tablet:grid-col-auto">
+          <p class="usa-banner__header-text">An official website of the United States government</p>
+          <p class="usa-banner__header-action" aria-hidden="true">Here’s how you know</p>
+        </div>
+        <button class="usa-accordion__button usa-banner__button"
+          aria-expanded="false" aria-controls="gov-banner">
+          <span class="usa-banner__button-text">Here’s how you know</span>
+        </button>
+      </div>
+    </header>
+    <div class="usa-banner__content usa-accordion__content" id="gov-banner">
+      <div class="grid-row grid-gap-lg">
+        <div class="usa-banner__guidance tablet:grid-col-6">
+          <img class="usa-banner__icon usa-media-block__img" src="/assets/uswds/img/icon-dot-gov.svg" role="img" alt="Dot gov">
+          <div class="usa-media-block__body">
+            <p>
+              <strong>Official websites use .gov</strong>
+              <br/>
+              A <strong>.gov</strong> website belongs to an official government organization in the United States.
+            </p>
+          </div>
+        </div>
+        <div class="usa-banner__guidance tablet:grid-col-6">
+          <img class="usa-banner__icon usa-media-block__img" src="/assets/uswds/img/icon-https.svg" role="img" alt="Https">
+          <div class="usa-media-block__body">
+            <p>
+              <strong>Secure .gov websites use HTTPS</strong>
+              <br/>
+              A <strong>lock</strong> (
+<span class="icon-lock"><svg xmlns="http://www.w3.org/2000/svg" width="52" height="64" viewBox="0 0 52 64" class="usa-banner__lock-image" role="img" aria-labelledby="banner-lock-title banner-lock-description"><title id="banner-lock-title">Lock</title><desc id="banner-lock-description">A locked padlock</desc><path fill="#000000" fill-rule="evenodd" d="M26 0c10.493 0 19 8.507 19 19v9h3a4 4 0 0 1 4 4v28a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4V32a4 4 0 0 1 4-4h3v-9C7 8.507 15.507 0 26 0zm0 8c-5.979 0-10.843 4.77-10.996 10.712L15 19v9h22v-9c0-6.075-4.925-11-11-11z"/></svg></span>
+) or <strong>https://</strong> means you’ve safely connected to the .gov website. Share sensitive information only on official, secure websites.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+  <div class="usa-overlay"></div>
+
+  <header class="usa-header usa-header--extended" role="banner">
+
+
+  
+    <div class="usa-navbar">
+      <div class="usa-logo" id="header-logo">
+        <a
+          href="/"
+          title="Home">
+          
+            <img
+              class="usa-logo-img"
+              src="/assets/img/usda-symbol-rgb-color.svg"
+              alt="USDA-ARS">
+          
+          <em class="usa-logo__text">
+            SCINet Scientific Computing
+          </em>
+        </a>
+      </div>
+      <button class="usa-menu-btn">Menu</button>
+    </div>
+
+    <nav role="navigation" class="usa-nav">
+      <div class="usa-nav__inner">
+        <button class="usa-nav__close">
+          <img src="/assets/uswds/img/close.svg" alt="close">
+        </button>
+
+        
+        
+        
+        <ul class="usa-nav__primary usa-accordion">
+          
+          <li class="usa-nav__primary-item">
+            
+              <a class=" usa-nav__link  " href="/signup/">
+                <span>Sign up for an account</span>
+              </a>
+            
+          </li>
+          
+          <li class="usa-nav__primary-item">
+            
+              
+              
+              
+            <button class="usa-accordion__button usa-nav__link" aria-expanded="false" aria-controls="nav-2">
+              <span>News</span>
+            </button>
+            
+            <ul id="nav-2" class="usa-nav__submenu">
+            
+            
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/downtime/">System Downtime</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/announcements/">Announcements</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/stories/">User Stories</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/newsletter/">Newsletter</a>
+                </li>
+                
+              
+            
+            </ul>
+            
+            
+            
+          </li>
+          
+          <li class="usa-nav__primary-item">
+            
+              
+              
+              
+            <button class="usa-accordion__button usa-nav__link" aria-expanded="false" aria-controls="nav-3">
+              <span>User Guides</span>
+            </button>
+            
+            <ul id="nav-3" class="usa-nav__submenu">
+            
+            
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/quickstart">Quick Start</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/ceres">Ceres HPC User manual</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="https://www.hpc.msstate.edu/computing/atlas">Atlas HPC User Guide</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/multifactor">Set up multifactor authentication</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/storage">SCINet Storage Guide</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/software">Software Overview</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/packageinstall">Installing R/Python/Perl Packages</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/conda">Installing Software with Conda</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/file-transfer">Transferring files</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/rclone">Rclone</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/clc">CLC Workbench</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/jupyter">Jupyter</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/rstudio">Rstudio</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/geneious">Geneious</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/galaxy">Galaxy on SCINet</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/singularity">Containers</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/smrtlink">SMRTLink using Command Line</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/AWS/documentation">AWS Resources</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/vpn">SCINet VPN</a>
+                </li>
+                
+              
+            
+            </ul>
+            
+            
+            
+          </li>
+          
+          <li class="usa-nav__primary-item">
+            
+              
+              
+              
+            <button class="usa-accordion__button usa-nav__link" aria-expanded="false" aria-controls="nav-4">
+              <span>Working Groups</span>
+            </button>
+            
+            <ul id="nav-4" class="usa-nav__submenu">
+            
+            
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/working-groups">Overview</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/working-groups/ag100pest">Ag100Pest</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/working-groups/arthropods">Arthropod Genomics</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/working-groups/geospatial">Geospatial Research</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/working-groups/microbiome">Microbiome</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/working-groups/LTARphenology">LTAR Phenology</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/working-groups/policy">SCINet Policy Committee</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/working-groups/webdev">SCINet Website Developers</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/working-groups/workbooks">Workbook Developers</a>
+                </li>
+                
+              
+            
+            </ul>
+            
+            
+            
+          </li>
+          
+          <li class="usa-nav__primary-item">
+            
+              
+              
+              
+            <button class="usa-accordion__button usa-nav__link" aria-expanded="false" aria-controls="nav-5">
+              <span>Training</span>
+            </button>
+            
+            <ul id="nav-5" class="usa-nav__submenu">
+            
+            
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/training/">Overview</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/training/tutorials/">ARS Science Tutorials</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/training/free-online-training">Free Online Training</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/training-archive/">Training Event Archive</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/training/bioinformatics-workbook">Bioinformatics Workbook</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/training/useful-links">Useful Links</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/training/coursera">Coursera</a>
+                </li>
+                
+              
+            
+            </ul>
+            
+            
+            
+          </li>
+          
+          <li class="usa-nav__primary-item">
+            
+              
+              
+              
+            <button class="usa-accordion__button usa-nav__link" aria-expanded="false" aria-controls="nav-6">
+              <span>Use Cases</span>
+            </button>
+            
+            <ul id="nav-6" class="usa-nav__submenu">
+            
+            
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/user/genomics/">Genomics</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/user/plant-breeding/">Plant breeding</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/user/geospatial/">Geospatial</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/user/hydrology/">Hydrology</a>
+                </li>
+                
+              
+            
+            </ul>
+            
+            
+            
+          </li>
+          
+          <li class="usa-nav__primary-item">
+            
+              
+              
+              
+            <button class="usa-accordion__button usa-nav__link" aria-expanded="false" aria-controls="nav-7">
+              <span>Support</span>
+            </button>
+            
+            <ul id="nav-7" class="usa-nav__submenu">
+            
+            
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/support/vrsc/">Virtual Research Support Core (VSRC)</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/support/faq/">FAQ's</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="https://forum.scinet.usda.gov">USDA-ARS SCINet Forum</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/support/request-storage">Request Project Storage</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/support/request-software">Request Software</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/support/request-AWS">Request AWS</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/support/ceres-job-script">Ceres Job Script Generator</a>
+                </li>
+                
+              
+            
+            </ul>
+            
+            
+            
+          </li>
+          
+          <li class="usa-nav__primary-item">
+            
+              
+              
+              
+            <button class="usa-accordion__button usa-nav__link" aria-expanded="false" aria-controls="nav-8">
+              <span>About</span>
+            </button>
+            
+            <ul id="nav-8" class="usa-nav__submenu">
+            
+            
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/about/compute">Computer Systems</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/about/organization">Organization</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/about/contact">Contact</a>
+                </li>
+                
+              
+            
+            </ul>
+            
+            
+            
+          </li>
+          
+          <li class="usa-nav__primary-item">
+            
+              
+              
+              
+            <button class="usa-accordion__button usa-nav__link" aria-expanded="false" aria-controls="nav-9">
+              <span>Opportunities</span>
+            </button>
+            
+            <ul id="nav-9" class="usa-nav__submenu">
+            
+            
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/opportunities/SAC">SAC Membership</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/opportunities/request-workshop">Request a Workshop</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/opportunities/postdocs">Fellowships (PhD & MS)</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/opportunities/events">Upcoming Events</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/opportunities/ai-innovation">AI Innovation fund</a>
+                </li>
+                
+              
+            
+            </ul>
+            
+            
+            
+          </li>
+          
+        </ul>
+        
+
+        
+
+        
+          
+          <div class="usa-nav__secondary">
+            <ul class="usa-unstyled-list usa-nav__secondary-links">
+              
+              
+                <li class="usa-nav__secondary-item">
+                  <a href=""
+                  >
+                    
+                  </a>
+                </li>
+              
+            </ul>
+            
+              <form
+                accept-charset="UTF-8"
+                action="https://search.usa.gov/search"
+                id="search_form"
+                method="get"
+                class="usa-search usa-search--small js-search-form">
+              <input
+                name="utf8"
+                type="hidden"
+                value="&#x2713;" />
+              <input
+                type="hidden"
+                name="affiliate"
+                id="affiliate"
+                value="scinet-usda" />
+                <div role="search">
+                  <label
+                    for="query" class="usa-sr-only">Enter search terms</label>
+                  <input
+                    autocomplete="off"
+                    class="usa-input usagov-search-autocomplete"
+                    id="query"
+                    name="query"
+                    type="search" />
+                  <button
+                    class="usa-button"
+                    type="submit"
+                    name="commit">
+                    <span class="usa-sr-only">Search</span>
+                  </button>
+                </div>
+              </form>
+            
+          </div>
+          
+
+
+        </div>
+      </div>
+    </nav>
+  
+  </header>
+
+
+
+
+    
+    
+
+
+    
+
+    
+
+    
+      
+      
+
+
+
+
+    
+    
+
+    
+      <main id="main-content" class="usa-layout-docs usa-layout-docs__main desktop:grid-col-9 usa-prose">
+        <div class="usa-section">
+  <div class="grid-container">
+    <div class="grid-row grid-gap flex-align-start">
+      
+      
+
+      <main class="usa-layout-docs usa-layout-docs__main usa-prose" id="main-content">
+        
+          <h1>Guide to Installing R, Python, and Perl Packages</h1>
+        
+        <h4 id="table-of-contents">Table of Contents</h4>
+<ul>
+  <li><a href="#installing-r-packages">Installing R packages</a></li>
+  <li><a href="#python">Python</a></li>
+  <li><a href="#perl">Perl</a></li>
+</ul>
+
+<p>The Ceres login node provides access to a wide variety of scientific software tools which users can access and use via the module system (see <a href="/guide/ceres/">Ceres User Manual</a> for more information). These software tools were compiled and optimized for use on Ceres by members of the Virtual Research Support Core (VRSC) team. Most users will find the software tools they need for their research among the provided packages and thus will not need to compile their own software packages.</p>
+
+<p>The popular R, Perl and Python languages have many packages/modules available. Some of the packages are installed on Ceres and are available with the r/perl/python_2/python_3 modules. To see the list of installed packages, visit the <a href="/guide/software">Software Overview</a> page or use  <code class="language-plaintext highlighter-rouge">module help &lt;module_name&gt;</code>  command. If users need packages that are not available, they can either request VRSC to add packages, or they can download and install packages in their home/project directories. We recommend installing packages in the project directories since collaborators on the same project most probably would need same packages. In addition, home quotas are much lower than quotas for project directories.</p>
+
+<p>The following instructions are for a few commonly used software packages to help users install these packages without admin intervention.</p>
+
+<h1 id="installing-r-packages">Installing R Packages</h1>
+
+<p>Users can install R packages using the  <code class="language-plaintext highlighter-rouge">install.packages()</code>  command.</p>
+
+<p>The default location is the user’s home directory. User can specify other directories to which they have access privileges, such as project directory. Installing R packages in a project directory is recommended as users working on the same project have access to the same environment.</p>
+
+<p>To install packages in a project directory, go to the project directory:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd &lt;path/to/the/project/directory&gt;
+</code></pre></div></div>
+<p>and create a “.Renviron” file containing the following line:</p>
+
+<p><code class="language-plaintext highlighter-rouge">R_LIBS_USER=&lt;path/to/the/project/directory&gt;/R_packages/%v</code></p>
+
+<p>Then when R is started from the directory <code class="language-plaintext highlighter-rouge">&lt;path/to/the/project/directory&gt;</code>, the R packages for the given version of R will be saved in the above location.</p>
+
+<p>Load an environment module for the desired version of R and start R:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ module load r/4.0.3
+$ R
+R version 4.0.3 (2020-10-10) -- "Bunny-Wunnies Freak Out"
+</code></pre></div></div>
+
+<p>To install A3 package issue the  <code class="language-plaintext highlighter-rouge">install.packages()</code>  command and answer “y” to both questions:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt; install.packages("A3",repos="http://cran.r-project.org")
+Warning in install.packages("A3") :
+'lib = "/lustre/project/software/7/apps/r/4.0.3/lib64/R/library"' is not writable
+Would you like to use a personal library instead? (yes/No/cancel) yes
+Would you like to create a personal library
+&lt;path/to/the/project/directory&gt;/R_packages/4.0
+to install packages into? (yes/No/cancel) yes
+</code></pre></div></div>
+
+<p>To see the library paths, issue  <code class="language-plaintext highlighter-rouge">.libPaths()</code>  command from within R:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt; .libPaths();
+[1] "&lt;path/to/the/project/directory&gt;/R_packages/4.0"
+[2] "/lustre/project/software/7/apps/r/4.0.3/lib64/R/library"
+</code></pre></div></div>
+
+<h1 id="python">Python</h1>
+
+<p>Users can install python packages(via pip) to their home directory. This creates a “site-packages” directory within the user’s home directory.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ module load python_3
+$ pip3 install --user &lt;package.name&gt;
+</code></pre></div></div>
+
+<p>By default the packages for python 3.5 are stored in ~/.local/lib/python3.5/site-packages</p>
+
+<p>If users intend to share the python environment with users working on the same project (or to install packages in a non-standard location), using <strong>virtualenv</strong> is a much better way to deal with managing python packages.</p>
+
+<p>After loading the python module, create a virtual environment by:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ virtualenv &lt;path/to/the/project/directory/name.of.the.project&gt;
+</code></pre></div></div>
+
+<p>This creates a directory in your current project directory. This example below shows a virtualenv “virt_test” being created and activated.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ virtualenv virt_test
+Using base prefix '/software/apps/python_3/gcc/64/3.5.0'
+New python executable in /root/virt_test/bin/python3.5
+Also creating executable in /root/virt_test/bin/python
+Installing setuptools, pip, wheel...done.
+$ source virt_test/bin/activate
+$ source virt_test/bin/activate
+(virt_test) $ pip3 list
+pip (9.0.1)
+setuptools (36.0.1)
+wheel (0.29.0)
+</code></pre></div></div>
+
+<p>Note that this virtual environment starts clean without using any global python site-packages that are already installed. Use  <strong><code class="language-plaintext highlighter-rouge">--system-site-packages</code></strong>  if you want to use global site-packages.</p>
+
+<p>To exit this environment, run deactivate:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(virt_test) $ deactivate
+</code></pre></div></div>
+
+<p>This virtual environment can be activated again anytime.</p>
+
+<p>For instructions on how to manage Python packages using Conda, see <a href="/guide/conda">User-installed Software on Ceres with Conda</a>.</p>
+
+<h1 id="perl">Perl</h1>
+
+<p>There are multiple ways to install modules in Perl and depending on the use case, one may be preferable over the others.</p>
+
+<p><strong>cpanm</strong> is a convenient tool to install modules in the home directory.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ module load perl
+$ cpanm Test::More
+</code></pre></div></div>
+
+<p>Running the above command creates a “perl5” directory within the users’ home directory and contains all the required binaries and libraries associated with the “Test::More” module. Add <strong>PERL5LIB</strong> to the environment</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ export PERL5LIB=$HOME/perl5/lib/perl5
+</code></pre></div></div>
+
+<p>Perl modules can also be installed in other directories. For example, the user can have the modules available to the rest of the project members so that everyone involved works in the same environment.</p>
+
+<p><strong>local::lib</strong> provides the flexibility for users to install modules in any custom location (as long as they have write permissions).</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ eval "$(perl -I/path/to/the/project/dir/perl5/lib/perl5 -
+Mlocal::lib=/path/to/the/project/dir/perl5)"
+</code></pre></div></div>
+
+<p>In addition to creating “perl5” directory within the specified project directory, the above
+command adds perl local::lib environment variables.</p>
+
+<p>Then use cpanm to install the required modules.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ cpanm Test::More
+</code></pre></div></div>
+
+<p>Note: The package source files will still be downloaded to your home directory (~/.cpanm/sources)</p>
+
+<p>Note: All users working on the project can access modules that were installed using local:lib and perlbrew, but only the original user can perform perl module installs.</p>
+
+<p><strong>perlbrew</strong> is another tool that can create perl environments. perlbrew offers a lot of flexibility to users as they can install different versions of perl based on the requirements of the project.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ module load perl
+$ perlbrew availableperl-5.27.1
+perl-5.26.0
+perl-5.24.1
+......
+</code></pre></div></div>
+
+<p>Set the <strong>PERLBREW_ROOT</strong> variable to a preferred location.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ export PERLBREW_ROOT=/path/to/project/dir/perlbrew
+$ perlbew init
+</code></pre></div></div>
+
+<p>To install the latest stable release</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ perlbrew --notest install stable
+</code></pre></div></div>
+
+<p>To install a specific version of perl</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ perlbrew --notest install perl-5.24.0
+$ perlbrew list
+perl-5.26.0
+perl-5.24.0
+</code></pre></div></div>
+
+<p>To use the latest perl,</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ perlbrew use 5.26.0
+</code></pre></div></div>
+
+<p>Users can then use cpanm to install modules based on their requirements.</p>
+
+<p>It is also possible to switch between different perl installs(if you have them installed)</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ perlbrew switch 5.24.0
+</code></pre></div></div>
+
+<p>This switches from 5.26.0 to 5.24.0</p>
+
+<p>Note: All users working on the project can access modules that were installed using local:lib and perlbrew, but only the original user can perform perl module installs.</p>
+
+      </main>
+    </div>
+  </div>
+</div>
+
+      </main>
+    
+
+    
+
+    
+
+
+  
+<footer class="usa-footer usa-footer--big">
+
+  
+    <div class="grid-container">
+      <p>Last updated: April 15, 2021 at 08:28 PM</p>
+    </div>
+  
+
+  
+    <div class="grid-container usa-footer__return-to-top">
+      <a href="#">Return to top</a>
+    </div>
+  
+
+
+
+  
+    
+    
+    
+  <div class="usa-footer__primary-section">
+    <div class="grid-container">
+      <div class="grid-row grid-gap">
+        <div class="">
+          <nav class="usa-footer__nav" aria-label="Footer navigation">
+            <div class="grid-row grid-gap-4">
+              
+              <div class="mobile-lg:grid-col-6 desktop:grid-col-4">
+                <section class="usa-footer__primary-content usa-footer__primary-content--collapsible">
+                  
+                    <h4 class="usa-footer__primary-link"></h4>
+                    <ul class="usa-list usa-list--unstyled">
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://usda.gov/policies-and-links">
+                          Policies and Links
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://usda.gov/our-agency/about-usda/performance">
+                          Our Performance
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://www.usda.gov/our-agency/careers">
+                          Careers
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://www.usda.gov/oig/forms/contractor-fraud">
+                          Report Fraud on USDA
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://www.usda.gov/oig/">
+                          Visit OIG
+                        </a>
+                      </li>
+                      
+                    </ul>
+                  
+                </section>
+              </div>
+              
+              <div class="mobile-lg:grid-col-6 desktop:grid-col-4">
+                <section class="usa-footer__primary-content usa-footer__primary-content--collapsible">
+                  
+                    <h4 class="usa-footer__primary-link"></h4>
+                    <ul class="usa-list usa-list--unstyled">
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://usda.gov/plain-writing">
+                          Plain Writing
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://usda.gov/open">
+                          Open
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://www.dm.usda.gov/foia/">
+                          FOIA
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://usda.gov/accessibility-statement">
+                          Accessibility Statement
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://usda.gov/privacy-policy">
+                          Privacy Policy
+                        </a>
+                      </li>
+                      
+                    </ul>
+                  
+                </section>
+              </div>
+              
+              <div class="mobile-lg:grid-col-6 desktop:grid-col-4">
+                <section class="usa-footer__primary-content usa-footer__primary-content--collapsible">
+                  
+                    <h4 class="usa-footer__primary-link"></h4>
+                    <ul class="usa-list usa-list--unstyled">
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://usda.gov/non-discrimination-statement">
+                          Non-Discrimination Statement
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://www.ascr.usda.gov/civil-rights-statements">
+                          Anti-Harassment Policy
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://www.ocio.usda.gov/policy-directives-records-forms/information-quality-activities">
+                          Information Quality
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://www.usa.gov">
+                          USA.gov
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://www.whitehouse.gov">
+                          WhiteHouse.gov
+                        </a>
+                      </li>
+                      
+                    </ul>
+                  
+                </section>
+              </div>
+              
+              <div class="mobile-lg:grid-col-6 desktop:grid-col-4">
+                <section class="usa-footer__primary-content usa-footer__primary-content--collapsible">
+                  
+                    <h4 class="usa-footer__primary-link"></h4>
+                    <ul class="usa-list usa-list--unstyled">
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://usda.gov/federal-web-site-inventory">
+                          eGov
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="mailto:scinet_vrsc@usda.gov">
+                          Feedback
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://usda.gov/nofear">
+                          No FEAR Act Data
+                        </a>
+                      </li>
+                      
+                    </ul>
+                  
+                </section>
+              </div>
+              
+            </div>
+          </nav>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  
+
+  
+  <div class="usa-footer__secondary-section">
+    <div class="grid-container">
+      <div class="grid-row grid-gap">
+        <div class="usa-footer__logo grid-row mobile-lg:grid-col-6 mobile-lg:grid-gap-2">
+          
+
+          
+          <div class="mobile-lg:grid-col-auto">
+            <h3 class="usa-footer__logo-heading">USDA Agricultural Research Service</h3>
+          </div>
+          
+        </div>
+
+        
+        <div class="usa-footer__contact-links mobile-lg:grid-col-6">
+          
+          
+            <div class="usa-footer__social-links grid-row grid-gap-1">
+              <div class="grid-col-auto">
+                
+                  <a class="usa-social-link usa-social-link--twitter" href="https://twitter.com/USDA_ARS">
+                    <span>Twitter</span>
+                  </a>
+                
+              </div>
+            </div>
+          
+          
+            <h3 class="usa-footer__contact-heading">Contact us</h3>
+            
+            
+              <address class="usa-footer__address">
+                
+                <div class="usa-footer__contact-info grid-row grid-gap">
+                
+                    <div class="grid-col-auto">
+                      <a href="mailto:scinet_vrsc@usda.gov">
+                        scinet_vrsc@usda.gov
+                      </a>
+                    </div>
+                
+                </div>
+              </address>
+          
+        
+      </div>
+      
+      </div>
+    </div>
+  </div>
+  
+
+</footer>
+
+
+
+
+
+    
+
+
+
+
+
+  
+    
+      <script src="/assets/uswds/js/uswds.min.js" async></script>
+    
+
+  
+    
+      <script src="/assets/js/vendor/anchor.min.js"></script>
+    
+
+  
+    
+      <script src="/assets/js/main.js"></script>
+    
+
+  
+    
+
+
+
+
+<script type="text/javascript">
+//<![CDATA[
+      var usasearch_config = { siteHandle:"scinet-usda" };
+
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src = "//search.usa.gov/javascripts/remote.loader.js";
+      document.getElementsByTagName("head")[0].appendChild(script);
+
+//]]>
+</script>
+
+
+
+  </body>
+</html>

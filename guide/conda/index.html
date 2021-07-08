@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<title>User-Installed Software on Ceres with Conda | SCINet | USDA Scientific Computing Initiative</title>
+
+
+
+<meta name="description" content="Using Conda">
+
+
+
+<link rel="shortcut icon" type="image/ico"
+  href="/assets/uswds/img/favicons/favicon.ico">
+
+<link rel="icon" type="image/png"
+  href="/assets/uswds/img/favicons/favicon.png">
+
+<link rel="icon" type="image/png"
+  sizes="192x192"
+  href="/assets/uswds/img/favicons/favicon-192.png">
+
+<link rel="apple-touch-icon-precomposed" type=""
+  href="/assets/uswds/img/favicons/favicon-57.png">
+
+<link rel="apple-touch-icon-precomposed" type=""
+  sizes="72x72"
+  href="/assets/uswds/img/favicons/favicon-72.png">
+
+<link rel="apple-touch-icon-precomposed" type=""
+  sizes="114x114"
+  href="/assets/uswds/img/favicons/favicon-114.png">
+
+<link rel="apple-touch-icon-precomposed" type=""
+  sizes="144x144"
+  href="/assets/uswds/img/favicons/favicon-144.png">
+
+
+
+    
+
+
+
+<link rel="stylesheet"
+  href="/assets/css/uswds-theme.css"
+  media="screen">
+
+
+    
+      
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-27627304-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { dataLayer.push(arguments); }
+  gtag('js', new Date());
+
+  // `forceSSL` was used for analytics.js (the older Google Analytics script). It isn't documented for gtag.js, but the term occurs in the gtag.js code; figure it doesn't hurt to leave it in. -@afeld, 5/29/19
+  gtag('config', 'UA-27627304-1', { 'anonymize_ip': true, 'forceSSL': true });
+</script>
+
+
+
+<!-- Digital Analytics Program roll-up, see https://analytics.usa.gov for data -->
+<script id="_fed_an_ua_tag" src="https://dap.digitalgov.gov/Universal-Federated-Analytics-Min.js?agency=USDA&subagency=ARS"></script>
+
+
+    
+  </head>
+  <body class="  site-90%">
+
+    <a class="usa-skipnav" href="#main-content">Skip to main content</a>
+
+    
+
+
+  <section class="usa-banner" aria-label="Official government website">
+  <div class="usa-accordion">
+    <header class="usa-banner__header">
+      <div class="usa-banner__inner">
+        <div class="grid-col-auto">
+          <img class="usa-banner__header-flag" src="/assets/uswds/img/us_flag_small.png" alt="U.S. flag">
+        </div>
+        <div class="grid-col-fill tablet:grid-col-auto">
+          <p class="usa-banner__header-text">An official website of the United States government</p>
+          <p class="usa-banner__header-action" aria-hidden="true">Here’s how you know</p>
+        </div>
+        <button class="usa-accordion__button usa-banner__button"
+          aria-expanded="false" aria-controls="gov-banner">
+          <span class="usa-banner__button-text">Here’s how you know</span>
+        </button>
+      </div>
+    </header>
+    <div class="usa-banner__content usa-accordion__content" id="gov-banner">
+      <div class="grid-row grid-gap-lg">
+        <div class="usa-banner__guidance tablet:grid-col-6">
+          <img class="usa-banner__icon usa-media-block__img" src="/assets/uswds/img/icon-dot-gov.svg" role="img" alt="Dot gov">
+          <div class="usa-media-block__body">
+            <p>
+              <strong>Official websites use .gov</strong>
+              <br/>
+              A <strong>.gov</strong> website belongs to an official government organization in the United States.
+            </p>
+          </div>
+        </div>
+        <div class="usa-banner__guidance tablet:grid-col-6">
+          <img class="usa-banner__icon usa-media-block__img" src="/assets/uswds/img/icon-https.svg" role="img" alt="Https">
+          <div class="usa-media-block__body">
+            <p>
+              <strong>Secure .gov websites use HTTPS</strong>
+              <br/>
+              A <strong>lock</strong> (
+<span class="icon-lock"><svg xmlns="http://www.w3.org/2000/svg" width="52" height="64" viewBox="0 0 52 64" class="usa-banner__lock-image" role="img" aria-labelledby="banner-lock-title banner-lock-description"><title id="banner-lock-title">Lock</title><desc id="banner-lock-description">A locked padlock</desc><path fill="#000000" fill-rule="evenodd" d="M26 0c10.493 0 19 8.507 19 19v9h3a4 4 0 0 1 4 4v28a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4V32a4 4 0 0 1 4-4h3v-9C7 8.507 15.507 0 26 0zm0 8c-5.979 0-10.843 4.77-10.996 10.712L15 19v9h22v-9c0-6.075-4.925-11-11-11z"/></svg></span>
+) or <strong>https://</strong> means you’ve safely connected to the .gov website. Share sensitive information only on official, secure websites.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+  <div class="usa-overlay"></div>
+
+  <header class="usa-header usa-header--extended" role="banner">
+
+
+  
+    <div class="usa-navbar">
+      <div class="usa-logo" id="header-logo">
+        <a
+          href="/"
+          title="Home">
+          
+            <img
+              class="usa-logo-img"
+              src="/assets/img/usda-symbol-rgb-color.svg"
+              alt="USDA-ARS">
+          
+          <em class="usa-logo__text">
+            SCINet Scientific Computing
+          </em>
+        </a>
+      </div>
+      <button class="usa-menu-btn">Menu</button>
+    </div>
+
+    <nav role="navigation" class="usa-nav">
+      <div class="usa-nav__inner">
+        <button class="usa-nav__close">
+          <img src="/assets/uswds/img/close.svg" alt="close">
+        </button>
+
+        
+        
+        
+        <ul class="usa-nav__primary usa-accordion">
+          
+          <li class="usa-nav__primary-item">
+            
+              <a class=" usa-nav__link  " href="/signup/">
+                <span>Sign up for an account</span>
+              </a>
+            
+          </li>
+          
+          <li class="usa-nav__primary-item">
+            
+              
+              
+              
+            <button class="usa-accordion__button usa-nav__link" aria-expanded="false" aria-controls="nav-2">
+              <span>News</span>
+            </button>
+            
+            <ul id="nav-2" class="usa-nav__submenu">
+            
+            
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/downtime/">System Downtime</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/announcements/">Announcements</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/stories/">User Stories</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/newsletter/">Newsletter</a>
+                </li>
+                
+              
+            
+            </ul>
+            
+            
+            
+          </li>
+          
+          <li class="usa-nav__primary-item">
+            
+              
+              
+              
+            <button class="usa-accordion__button usa-nav__link" aria-expanded="false" aria-controls="nav-3">
+              <span>User Guides</span>
+            </button>
+            
+            <ul id="nav-3" class="usa-nav__submenu">
+            
+            
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/quickstart">Quick Start</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/ceres">Ceres HPC User manual</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="https://www.hpc.msstate.edu/computing/atlas">Atlas HPC User Guide</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/multifactor">Set up multifactor authentication</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/storage">SCINet Storage Guide</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/software">Software Overview</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/packageinstall">Installing R/Python/Perl Packages</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/conda">Installing Software with Conda</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/file-transfer">Transferring files</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/rclone">Rclone</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/clc">CLC Workbench</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/jupyter">Jupyter</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/rstudio">Rstudio</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/geneious">Geneious</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/galaxy">Galaxy on SCINet</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/singularity">Containers</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/smrtlink">SMRTLink using Command Line</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/AWS/documentation">AWS Resources</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/vpn">SCINet VPN</a>
+                </li>
+                
+              
+            
+            </ul>
+            
+            
+            
+          </li>
+          
+          <li class="usa-nav__primary-item">
+            
+              
+              
+              
+            <button class="usa-accordion__button usa-nav__link" aria-expanded="false" aria-controls="nav-4">
+              <span>Working Groups</span>
+            </button>
+            
+            <ul id="nav-4" class="usa-nav__submenu">
+            
+            
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/working-groups">Overview</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/working-groups/ag100pest">Ag100Pest</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/working-groups/arthropods">Arthropod Genomics</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/working-groups/geospatial">Geospatial Research</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/working-groups/microbiome">Microbiome</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/working-groups/LTARphenology">LTAR Phenology</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/working-groups/policy">SCINet Policy Committee</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/working-groups/webdev">SCINet Website Developers</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/working-groups/workbooks">Workbook Developers</a>
+                </li>
+                
+              
+            
+            </ul>
+            
+            
+            
+          </li>
+          
+          <li class="usa-nav__primary-item">
+            
+              
+              
+              
+            <button class="usa-accordion__button usa-nav__link" aria-expanded="false" aria-controls="nav-5">
+              <span>Training</span>
+            </button>
+            
+            <ul id="nav-5" class="usa-nav__submenu">
+            
+            
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/training/">Overview</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/training/tutorials/">ARS Science Tutorials</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/training/free-online-training">Free Online Training</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/training-archive/">Training Event Archive</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/training/bioinformatics-workbook">Bioinformatics Workbook</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/training/useful-links">Useful Links</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/training/coursera">Coursera</a>
+                </li>
+                
+              
+            
+            </ul>
+            
+            
+            
+          </li>
+          
+          <li class="usa-nav__primary-item">
+            
+              
+              
+              
+            <button class="usa-accordion__button usa-nav__link" aria-expanded="false" aria-controls="nav-6">
+              <span>Use Cases</span>
+            </button>
+            
+            <ul id="nav-6" class="usa-nav__submenu">
+            
+            
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/user/genomics/">Genomics</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/user/plant-breeding/">Plant breeding</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/user/geospatial/">Geospatial</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/user/hydrology/">Hydrology</a>
+                </li>
+                
+              
+            
+            </ul>
+            
+            
+            
+          </li>
+          
+          <li class="usa-nav__primary-item">
+            
+              
+              
+              
+            <button class="usa-accordion__button usa-nav__link" aria-expanded="false" aria-controls="nav-7">
+              <span>Support</span>
+            </button>
+            
+            <ul id="nav-7" class="usa-nav__submenu">
+            
+            
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/support/vrsc/">Virtual Research Support Core (VSRC)</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/support/faq/">FAQ's</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="https://forum.scinet.usda.gov">USDA-ARS SCINet Forum</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/support/request-storage">Request Project Storage</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/support/request-software">Request Software</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/support/request-AWS">Request AWS</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/support/ceres-job-script">Ceres Job Script Generator</a>
+                </li>
+                
+              
+            
+            </ul>
+            
+            
+            
+          </li>
+          
+          <li class="usa-nav__primary-item">
+            
+              
+              
+              
+            <button class="usa-accordion__button usa-nav__link" aria-expanded="false" aria-controls="nav-8">
+              <span>About</span>
+            </button>
+            
+            <ul id="nav-8" class="usa-nav__submenu">
+            
+            
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/about/compute">Computer Systems</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/about/organization">Organization</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/about/contact">Contact</a>
+                </li>
+                
+              
+            
+            </ul>
+            
+            
+            
+          </li>
+          
+          <li class="usa-nav__primary-item">
+            
+              
+              
+              
+            <button class="usa-accordion__button usa-nav__link" aria-expanded="false" aria-controls="nav-9">
+              <span>Opportunities</span>
+            </button>
+            
+            <ul id="nav-9" class="usa-nav__submenu">
+            
+            
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/opportunities/SAC">SAC Membership</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/opportunities/request-workshop">Request a Workshop</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/opportunities/postdocs">Fellowships (PhD & MS)</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/opportunities/events">Upcoming Events</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/opportunities/ai-innovation">AI Innovation fund</a>
+                </li>
+                
+              
+            
+            </ul>
+            
+            
+            
+          </li>
+          
+        </ul>
+        
+
+        
+
+        
+          
+          <div class="usa-nav__secondary">
+            <ul class="usa-unstyled-list usa-nav__secondary-links">
+              
+              
+                <li class="usa-nav__secondary-item">
+                  <a href=""
+                  >
+                    
+                  </a>
+                </li>
+              
+            </ul>
+            
+              <form
+                accept-charset="UTF-8"
+                action="https://search.usa.gov/search"
+                id="search_form"
+                method="get"
+                class="usa-search usa-search--small js-search-form">
+              <input
+                name="utf8"
+                type="hidden"
+                value="&#x2713;" />
+              <input
+                type="hidden"
+                name="affiliate"
+                id="affiliate"
+                value="scinet-usda" />
+                <div role="search">
+                  <label
+                    for="query" class="usa-sr-only">Enter search terms</label>
+                  <input
+                    autocomplete="off"
+                    class="usa-input usagov-search-autocomplete"
+                    id="query"
+                    name="query"
+                    type="search" />
+                  <button
+                    class="usa-button"
+                    type="submit"
+                    name="commit">
+                    <span class="usa-sr-only">Search</span>
+                  </button>
+                </div>
+              </form>
+            
+          </div>
+          
+
+
+        </div>
+      </div>
+    </nav>
+  
+  </header>
+
+
+
+
+    
+    
+
+
+    
+
+    
+
+    
+      
+      
+
+
+
+
+    
+    
+
+    
+      <main id="main-content" class="usa-layout-docs usa-layout-docs__main desktop:grid-col-9 usa-prose">
+        <div class="usa-section">
+  <div class="grid-container">
+    <div class="grid-row grid-gap flex-align-start">
+      
+      
+
+      <main class="usa-layout-docs usa-layout-docs__main usa-prose" id="main-content">
+        
+          <h1>User-Installed Software on Ceres with Conda</h1>
+        
+        <h4 id="table-of-contents">Table of Contents</h4>
+<ul>
+  <li><a href="#introduction">Introduction</a></li>
+  <li><a href="#setup">Setup</a></li>
+  <li><a href="#installing-software">Installing Software</a>
+    <ul>
+      <li><a href="#best-practices">Best Practices</a></li>
+      <li><a href="#example-1-installing-trinity-into-a-home-directory">Example 1: Installing Trinity into a home directory</a></li>
+      <li><a href="#example-2-installing-tensorflow-into-a-project-directory">Example 2: Installing Tensorflow into a /project directory</a></li>
+    </ul>
+  </li>
+  <li><a href="#managing-environments">Managing Environments</a></li>
+</ul>
+
+<h1 id="introduction">Introduction</h1>
+
+<p><a href="https://conda.io/">Conda</a> is a software package manager for data science that allows unprivileged (non-administrative) Linux or MacOS users to search, fetch, install, upgrade, use, and manage supported open-source software packages and programming languages/libraries/environments (primarily Python and R, but also others such as Perl, Java, and Julia) in a directory they have write access to. Conda allows SCINet users to create reproducible scientific software environments (including outside of Ceres) without requiring the submission of a SCINet software request form for new software, or contacting the VRSC to upgrade existing software.</p>
+
+<p>Many open-source scientific software packages are available:</p>
+<ul>
+  <li><a href="https://anaconda.org/search">Browse/search</a> all conda packages</li>
+</ul>
+
+<p>The <a href="http://bioconda.github.io/">Bioconda</a> channel contains thousands of software packages that are useful for bioinformatics.</p>
+<ul>
+  <li><a href="https://bioconda.github.io/conda-package_index.html">Browse/search</a> available Bioconda software packages</li>
+</ul>
+
+<h1 id="setup">Setup</h1>
+
+<p>Before using conda or conda-installed software on Ceres, the <em>miniconda</em> environment module (which contains the conda software environment) must be loaded. To load the latest miniconda module available on Ceres:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[user.name@ceres ~]$ module load miniconda
+</code></pre></div></div>
+
+<p>You can see all available versions of miniconda on Ceres with:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[user.name@ceres ~]$ module spider miniconda
+</code></pre></div></div>
+
+<p><em>(Optional one-time setup for bioconda users)</em> If you plan on installing software primarily from the bioconda channel, before using conda for the first time on Ceres, you may wish to configure conda <a href="http://bioconda.github.io/user/install.html#set-up-channels">per the bioconda documentation</a> to search for software packages in the conda-forge, bioconda, and defaults channels (in that order):</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[user.name@ceres ~]$ conda config --add channels defaults
+[user.name@ceres ~]$ conda config --add channels bioconda
+[user.name@ceres ~]$ conda config --add channels conda-forge
+</code></pre></div></div>
+
+<p>Otherwise, the conda-forge and then bioconda channels must be specified every time software is installed via <code class="language-plaintext highlighter-rouge">conda install</code> or <code class="language-plaintext highlighter-rouge">conda create</code>:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>conda install -c conda-forge -c bioconda SOFTWARE_PACKAGE1 SOFTWARE_PACKAGE2...
+</code></pre></div></div>
+
+<h1 id="installing-software">Installing Software</h1>
+
+<p>Software can be installed into separate environments (directories) that are managed separately. At least one environment must be created before installing software using the Ceres miniconda environment module.</p>
+
+<p>On Ceres, suitable locations for conda environments housing conda packages include:</p>
+
+<ol>
+  <li>Home directory (default; subdirectory of $HOME/.conda/envs/)</li>
+</ol>
+
+<p>NOTE: some Conda packages (with dependencies) can take gigabytes of storage space. Use the Ceres command  <code class="language-plaintext highlighter-rouge">my_quota</code>  to check the available space in your home directory.</p>
+
+<ol>
+  <li>A user-specified directory within one’s project directory, e.g.,
+/project/&lt;MY_PROJECT&gt;/&lt;MY_ENVIRONMENT_DIRECTORY&gt;</li>
+</ol>
+
+<p>This environment is then usable by others in the project.</p>
+
+<h2 id="best-practices">Best Practices</h2>
+
+<ul>
+  <li><strong>Use an interactive session on a compute node to install software with conda to avoid slowing down the login node for everyone, e.g,</strong>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[user.name@ceres ~]$ salloc
+[user.name@ceres14-compute-60 ~]$ module load miniconda
+[user.name@ceres14-compute-60 ~]$ source activate my_env
+(my_env) [user.name@ceres14-compute-60 ~]$ conda install &lt;package_name&gt;
+...
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h2 id="example-1-installing-trinity-into-a-home-directory">Example 1: Installing Trinity into a home directory</h2>
+
+<p>Load the latest miniconda module if you haven’t already and create an environment called “trinityenv”:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[user.name@ceres ~]$ module load miniconda
+[user.name@ceres ~]$ conda create --name trinityenv
+</code></pre></div></div>
+
+<p>Note that the  <code class="language-plaintext highlighter-rouge">conda create</code> command used above without the –prefix option will create the environment in your home directory ($HOME/.conda/envs/).</p>
+
+<p>To activate the environment (and update environment variables such as PATH that are required to use software installed into this environment):</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[user.name@ceres ~]$ source activate trinityenv
+(trinityenv) [user.name@ceres ~]$
+</code></pre></div></div>
+
+<div class="usa-alert usa-alert-error" role="alert">
+  <div class="usa-alert-body">
+    <h3 class="usa-alert-heading">Do not execute <tt>conda init</tt></h3>
+    <div class="usa-alert-text">
+      In conda &ge; 4.6, if you run <code>conda activate</code>, you will be prompted to run <code>conda init</code> to modify your shell interactive startup script (e.g, ~/.bashrc):
+      <pre>
+[user.name@ceres ~]$ conda activate
+
+CommandNotFoundError: Your shell has not been properly configured to use 'conda activate'.
+To initialize your shell, run
+
+$ conda init &lt;SHELL_NAME&gt;
+      </pre>
+      This will have the undesirable side effect of modifying your PATH to include that particular version of miniconda every time you log in (even without loading the miniconda environment variable).
+      <p />
+      If you accidentally run <code>conda init</code>, edit your shell intereractive startup file (<code>$HOME/.bashrc</code> for the bash shell) and remove all lines between
+      <br />
+      <code>&gt;&gt;&gt; conda initialize &gt;&gt;&gt;</code>
+      <br />
+      and
+      <br />
+      <code>&lt;&lt;&lt; conda initialize &lt;&lt;&lt;</code>
+      <br /><br />
+
+      <code>conda deactivate</code> may still be used safely.
+      <p />
+      We will continue to monitor the <a href="https://github.com/conda/conda/issues/7980" target="_blank">GitHub issue</a> that describes the problem and other workarounds.
+    </div>
+  </div>
+</div>
+
+<div class="usa-alert-full-width usa-alert-full-width-info" role="region" aria-labelledby="alert-heading">
+  <div class="usa-alert usa-alert-info" aria-live="assertive" role="alert">
+    <div class="usa-alert-body">
+      <h3 class="usa-alert-heading" id="alert-heading"><code>conda activate</code> after <code>source activate</code></h3>
+      <div class="usa-alert-text">
+        <p>
+          If <code>conda activate</code> is needed for some advanced use cases like <a href="https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#nested-activation" target="_blank">nested ("stacked") environments</a>, it can be used after <code>source activate</code>:
+          <pre>
+[user.name@ceres ~]$ ml miniconda
+[user.name@ceres ~]$ source activate
+(base) [user.name@ceres ~]$ conda activate samtools
+(samtools) [user.name@ceres ~]$
+          </pre>
+        </p> 
+      </div>
+    </div>
+  </div>
+</div>
+
+<p>Now that you are inside the trinityenv environment, install software into this environment with:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(trinityenv) [user.name@ceres ~]$ conda install &lt;package_name&gt; &lt;package_name&gt; &lt;package_name&gt;
+</code></pre></div></div>
+
+<p>For example, install the <a href="https://github.com/trinityrnaseq/trinityrnaseq/wiki">Trinity</a> transcriptome assembler and <a href="https://pachterlab.github.io/kallisto/">Kallisto</a> RNA-Seq quantification application (an optional dependency that is not included with the default Trinity 2.8.4 installation). Note this step may take a few minutes:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(trinityenv) [user.name@ceres ~]$ conda install trinity kallisto
+...
+Proceed ([y]/n)? y
+...
+</code></pre></div></div>
+
+<p>Afterwards, the Trinity and Kallisto executables are in your PATH:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(trinityenv) [user.name@ceres ~]$ type Trinity
+Trinity is hashed (/home/user.name/.conda/envs/trinityenv/bin/Trinity)
+
+(trinityenv) [user.name@ceres ~]$ Trinity --version
+Trinity version: Trinity-v2.8.4-currently using the latest production release of Trinity.
+
+(trinityenv) [user.name@ceres ~]$ type kallisto
+kallisto is hashed (/home/scinet.username/.conda/envs/trinityenv/bin/kallisto)
+
+(trinityenv) [user.name@ceres ~]$ kallisto version
+kallisto, version 0.44.
+</code></pre></div></div>
+
+<p>To exit the environment:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(trinityenv) [user.name@ceres ~]$ conda deactivate
+[user.name@ceres ~]$ 
+</code></pre></div></div>
+
+<p>After deactivating the trinityenv environment, Trinity and kallisto are no longer in your PATH:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[user.name@ceres ~]$ type Trinity
+-bash: type: Trinity: not found
+</code></pre></div></div>
+
+<h2 id="example-2-installing-tensorflow-into-a-project-directory">Example 2: Installing Tensorflow into a /project directory</h2>
+
+<p>Load the latest miniconda module if you haven’t already and create an environment in your /project directory by using the option  <code class="language-plaintext highlighter-rouge">--prefix</code>:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[user.name@ceres ~]$ module load miniconda
+[user.name@ceres ~]$ conda create --prefix /project/my_proj/tensorflow
+...
+[user.name@ceres ~]$ source activate /project/my_proj/tensorflow
+(/project/my_proj/tensorflow) [user.name@ceres ~]$ conda install tensorflow
+... 
+</code></pre></div></div>
+
+<p>Note: conda first downloads packages into a package cache directory. By default, the package cache is in your home directory  ($HOME/.conda/pkgs). If installing a large amount of software that may cause home directory quota to be exceeded, you can configure another directory to be the package cache by adding a pkgs_dirs list to the $HOME/.condarc file (YAML); e.g.:</p>
+
+<p><code class="language-plaintext highlighter-rouge">pkgs_dirs:</code></p>
+
+<p><code class="language-plaintext highlighter-rouge">- /project/my_proj/my_pkg_cache</code></p>
+
+<h1 id="managing-environments">Managing Environments</h1>
+
+<p>See the official <a href="https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html">Conda documentation for managing environments</a> for a complete list of commands.</p>
+
+<p>To list environments that have been created in your home directory:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[user.name@ceres ~]$ conda env list
+# conda environments:
+#
+trinityenv               /home/user.name/.conda/envs/trinityenv
+root                  *  /software/7/apps/miniconda/4.7.12
+</code></pre></div></div>
+
+<p>To list software packages in an environment:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[user.name@ceres ~]$ conda list --name trinityenv
+# packages in environment at /home/user.name/.conda/envs/trinityenv:
+#
+...
+</code></pre></div></div>
+<p>OR</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[user.name@ceres ~]$ conda list --prefix /project/my_proj/tensorflow
+# packages in environment at /project/my_proj/tensorflow:
+...
+</code></pre></div></div>
+
+<p><strong>Tip: For reproducibility, a list of all packages/versions in an environment can be <a href="https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html?highlight=shared#sharing-an-environment">exported to an environment file</a>, which can be used to <a href="https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html?highlight=shared#creating-an-environment-from-an-environment-yml-file">recreate the environment</a> (e.g., by another user, or on another system) or archived with analysis results. This makes it easy for you or anyone else to re-run your analysis on any system and is also a record of the exact software environment you used for your analysis.</strong></p>
+
+<p>To remove an environment in your home directory:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[user.name@ceres ~]$ conda env remove --name trinityenv
+</code></pre></div></div>
+<p>To remove an environment in your /project directory:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rm -rf /project/my_proj/tensorflow
+</code></pre></div></div>
+
+<p>To remove packages not used by any environment, as well as tarballs downloaded into the conda package cache ($HOME/.conda/pkgs):</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>conda clean --all
+</code></pre></div></div>
+
+      </main>
+    </div>
+  </div>
+</div>
+
+      </main>
+    
+
+    
+
+    
+
+
+  
+<footer class="usa-footer usa-footer--big">
+
+  
+    <div class="grid-container">
+      <p>Last updated: April 15, 2021 at 08:28 PM</p>
+    </div>
+  
+
+  
+    <div class="grid-container usa-footer__return-to-top">
+      <a href="#">Return to top</a>
+    </div>
+  
+
+
+
+  
+    
+    
+    
+  <div class="usa-footer__primary-section">
+    <div class="grid-container">
+      <div class="grid-row grid-gap">
+        <div class="">
+          <nav class="usa-footer__nav" aria-label="Footer navigation">
+            <div class="grid-row grid-gap-4">
+              
+              <div class="mobile-lg:grid-col-6 desktop:grid-col-4">
+                <section class="usa-footer__primary-content usa-footer__primary-content--collapsible">
+                  
+                    <h4 class="usa-footer__primary-link"></h4>
+                    <ul class="usa-list usa-list--unstyled">
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://usda.gov/policies-and-links">
+                          Policies and Links
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://usda.gov/our-agency/about-usda/performance">
+                          Our Performance
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://www.usda.gov/our-agency/careers">
+                          Careers
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://www.usda.gov/oig/forms/contractor-fraud">
+                          Report Fraud on USDA
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://www.usda.gov/oig/">
+                          Visit OIG
+                        </a>
+                      </li>
+                      
+                    </ul>
+                  
+                </section>
+              </div>
+              
+              <div class="mobile-lg:grid-col-6 desktop:grid-col-4">
+                <section class="usa-footer__primary-content usa-footer__primary-content--collapsible">
+                  
+                    <h4 class="usa-footer__primary-link"></h4>
+                    <ul class="usa-list usa-list--unstyled">
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://usda.gov/plain-writing">
+                          Plain Writing
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://usda.gov/open">
+                          Open
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://www.dm.usda.gov/foia/">
+                          FOIA
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://usda.gov/accessibility-statement">
+                          Accessibility Statement
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://usda.gov/privacy-policy">
+                          Privacy Policy
+                        </a>
+                      </li>
+                      
+                    </ul>
+                  
+                </section>
+              </div>
+              
+              <div class="mobile-lg:grid-col-6 desktop:grid-col-4">
+                <section class="usa-footer__primary-content usa-footer__primary-content--collapsible">
+                  
+                    <h4 class="usa-footer__primary-link"></h4>
+                    <ul class="usa-list usa-list--unstyled">
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://usda.gov/non-discrimination-statement">
+                          Non-Discrimination Statement
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://www.ascr.usda.gov/civil-rights-statements">
+                          Anti-Harassment Policy
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://www.ocio.usda.gov/policy-directives-records-forms/information-quality-activities">
+                          Information Quality
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://www.usa.gov">
+                          USA.gov
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://www.whitehouse.gov">
+                          WhiteHouse.gov
+                        </a>
+                      </li>
+                      
+                    </ul>
+                  
+                </section>
+              </div>
+              
+              <div class="mobile-lg:grid-col-6 desktop:grid-col-4">
+                <section class="usa-footer__primary-content usa-footer__primary-content--collapsible">
+                  
+                    <h4 class="usa-footer__primary-link"></h4>
+                    <ul class="usa-list usa-list--unstyled">
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://usda.gov/federal-web-site-inventory">
+                          eGov
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="mailto:scinet_vrsc@usda.gov">
+                          Feedback
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://usda.gov/nofear">
+                          No FEAR Act Data
+                        </a>
+                      </li>
+                      
+                    </ul>
+                  
+                </section>
+              </div>
+              
+            </div>
+          </nav>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  
+
+  
+  <div class="usa-footer__secondary-section">
+    <div class="grid-container">
+      <div class="grid-row grid-gap">
+        <div class="usa-footer__logo grid-row mobile-lg:grid-col-6 mobile-lg:grid-gap-2">
+          
+
+          
+          <div class="mobile-lg:grid-col-auto">
+            <h3 class="usa-footer__logo-heading">USDA Agricultural Research Service</h3>
+          </div>
+          
+        </div>
+
+        
+        <div class="usa-footer__contact-links mobile-lg:grid-col-6">
+          
+          
+            <div class="usa-footer__social-links grid-row grid-gap-1">
+              <div class="grid-col-auto">
+                
+                  <a class="usa-social-link usa-social-link--twitter" href="https://twitter.com/USDA_ARS">
+                    <span>Twitter</span>
+                  </a>
+                
+              </div>
+            </div>
+          
+          
+            <h3 class="usa-footer__contact-heading">Contact us</h3>
+            
+            
+              <address class="usa-footer__address">
+                
+                <div class="usa-footer__contact-info grid-row grid-gap">
+                
+                    <div class="grid-col-auto">
+                      <a href="mailto:scinet_vrsc@usda.gov">
+                        scinet_vrsc@usda.gov
+                      </a>
+                    </div>
+                
+                </div>
+              </address>
+          
+        
+      </div>
+      
+      </div>
+    </div>
+  </div>
+  
+
+</footer>
+
+
+
+
+
+    
+
+
+
+
+
+  
+    
+      <script src="/assets/uswds/js/uswds.min.js" async></script>
+    
+
+  
+    
+      <script src="/assets/js/vendor/anchor.min.js"></script>
+    
+
+  
+    
+      <script src="/assets/js/main.js"></script>
+    
+
+  
+    
+
+
+
+
+<script type="text/javascript">
+//<![CDATA[
+      var usasearch_config = { siteHandle:"scinet-usda" };
+
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src = "//search.usa.gov/javascripts/remote.loader.js";
+      document.getElementsByTagName("head")[0].appendChild(script);
+
+//]]>
+</script>
+
+
+
+  </body>
+</html>

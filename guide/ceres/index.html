@@ -1,0 +1,2065 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<title>SCINet Ceres User Manual | SCINet | USDA Scientific Computing Initiative</title>
+
+
+
+<meta name="description" content="A Guide to getting started with the Ceres HPC">
+
+
+
+<link rel="shortcut icon" type="image/ico"
+  href="/assets/uswds/img/favicons/favicon.ico">
+
+<link rel="icon" type="image/png"
+  href="/assets/uswds/img/favicons/favicon.png">
+
+<link rel="icon" type="image/png"
+  sizes="192x192"
+  href="/assets/uswds/img/favicons/favicon-192.png">
+
+<link rel="apple-touch-icon-precomposed" type=""
+  href="/assets/uswds/img/favicons/favicon-57.png">
+
+<link rel="apple-touch-icon-precomposed" type=""
+  sizes="72x72"
+  href="/assets/uswds/img/favicons/favicon-72.png">
+
+<link rel="apple-touch-icon-precomposed" type=""
+  sizes="114x114"
+  href="/assets/uswds/img/favicons/favicon-114.png">
+
+<link rel="apple-touch-icon-precomposed" type=""
+  sizes="144x144"
+  href="/assets/uswds/img/favicons/favicon-144.png">
+
+
+
+    
+
+
+
+<link rel="stylesheet"
+  href="/assets/css/uswds-theme.css"
+  media="screen">
+
+
+    
+      
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-27627304-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { dataLayer.push(arguments); }
+  gtag('js', new Date());
+
+  // `forceSSL` was used for analytics.js (the older Google Analytics script). It isn't documented for gtag.js, but the term occurs in the gtag.js code; figure it doesn't hurt to leave it in. -@afeld, 5/29/19
+  gtag('config', 'UA-27627304-1', { 'anonymize_ip': true, 'forceSSL': true });
+</script>
+
+
+
+<!-- Digital Analytics Program roll-up, see https://analytics.usa.gov for data -->
+<script id="_fed_an_ua_tag" src="https://dap.digitalgov.gov/Universal-Federated-Analytics-Min.js?agency=USDA&subagency=ARS"></script>
+
+
+    
+  </head>
+  <body class="  site-90%">
+
+    <a class="usa-skipnav" href="#main-content">Skip to main content</a>
+
+    
+
+
+  <section class="usa-banner" aria-label="Official government website">
+  <div class="usa-accordion">
+    <header class="usa-banner__header">
+      <div class="usa-banner__inner">
+        <div class="grid-col-auto">
+          <img class="usa-banner__header-flag" src="/assets/uswds/img/us_flag_small.png" alt="U.S. flag">
+        </div>
+        <div class="grid-col-fill tablet:grid-col-auto">
+          <p class="usa-banner__header-text">An official website of the United States government</p>
+          <p class="usa-banner__header-action" aria-hidden="true">Here’s how you know</p>
+        </div>
+        <button class="usa-accordion__button usa-banner__button"
+          aria-expanded="false" aria-controls="gov-banner">
+          <span class="usa-banner__button-text">Here’s how you know</span>
+        </button>
+      </div>
+    </header>
+    <div class="usa-banner__content usa-accordion__content" id="gov-banner">
+      <div class="grid-row grid-gap-lg">
+        <div class="usa-banner__guidance tablet:grid-col-6">
+          <img class="usa-banner__icon usa-media-block__img" src="/assets/uswds/img/icon-dot-gov.svg" role="img" alt="Dot gov">
+          <div class="usa-media-block__body">
+            <p>
+              <strong>Official websites use .gov</strong>
+              <br/>
+              A <strong>.gov</strong> website belongs to an official government organization in the United States.
+            </p>
+          </div>
+        </div>
+        <div class="usa-banner__guidance tablet:grid-col-6">
+          <img class="usa-banner__icon usa-media-block__img" src="/assets/uswds/img/icon-https.svg" role="img" alt="Https">
+          <div class="usa-media-block__body">
+            <p>
+              <strong>Secure .gov websites use HTTPS</strong>
+              <br/>
+              A <strong>lock</strong> (
+<span class="icon-lock"><svg xmlns="http://www.w3.org/2000/svg" width="52" height="64" viewBox="0 0 52 64" class="usa-banner__lock-image" role="img" aria-labelledby="banner-lock-title banner-lock-description"><title id="banner-lock-title">Lock</title><desc id="banner-lock-description">A locked padlock</desc><path fill="#000000" fill-rule="evenodd" d="M26 0c10.493 0 19 8.507 19 19v9h3a4 4 0 0 1 4 4v28a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4V32a4 4 0 0 1 4-4h3v-9C7 8.507 15.507 0 26 0zm0 8c-5.979 0-10.843 4.77-10.996 10.712L15 19v9h22v-9c0-6.075-4.925-11-11-11z"/></svg></span>
+) or <strong>https://</strong> means you’ve safely connected to the .gov website. Share sensitive information only on official, secure websites.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+  <div class="usa-overlay"></div>
+
+  <header class="usa-header usa-header--extended" role="banner">
+
+
+  
+    <div class="usa-navbar">
+      <div class="usa-logo" id="header-logo">
+        <a
+          href="/"
+          title="Home">
+          
+            <img
+              class="usa-logo-img"
+              src="/assets/img/usda-symbol-rgb-color.svg"
+              alt="USDA-ARS">
+          
+          <em class="usa-logo__text">
+            SCINet Scientific Computing
+          </em>
+        </a>
+      </div>
+      <button class="usa-menu-btn">Menu</button>
+    </div>
+
+    <nav role="navigation" class="usa-nav">
+      <div class="usa-nav__inner">
+        <button class="usa-nav__close">
+          <img src="/assets/uswds/img/close.svg" alt="close">
+        </button>
+
+        
+        
+        
+        <ul class="usa-nav__primary usa-accordion">
+          
+          <li class="usa-nav__primary-item">
+            
+              <a class=" usa-nav__link  " href="/signup/">
+                <span>Sign up for an account</span>
+              </a>
+            
+          </li>
+          
+          <li class="usa-nav__primary-item">
+            
+              
+              
+              
+            <button class="usa-accordion__button usa-nav__link" aria-expanded="false" aria-controls="nav-2">
+              <span>News</span>
+            </button>
+            
+            <ul id="nav-2" class="usa-nav__submenu">
+            
+            
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/downtime/">System Downtime</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/announcements/">Announcements</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/stories/">User Stories</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/newsletter/">Newsletter</a>
+                </li>
+                
+              
+            
+            </ul>
+            
+            
+            
+          </li>
+          
+          <li class="usa-nav__primary-item">
+            
+              
+              
+              
+            <button class="usa-accordion__button usa-nav__link" aria-expanded="false" aria-controls="nav-3">
+              <span>User Guides</span>
+            </button>
+            
+            <ul id="nav-3" class="usa-nav__submenu">
+            
+            
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/quickstart">Quick Start</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/ceres">Ceres HPC User manual</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="https://www.hpc.msstate.edu/computing/atlas">Atlas HPC User Guide</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/multifactor">Set up multifactor authentication</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/storage">SCINet Storage Guide</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/software">Software Overview</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/packageinstall">Installing R/Python/Perl Packages</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/conda">Installing Software with Conda</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/file-transfer">Transferring files</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/rclone">Rclone</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/clc">CLC Workbench</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/jupyter">Jupyter</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/rstudio">Rstudio</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/geneious">Geneious</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/galaxy">Galaxy on SCINet</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/singularity">Containers</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/smrtlink">SMRTLink using Command Line</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/AWS/documentation">AWS Resources</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/vpn">SCINet VPN</a>
+                </li>
+                
+              
+            
+            </ul>
+            
+            
+            
+          </li>
+          
+          <li class="usa-nav__primary-item">
+            
+              
+              
+              
+            <button class="usa-accordion__button usa-nav__link" aria-expanded="false" aria-controls="nav-4">
+              <span>Working Groups</span>
+            </button>
+            
+            <ul id="nav-4" class="usa-nav__submenu">
+            
+            
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/working-groups">Overview</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/working-groups/ag100pest">Ag100Pest</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/working-groups/arthropods">Arthropod Genomics</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/working-groups/geospatial">Geospatial Research</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/working-groups/microbiome">Microbiome</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/working-groups/LTARphenology">LTAR Phenology</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/working-groups/policy">SCINet Policy Committee</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/working-groups/webdev">SCINet Website Developers</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/working-groups/workbooks">Workbook Developers</a>
+                </li>
+                
+              
+            
+            </ul>
+            
+            
+            
+          </li>
+          
+          <li class="usa-nav__primary-item">
+            
+              
+              
+              
+            <button class="usa-accordion__button usa-nav__link" aria-expanded="false" aria-controls="nav-5">
+              <span>Training</span>
+            </button>
+            
+            <ul id="nav-5" class="usa-nav__submenu">
+            
+            
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/training/">Overview</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/training/tutorials/">ARS Science Tutorials</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/training/free-online-training">Free Online Training</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/training-archive/">Training Event Archive</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/training/bioinformatics-workbook">Bioinformatics Workbook</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/training/useful-links">Useful Links</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/training/coursera">Coursera</a>
+                </li>
+                
+              
+            
+            </ul>
+            
+            
+            
+          </li>
+          
+          <li class="usa-nav__primary-item">
+            
+              
+              
+              
+            <button class="usa-accordion__button usa-nav__link" aria-expanded="false" aria-controls="nav-6">
+              <span>Use Cases</span>
+            </button>
+            
+            <ul id="nav-6" class="usa-nav__submenu">
+            
+            
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/user/genomics/">Genomics</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/user/plant-breeding/">Plant breeding</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/user/geospatial/">Geospatial</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/user/hydrology/">Hydrology</a>
+                </li>
+                
+              
+            
+            </ul>
+            
+            
+            
+          </li>
+          
+          <li class="usa-nav__primary-item">
+            
+              
+              
+              
+            <button class="usa-accordion__button usa-nav__link" aria-expanded="false" aria-controls="nav-7">
+              <span>Support</span>
+            </button>
+            
+            <ul id="nav-7" class="usa-nav__submenu">
+            
+            
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/support/vrsc/">Virtual Research Support Core (VSRC)</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/support/faq/">FAQ's</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="https://forum.scinet.usda.gov">USDA-ARS SCINet Forum</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/support/request-storage">Request Project Storage</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/support/request-software">Request Software</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/support/request-AWS">Request AWS</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/support/ceres-job-script">Ceres Job Script Generator</a>
+                </li>
+                
+              
+            
+            </ul>
+            
+            
+            
+          </li>
+          
+          <li class="usa-nav__primary-item">
+            
+              
+              
+              
+            <button class="usa-accordion__button usa-nav__link" aria-expanded="false" aria-controls="nav-8">
+              <span>About</span>
+            </button>
+            
+            <ul id="nav-8" class="usa-nav__submenu">
+            
+            
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/about/compute">Computer Systems</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/about/organization">Organization</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/about/contact">Contact</a>
+                </li>
+                
+              
+            
+            </ul>
+            
+            
+            
+          </li>
+          
+          <li class="usa-nav__primary-item">
+            
+              
+              
+              
+            <button class="usa-accordion__button usa-nav__link" aria-expanded="false" aria-controls="nav-9">
+              <span>Opportunities</span>
+            </button>
+            
+            <ul id="nav-9" class="usa-nav__submenu">
+            
+            
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/opportunities/SAC">SAC Membership</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/opportunities/request-workshop">Request a Workshop</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/opportunities/postdocs">Fellowships (PhD & MS)</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/opportunities/events">Upcoming Events</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/opportunities/ai-innovation">AI Innovation fund</a>
+                </li>
+                
+              
+            
+            </ul>
+            
+            
+            
+          </li>
+          
+        </ul>
+        
+
+        
+
+        
+          
+          <div class="usa-nav__secondary">
+            <ul class="usa-unstyled-list usa-nav__secondary-links">
+              
+              
+                <li class="usa-nav__secondary-item">
+                  <a href=""
+                  >
+                    
+                  </a>
+                </li>
+              
+            </ul>
+            
+              <form
+                accept-charset="UTF-8"
+                action="https://search.usa.gov/search"
+                id="search_form"
+                method="get"
+                class="usa-search usa-search--small js-search-form">
+              <input
+                name="utf8"
+                type="hidden"
+                value="&#x2713;" />
+              <input
+                type="hidden"
+                name="affiliate"
+                id="affiliate"
+                value="scinet-usda" />
+                <div role="search">
+                  <label
+                    for="query" class="usa-sr-only">Enter search terms</label>
+                  <input
+                    autocomplete="off"
+                    class="usa-input usagov-search-autocomplete"
+                    id="query"
+                    name="query"
+                    type="search" />
+                  <button
+                    class="usa-button"
+                    type="submit"
+                    name="commit">
+                    <span class="usa-sr-only">Search</span>
+                  </button>
+                </div>
+              </form>
+            
+          </div>
+          
+
+
+        </div>
+      </div>
+    </nav>
+  
+  </header>
+
+
+
+
+    
+    
+
+
+    
+
+    
+
+    
+      
+      
+
+
+
+
+    
+    
+
+    
+      <main id="main-content" class="usa-layout-docs usa-layout-docs__main desktop:grid-col-9 usa-prose">
+        <div class="usa-section">
+  <div class="grid-container">
+    <div class="grid-row grid-gap flex-align-start">
+      
+      
+
+      <main class="usa-layout-docs usa-layout-docs__main usa-prose" id="main-content">
+        
+          <h1>SCINet Ceres User Manual</h1>
+        
+        <h4 id="table-of-contents">Table of Contents</h4>
+<ul>
+  <li><a href="#onboarding-videos">Onboarding Videos</a></li>
+  <li><a href="#technical-overview">Technical Overview</a></li>
+  <li><a href="#system-configuration">System Configuration</a>
+    <ul>
+      <li><a href="#software-environment">Software Environment</a></li>
+    </ul>
+  </li>
+  <li><a href="#system-access">System Access</a>
+    <ul>
+      <li><a href="#logging-in-to-scinet">Logging in to SCINet</a></li>
+      <li><a href="#file-transfers">File Transfers</a>
+        <ul>
+          <li><a href="#globus-online-data-transfers">Globus Online Data Transfers</a></li>
+          <li><a href="#using-scp-to-transfer-data">Using scp to Transfer data</a></li>
+          <li><a href="#other-ways-to-transfer-data">Other ways to Transfer data</a></li>
+          <li><a href="#large-data-transfers">Large Data Transfers</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="#modules">Modules</a>
+    <ul>
+      <li><a href="#useful-modules-commands">Useful Modules Commands</a></li>
+      <li><a href="#loading-and-unloading-modules">Loading and Unloading Modules</a></li>
+      <li><a href="#module-command-not-found">Module: command not found</a></li>
+    </ul>
+  </li>
+  <li><a href="#quotas-on-home-and-project-directories">Quotas on Home and Project Directories</a>
+    <ul>
+      <li><a href="#local-sharing-of-files-with-other-users">Local Sharing of Files with Other Users</a></li>
+    </ul>
+  </li>
+  <li><a href="#running-application-jobs-on-compute-nodes">Running Application Jobs on Compute Nodes</a>
+    <ul>
+      <li><a href="#partitions-or-queues">Partitions or Queues</a></li>
+      <li><a href="#slurm-accounts">Slurm accounts</a></li>
+      <li><a href="#interactive-mode">Interactive Mode</a></li>
+      <li><a href="#requesting-the-proper-number-of-nodes-and-cores">Requesting the proper number of nodes and cores</a></li>
+      <li><a href="#batch-mode">Batch Mode</a>
+        <ul>
+          <li><a href="#serial-job">Serial Job</a></li>
+          <li><a href="#running-a-simple-openmp-job">Running a simple OpenMP Job</a></li>
+          <li><a href="#parallel-mpi-job">Parallel MPI Job</a></li>
+        </ul>
+      </li>
+      <li><a href="#useful-slurm-commands">Useful SLURM Commands</a></li>
+      <li><a href="#local-scratch-space-on-large-memory-nodes">Local Scratch Space on Large Memory Nodes</a></li>
+    </ul>
+  </li>
+  <li><a href="#compiling-software-installing-rperlpython-packages-and-using-containers">Compiling Software, Installing R/Perl/Python Packages and Using Containers</a></li>
+  <li><a href="#scinet-citationacknowledgment-in-publications">Citation/Acknowledgment</a></li>
+</ul>
+
+<h1 id="onboarding-videos">Onboarding Videos</h1>
+<p>Users who are new to the HPC environment may benefit from the following Ceres onboarding video which covers much of the material contained in this guide plus some Unixs basics.</p>
+
+<p><a href="https://3.basecamp.com/3625179/buckets/5538276/uploads/1997286513">Ceres Onboarding (Intro to SCINet Ceres HPC) (length 42:14)*</a>
+Note: SCINet no longer uses Basecamp. If you need access to the onboarding video please email scinet_vrsc@usda.gov.
+The video includes:</p>
+<ul>
+  <li>logging on to Ceres</li>
+  <li>changing your password</li>
+  <li>home and project directories</li>
+  <li>data transfer to/from SCINet clusters</li>
+  <li>basic SLURM job scheduler commands</li>
+  <li>computing in interactive mode with salloc</li>
+  <li>accessing Ceres software modules</li>
+  <li>computing in batch mode with a batch script</li>
+</ul>
+
+<h1 id="technical-overview">Technical Overview</h1>
+
+<p>Ceres is the dedicated high performance computing (HPC) infrastructure for ARS researchers on ARS SCINet. Ceres is designed to enable large-scale computing and large-scale storage. Currently, the following compute nodes are available on the Ceres cluster.</p>
+
+<p>92 regular compute nodes, each having:</p>
+
+<ul>
+  <li>72 logical cores on 2 x 18 core Intel Xeon Processors (6140 2.30GHz 25MB Cache or 6240 2.60GHz 25MB Cache) with hyper-threading turned ON</li>
+  <li>384GB DDR3 ECC Memory</li>
+  <li>250GB Intel DC S3500 Series 2.5” SATA 6.0Gb/s SSDs (used to host the OS and provide small local scratch storage)</li>
+  <li>1.5TB SSD used for temporary local storage</li>
+  <li>Mellanox ConnectX®­3 VPI FDR InfiniBand</li>
+</ul>
+
+<p>4 large memory nodes, each having:</p>
+
+<ul>
+  <li>80 logical cores on 2 x 20 core Intel Xeon Processors (6148 2.40GHz 27.5MB Cache or 6248 2.50GHz 27.5MB Cache) with hyper-threading turned ON</li>
+  <li>768GB DDR3 ECC Memory</li>
+  <li>250GB Intel DC S3500 Series 2.5” SATA 6.0Gb/s SSDs (used to host the OS and provide small local scratch storage)</li>
+  <li>1.5TB SSD used for temporary local storage</li>
+  <li>Mellanox ConnectX®­3 VPI FDR InfiniBand</li>
+</ul>
+
+<p>9 large memory nodes, each having:</p>
+
+<ul>
+  <li>80 logical cores on 2 x 20 core Intel Xeon Processors (6148 2.40GHz 27.5MB Cache or 6248 2.50GHz 27.5MB Cache) with hyper-threading turned ON</li>
+  <li>1,536GB DDR3 ECC Memory</li>
+  <li>250GB Intel DC S3500 Series 2.5” SATA 6.0Gb/s SSDs (used to host the OS and provide small local scratch storage)</li>
+  <li>1.5TB SSD used for temporary local storage</li>
+  <li>Mellanox ConnectX®­3 VPI FDR InfiniBand</li>
+</ul>
+
+<p>20 large memory nodes, each having:</p>
+
+<ul>
+  <li>96 logical cores on 2 x 24 core Intel Xeon Processors (6248R 3GHz 27.5MB Cache or 6248 2.50GHz 27.5MB Cache) with hyper-threading turned ON</li>
+  <li>1,536GB DDR3 ECC Memory</li>
+  <li>250GB Intel DC S3500 Series 2.5” SATA 6.0Gb/s SSDs (used to host the OS and provide small local scratch storage)</li>
+  <li>1.5TB SSD used for temporary local storage</li>
+  <li>Mellanox ConnectX®­3 VPI FDR InfiniBand</li>
+</ul>
+
+<p>1 GPU node that has:</p>
+
+<ul>
+  <li>72 logical cores on 2 x 18 core Intel Xeon Processors (6140 2.30GHz 25MB Cache) with hyper-threading turned ON</li>
+  <li>2 Tesla V100</li>
+  <li>384GB DDR3 ECC Memory</li>
+  <li>250GB Intel DC S3500 Series 2.5” SATA 6.0Gb/s SSDs (used to host the OS and provide small local scratch storage)</li>
+  <li>1.5TB SSD used for temporary local storage</li>
+  <li>Mellanox ConnectX®­3 VPI FDR InfiniBand</li>
+</ul>
+
+<p>In addition there are two local specialized data transfer nodes and several service nodes.</p>
+
+<p>In aggregate, there are more than 5000 compute cores (10000 logical cores) with 65 terabytes (TB) of total RAM, 250TB of total local storage, and 4.7 petabyte (PB) of shared storage.</p>
+
+<p>Shared storage consists of 2.3PB high-performance Lustre space, 1.8PB high-performance BeeGFS space and 600TB of backed-up ZFS space.</p>
+
+<h1 id="system-configuration">System Configuration</h1>
+<p>Since most HPC compute nodes are dedicated to running HPC cluster jobs, direct access to the nodes is discouraged. The established HPC best practice is to provide login nodes. Users access a login node to submit jobs to the cluster’s resource manager (SLURM), and access other cluster console functions. All nodes run on Linux CentOS 7.8.</p>
+
+<h2 id="software-environment">Software Environment</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Domain</th>
+      <th>Software</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Operating System</td>
+      <td>CentOS</td>
+    </tr>
+    <tr>
+      <td>Scheduler</td>
+      <td>SLURM</td>
+    </tr>
+    <tr>
+      <td>Software</td>
+      <td>For the full list of installed scientific software refer to the <a href="/guide/software">Software Overview</a> page or issue the  <code class="language-plaintext highlighter-rouge">module spider</code>  command on the Ceres login node.</td>
+    </tr>
+    <tr>
+      <td>Modeling</td>
+      <td>BeoPEST, EPIC, KINEROS2, MED-FOES, SWAT, h2o</td>
+    </tr>
+    <tr>
+      <td>Compilers</td>
+      <td>GNU (C, C++, Fortran), clang, llvm, Intel Parallel Studio</td>
+    </tr>
+    <tr>
+      <td>Languages</td>
+      <td>Java 6, Java 7, Java 8, Python, Python 3, R, Perl 5, Julia, Node</td>
+    </tr>
+    <tr>
+      <td>Tools and Libraries</td>
+      <td>tmux, Eigen, Boost, GDAL, HDF5, NetCDF, TBB, Metis, PROJ4, OpenBLAS, jemalloc</td>
+    </tr>
+    <tr>
+      <td>MPI libraries</td>
+      <td>MPICH, OpenMPI</td>
+    </tr>
+    <tr>
+      <td>Profiling and debugging</td>
+      <td>PAPI</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>For more information on available software and software installs refer to sections <a href="#modules">Modules</a> and <a href="#compiling-software-installing-rperlpython-packages-and-using-containers">Compiling Software, Installing R/Perl/Python Packages and Using Containers</a>.</p>
+
+<h1 id="system-access">System Access</h1>
+<h2 id="logging-in-to-scinet">Logging in to SCINet</h2>
+<h3 id="ssh">ssh</h3>
+<p>Users can connect directly to Ceres using an ssh client. ssh is usually available on any Linux or MacOS machine, and on Microsoft Windows 10 (in powershell):</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ssh &lt;SCINet UserID&gt;@ceres.scinet.usda.gov
+</code></pre></div></div>
+
+<p>For older Microsoft Windows machines, we recommend using PuTTY or OpenSSH (see the <a href="/guide/quickstart">Quick Start Guide</a>)</p>
+
+<p>When you log in to SCINet HPC you will be on the Ceres login node. The login node is a shared resource among all SCINet users that are currently logged in to the system. <strong>Please do NOT run computationally or memory intensive tasks on the login node, this will negatively impact performance for all other users on the system.</strong> See section <a href="#running-application-jobs-on-compute-nodes">Running Application Jobs on Compute Nodes</a> for instructions on how to run such tasks on compute nodes.</p>
+
+<h3 id="mfa">MFA</h3>
+<p>Logins to the Ceres cluster require the use of multi-factor authentication (MFA). Ceres uses Google Authenticator (GA) for MFA. Information required to set up your SCINet GA account is sent along with the temporary password in the Welcome email. When ssh-ing to the cluster you will first be prompted for Verification Code, and then for password. <strong>Note that when you type the code or the password, nothing will be shown on the screen.</strong> See detailed instructions in the <a href="/guide/multifactor">MFA guide</a>.</p>
+
+<h3 id="password-expiration">Password expiration</h3>
+<p>When a new SCINet account is created, the temporary password set by the system expires right away. Passwords set by users expire after 60 days. Users can still login to Ceres with the expired password, but they’re prompted to change their password right away. Users can also initiate password change on their own by issuing the command  <code class="language-plaintext highlighter-rouge">passwd</code>  on the Ceres login node. <strong>When prompted for the current password, users need to enter the old (possibly expired) password</strong>.</p>
+
+<p>If you have forgotten your login password, please email the VRSC: <a href="mailto:scinet_vrsc@USDA.GOV?subject=forgot%20login%20password">scinet_vrsc@USDA.GOV</a></p>
+
+<h2 id="file-transfers">File Transfers</h2>
+<ul>
+  <li>Given the space and access limitations of a home directory, large amounts of data or data that will be used collaboratively should be transferred to a project directory (see section <a href="#quotas-on-home-and-project-directories">Quotas on Home and Project Directories</a>)</li>
+  <li>Please use one of the data transfer node, e.g. ceres-dtn-1.scinet.usda.gov, instead of the login node to transfer data to/from the cluster.</li>
+  <li>If you have to transfer very large amounts of data or if network speed at your location is slow, please submit a request to the Virtual Research Support Core (VRSC) to ingress data from a hard drive as described below (section <a href="#large-data-transfers">Large Data Transfers</a>).</li>
+  <li>If you have issues with transferring data, please contact the VRSC at <a href="mailto:scinet_vrsc@USDA.GOV?subject=help%20with%20transferring%20data">scinet_vrsc@USDA.GOV</a>.</li>
+</ul>
+
+<h3 id="globus-online-data-transfers">Globus Online Data Transfers</h3>
+
+<p>We recommend using Globus Online to transfer data to and from the Ceres cluster. It provides faster data transfer speeds compared to scp, has a graphical interface, and does not require a GA verification code for every file transfer. To transfer data to/from a local computer, users will need to install Globus Personal which does NOT require admin privileges. More information about Globus Online for Ceres can be found in the <a href="/guide/file-transfer/">Guide for Transferring Files</a>.</p>
+
+<h3 id="using-scp-to-transfer-data">Using scp to Transfer Data</h3>
+<p>Like ssh, scp is usually available on any Linux or MacOS machine, and on Microsoft Windows 10 (in powershell).</p>
+
+<p>To transfer data when logged in to your local machine (the destination filenames are optional):</p>
+
+<ol>
+  <li>Transfer To SCINet:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ scp &lt;PathToSourceFolderOnLocalResource&gt;/&lt;LocalFilename&gt; &lt;SCINet UserID&gt;@ceres-dtn-0.scinet.usda.gov:/&lt;PathToDestinationFolderOnSCINet&gt;/[&lt;RemoteFilename&gt;]
+</code></pre></div>    </div>
+  </li>
+  <li>Transfer From SCINet:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ scp &lt;SCINet UserID&gt;@ceres-dtn-0.scinet.usda.gov:/&lt;PathToSourceFolderOnSCINet&gt;/&lt;RemoteFilename&gt; ~/&lt;PathToDestinationFolderOnLocalResource&gt;/[&lt;LocalFilename&gt;]
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<p>To transfer data when logged in to SCINet (the destination filenames are optional):</p>
+
+<ol>
+  <li>Transfer To SCINet:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ scp &lt;Username&gt;@&lt;RemoteServer&gt;:/&lt;PathToSourceFolderOnRemoteResource&gt;/&lt;RemoteFilename&gt;  ~/&lt;PathToDestinationFolderOnSCINet&gt;/[&lt;LocalFilename&gt;]
+</code></pre></div>    </div>
+  </li>
+  <li>Transfer From SCINet:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ scp &lt;PathToSourceFolderOnSCINet&gt;/&lt;LocalFilename&gt; &lt;Username&gt;@&lt;RemoteServer&gt;:/&lt;PathToDestinationFolderOnRemoteResource&gt;/[&lt;RemoteFilename&gt;]
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<p>To transfer an entire directory, you can use the  <code class="language-plaintext highlighter-rouge">-r</code>  option with any one of the above commands and specify a directory to transfer.  All of the files under that directory will get transferred e.g.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ scp -r &lt;PathToSourceFolderOnLocalResource&gt; &lt;SCINet UserID&gt;@ceres-dtn-0.scinet.usda.gov:/&lt;PathToDestinationFolderOnSCINet&gt;
+</code></pre></div></div>
+
+<p>You can type the following to view the full set of options and their descriptions:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ man scp
+</code></pre></div></div>
+
+<h3 id="other-ways-to-transfer-data">Other Ways to Transfer Data</h3>
+
+<p>Other programs that have a GUI to transfer data are:</p>
+
+<ul>
+  <li>
+    <p>Cyberduck - <a href="https://cyberduck.io/">https://cyberduck.io/</a></p>
+  </li>
+  <li>
+    <p>FileZilla - <a href="https://filezilla-project.org/">https://filezilla-project.org/</a></p>
+  </li>
+</ul>
+
+<p>Cyberduck supports multiple protocols (including Amazon S3, iRODS, and Google Drive) and is more secure than FileZilla.</p>
+
+<h3 id="large-data-transfers">Large Data Transfers</h3>
+
+<p>Large data transfers will be facilitated by the VRSC and involves users shipping hard disk drives (not USB drives) with their data on it to the VRSC in Ames, Iowa.  The VRSC will then upload the data directly and put it in a project directory specified by the user.</p>
+
+<p>You can send hard drives containing data to the VRSC if you have very large amounts of data (typically greater than 50GB) to transfer to Ceres or if the network speed at your location is slow. Please follow these instructions:</p>
+
+<ol>
+  <li>
+    <p>Submit an email request to the VRSC <a href="mailto:scinet_vrsc@USDA.GOV?subject=large%20data%20transfer%20request">scinet_vrsc@USDA.GOV</a> for a data transfer with the following information:</p>
+
+    <ul>
+      <li>Amount of data</li>
+      <li>Target project directory</li>
+      <li>Type of filesystem the data is coming from (Window, Mac, Linux)</li>
+    </ul>
+
+    <p>If you don’t already have a project directory please request one first: <a href="https://e.arsnet.usda.gov/sites/OCIO/scinet/accounts/SitePages/Project_Allocation_Request.aspx">Request Project Storage</a> (eAuthentication required)</p>
+  </li>
+  <li>
+    <p>Copy the data onto a SATA hard drive or SSD</p>
+
+    <ul>
+      <li>You will be responsible for purchasing your own drive(s)</li>
+      <li>Any type of hard drive (not a USB drive) is fine but SSDs will be more tolerant of the postal system</li>
+      <li>Disks must be EXT4, NTFS, HFS, XFS, or FAT formatted</li>
+    </ul>
+  </li>
+  <li>
+    <p>Ship the disk to the following address and email the tracking information to scinet_vrsc@USDA.GOV. Include a print out of your email containing the data transfer request to VRSC in your package. Send to:</p>
+
+    <p>Nathan Humeston<br />
+74 Durham<br />
+Iowa State University<br />
+Ames, IA 50011</p>
+  </li>
+  <li>
+    <p>Once we receive the data we will copy it over to the appropriate project directory and notify you once it is complete.</p>
+  </li>
+  <li>
+    <p>Please include a prepaid return shipping label so that we can send the drive(s) back to you after the data transfer is complete. Otherwise the drive(s) will not be returned.</p>
+  </li>
+</ol>
+
+<h1 id="modules">Modules</h1>
+
+<p>The Environment Modules package provides dynamic modification of your shell environment. This also allows a single system to accommodate multiple versions of the same software application and for the user to select the version they want to use. Module commands set, change, or delete environment variables, typically in support of a particular application.</p>
+
+<h2 id="useful-modules-commands">Useful Modules Commands</h2>
+
+<p>Here are some common module commands and their descriptions:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Command</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">module list</code></td>
+      <td>List modules currently loaded in your environment</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">module avail</code> / <code class="language-plaintext highlighter-rouge">module spider</code></td>
+      <td>List available modules</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">module unload &lt;module name&gt;</code></td>
+      <td>Remove &lt;module name&gt; from the environment</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">module load &lt;module name&gt;</code></td>
+      <td>Load &lt;module name&gt; into the environment</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">module help &lt;module name&gt;</code></td>
+      <td>Provide information about &lt;module name&gt;</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">module swap &lt;module one&gt; &lt;module two&gt;</code></td>
+      <td>Replace &lt;module one&gt; with &lt;module two&gt; in the environment</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>For example to use NCBI-BLAST installed on Ceres, follow these steps:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ module load blast+
+</code></pre></div></div>
+
+<p>This will load latest version of NCBI-BLAST into your environment and you can use all commands that come with this installation. To see the path to the loaded software and the version type</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ which blastp
+</code></pre></div></div>
+
+<p>which should display something like:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/software/7/apps/blast+/2.9.0/bin/blastp
+</code></pre></div></div>
+
+<p>If you want to load legacy NCBI-BLAST on Ceres, follow the example below:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ module load blast
+$ which blastall
+</code></pre></div></div>
+<p>should display something like</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/software/7/apps/blast/2.2.26/bin/blastall
+</code></pre></div></div>
+
+<p>If you would like to find out more about a particular software module, you can use the  <code class="language-plaintext highlighter-rouge">module help</code>  command, e.g.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ module help blast
+</code></pre></div></div>
+
+<p>will output basic information about the blast package, including an URL to the package website.</p>
+
+<h2 id="loading-and-unloading-modules">Loading and Unloading Modules</h2>
+
+<p>You must remove some modules before loading others, to switch versions or dependencies.</p>
+
+<p>For example, if you have already loaded a blast+ module using the “module load blast+” command to use latest version of NCBI-BLAST, but later you want to load a previous version of blast+ (2.2.30), then follow the steps below:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ module swap blast+ blast+/2.2.31
+</code></pre></div></div>
+<p>or:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ module unload blast+
+$ module load blast+/2.2.31
+</code></pre></div></div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ which blastp
+</code></pre></div></div>
+
+<p>The last command should display</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/software/7/apps/blast+/2.2.31/bin/blastp
+</code></pre></div></div>
+
+<p>Another example. If you want to compile parallel C, C++, or Fortran code and wanted to use OpenMPI instead of MPICH which is currently loaded in your environment, you can use  <code class="language-plaintext highlighter-rouge">module swap</code>  or  <code class="language-plaintext highlighter-rouge">module unload</code>:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ module swap mpich openmpi
+</code></pre></div></div>
+<p>or:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ module unload mpich
+$ module load openmpi
+</code></pre></div></div>
+
+<p>Some modules depend on other modules, so additional modules may be loaded or unloaded with one module command. For example, BEAST requires a Java module, so loading the “beast” module automatically loads the correct Java version:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ module load beast
+$ which java
+</code></pre></div></div>
+<p>should display something like:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/software/7/apps/java/1.8.0_121/bin/java
+</code></pre></div></div>
+
+<p>If you find yourself regularly using a set of module commands, you may want to add these to your configuration files (.bashrc for Bash users, .cshrc for C shell users).</p>
+
+<h2 id="module-command-not-found">Module: command not found</h2>
+
+<p>The error message module: command not found is sometimes encountered when switching from one shell to another or attempting to run the module command from within a shell script or batch job. The reason that the module command may not be inherited as expected is that it is defined as a function for your login shell. If you encounter this error execute the following from the command line (interactive shells) or add to your shell script:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ source /etc/profile.d/modules.sh
+</code></pre></div></div>
+
+<h1 id="quotas-on-home-and-project-directories">Quotas on Home and Project Directories</h1>
+
+<p>Each file on a Linux system is associated with one user and one group. On Ceres, files in a user’s home directory by default are associated with the user’s primary group, which has the same name as user’s SCINet account. Files in the project directories by default are associated with the project groups. Group quotas that control the amount of data stored are enabled on both home and project directories.</p>
+
+<p>At login, current usage and quotas are displayed for all groups that a user belongs to. The <code class="language-plaintext highlighter-rouge">my_quotas</code> command provides the same output:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ my_quotas
+</code></pre></div></div>
+
+<p>If users need more storage than what is available in the home directory, they should visit the <a href="/support/request-storage">Request a Project Storage</a> page. Several users may work on the same project and share the same project directory.</p>
+
+<p>Project directories are located in the 2.3PB Lustre space that is mounted on all nodes as /lustre/project and is also accessible as /project. Directories in /project are not backed up, however users can copy important data from a directory in /project to a corresponding directory in /KEEP in ZFS space that is backed up nightly using zsend. <strong>It is not recommended to run jobs from a directory in /KEEP.</strong></p>
+
+<p>Since on Ceres usage and quotas are based on groups, it’s important to have files in the home directories to be associated with the users’ primary groups, and files in the project directories to be associated with project groups. Sometimes it may happen that files that were originally located in a home directory, were later moved to a project directory with the group ownership preserved. In this case even though files will be located in a project directory, they still will count against home directory quota. To fix this, change the group ownership of these files to the project directory group. The following command will change group association of all files in the project directory in /project (it may take a while if there are too many files in the directory):</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ chgrp -R proj-&lt;project_directory_name&gt; /project/&lt;project_directory_name&gt;
+</code></pre></div></div>
+
+<p>A similar command will change the group association of all files in the project directory in /KEEP:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ chgrp -R proj-&lt;project_directory_name&gt; /KEEP/&lt;project_directory_name&gt;
+</code></pre></div></div>
+
+<p>To search for files owned by your primary group in a project directory, issue:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ find /project/&lt;project_directory_name&gt; -group &lt;SCINet UserID&gt; -type f
+$ find /KEEP/&lt;project_directory_name&gt; -group &lt;SCINet UserID&gt; -type f
+</code></pre></div></div>
+
+<p>For more information about storage options, refer to <a href="/guide/storage">SCINet Storage Guide</a>.</p>
+
+<h2 id="local-sharing-of-files-with-other-users">Local Sharing of Files with Other Users</h2>
+<p>Users who would like to share files with other users can use /90daydata/shared directory. Files older than 90 days will be automatically deleted.</p>
+
+<p>NOTE: Files in /90daydata/shared folder by default are accessible to everybody on the system. Thus, this mechanism for sharing should only be used for files of a non-confidential nature.</p>
+
+<h1 id="running-application-jobs-on-compute-nodes">Running Application Jobs on Compute Nodes</h1>
+
+<p>Users will run their applications on the cluster in either interactive mode or in batch mode. Interactive mode ( <code class="language-plaintext highlighter-rouge">salloc</code>  or  <code class="language-plaintext highlighter-rouge">srun</code>  command) is familiar to anyone using the command line: the user specifies an application by name and various arguments, hits Enter, and the application runs. However, in interactive mode on a cluster the user is automatically switched from using a login node to using a compute node. This keeps all the intense computation off the login nodes, so that login nodes can have all the resources necessary for managing the cluster. You should always use interactive mode when you are running your application but not using batch mode. <strong>Please do not run your applications on the login nodes, use the interactive mode.</strong></p>
+
+<p>Interactive mode should only be used when interaction is required, for example when preparing or debugging a pipeline. Otherwise the batch mode should be used. Batch mode requires the user to write a short job script (see examples at section <a href="#batch-mode">Batch Mode</a>) or use the <a href="/support/ceres-job-script">Ceres Job Script Generator</a>.</p>
+
+<p>Ceres uses Simple Linux Utility for Resource Management (SLURM) to submit interactive and batch jobs to the compute nodes. Requested resources can be specified either within the job script or using options with the  <code class="language-plaintext highlighter-rouge">salloc</code>,  <code class="language-plaintext highlighter-rouge">srun</code>, or  <code class="language-plaintext highlighter-rouge">sbatch</code>  commands.</p>
+
+<h2 id="partitions-or-queues">Partitions or Queues</h2>
+
+<p>Compute jobs are run on functional groups of nodes called partitions or queues. Each different partition has different capabilities (e.g. regular memory versus high memory nodes) and resource restrictions (e.g. time limits on jobs). Nodes may appear in several partitions.</p>
+
+<p>Some of the Ceres compute nodes have been purchased by individual researchers or research groups. These nodes are available to the owners in the priority* partitions but can also be used by anyone on the cluster through *-low and scavenger* partitions. These partitions have been introduced to increase usage of the priority nodes while still allowing node owners to have guaranteed fast access to priority nodes. All *-low partitions have 2-hour time limit. Scavenger* partitions have 3-weeks time limit, but jobs in this partition will be killed when resources are requested for the jobs in priority* partitions. Since jobs in the scavenger* partitions can be killed at any moment, running in those partitions does not affect job priorities in the community partitions.</p>
+
+<p>The following table lists partitions. Number of nodes in a specific partition can be adjusted from time to time and be different from the one published in this document.</p>
+
+<h4 id="community-partitions">Community partitions</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Nodes</th>
+      <th>Logical Cores per Node</th>
+      <th>Maximum Simulation Time</th>
+      <th>Default Memory per Core</th>
+      <th>Function</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>short</td>
+      <td>41</td>
+      <td>72</td>
+      <td>48 hours</td>
+      <td>3000 MB</td>
+      <td>short simulation queue (default)</td>
+    </tr>
+    <tr>
+      <td>medium</td>
+      <td>32</td>
+      <td>72</td>
+      <td>7 days</td>
+      <td>3000 MB</td>
+      <td>medium length simulation queue</td>
+    </tr>
+    <tr>
+      <td>long</td>
+      <td>11</td>
+      <td>72</td>
+      <td>21 days</td>
+      <td>3000 MB</td>
+      <td>long simulation queue</td>
+    </tr>
+    <tr>
+      <td>long60</td>
+      <td>2</td>
+      <td>72</td>
+      <td>60 days</td>
+      <td>3000 MB</td>
+      <td>extra long simulation queue</td>
+    </tr>
+    <tr>
+      <td>mem</td>
+      <td>4</td>
+      <td>80</td>
+      <td>7 days</td>
+      <td>16000 MB</td>
+      <td>large memory queue</td>
+    </tr>
+    <tr>
+      <td>longmem</td>
+      <td>1</td>
+      <td>80</td>
+      <td>1000 hours</td>
+      <td>16000 MB</td>
+      <td>long simulation large memory queue</td>
+    </tr>
+    <tr>
+      <td>mem768</td>
+      <td>1</td>
+      <td>80</td>
+      <td>7 days</td>
+      <td>7900 MB</td>
+      <td>new node with 768GB of memory</td>
+    </tr>
+    <tr>
+      <td>debug</td>
+      <td>2</td>
+      <td>72</td>
+      <td>1 hour</td>
+      <td>3000 MB</td>
+      <td>for testing scripts and runs before submitting them</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="partitions-that-allow-all-users-access-to-priority-nodes">Partitions that allow all users access to priority nodes</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Nodes</th>
+      <th>Logical Cores per Node</th>
+      <th>Maximum Simulation Time</th>
+      <th>Default Memory per Core</th>
+      <th>Function</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>mem768-low</td>
+      <td>3</td>
+      <td>80</td>
+      <td>2 hours</td>
+      <td>7900 MB</td>
+      <td>priority nodes with 768GB of memory</td>
+    </tr>
+    <tr>
+      <td>mem-low</td>
+      <td>16</td>
+      <td>80</td>
+      <td>2 hours</td>
+      <td>16000 MB</td>
+      <td>priority nodes with 1.5TB of memory</td>
+    </tr>
+    <tr>
+      <td>gpu-low</td>
+      <td>1</td>
+      <td>72</td>
+      <td>2 hours</td>
+      <td>3000 MB</td>
+      <td>priority GPU node</td>
+    </tr>
+    <tr>
+      <td>brief-low</td>
+      <td>92</td>
+      <td>72</td>
+      <td>2 hours</td>
+      <td>3000 MB</td>
+      <td>all new nodes with 384GB of memory</td>
+    </tr>
+    <tr>
+      <td>scavenger</td>
+      <td>49</td>
+      <td>72, 80</td>
+      <td>21 days</td>
+      <td>3000 MB</td>
+      <td>non-GPU priority nodes; scavenger jobs can be killed at any moment</td>
+    </tr>
+    <tr>
+      <td>scavenger-gpu</td>
+      <td>1</td>
+      <td>72</td>
+      <td>21 days</td>
+      <td>3000 MB</td>
+      <td>GPU priority node; jobs can be killed at any moment</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="priority-partitions-available-only-to-those-users-who-purchased-nodes">Priority partitions available only to those users who purchased nodes</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Nodes</th>
+      <th>Maximum Simulation Time</th>
+      <th>Default Memory per Core</th>
+      <th>Function</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>priority</td>
+      <td>49</td>
+      <td>2 weeks</td>
+      <td>3000 MB</td>
+      <td>priority nodes with 384GB memory</td>
+    </tr>
+    <tr>
+      <td>priority-mem</td>
+      <td>16</td>
+      <td>2 weeks</td>
+      <td>16000 MB</td>
+      <td>priority nodes with 1.5TB memory</td>
+    </tr>
+    <tr>
+      <td>priority-mem768</td>
+      <td>3</td>
+      <td>2 weeks</td>
+      <td>7900 MB</td>
+      <td>priority nodes with 768 GB memory</td>
+    </tr>
+    <tr>
+      <td>priority-gpu</td>
+      <td>1</td>
+      <td>2 weeks</td>
+      <td>3000 MB</td>
+      <td>priority GPU node</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>At most 800 cores and 2100 GB of memory can be used by all simultaneously running jobs per user</strong> across all community and *-low partitions. In addition, up to 800 cores and 2100 GB of memory can be used by jobs in scavenger* partitions. Any additional jobs will be queued but won’t start. At times these limits can be lowered to prevent a small group of users overtaking the whole cluster.</p>
+
+<p>Users that have access to priority partitions are limited by the amount of resources purchased by the group. For example, if a group has purchased one 768GB node, then group members cannot use more than an equivalent of one 768GB node across all jobs simulteniously running in priority-mem768 partition even when there are idle nodes in the partition. However all users on the system can use these idle nodes through *-low and scavenger* partitions. Each group that has purchased nodes on Ceres, has a special QOS created for it. To list QOSes for your account, issue “sacctmgr -Pns show user format=qos”. The group’s QOS needs to be specified when submitting a job to a priority partition via the “-q” salloc/sbatch/srun option. When users submit a job to a priority partition, any node in the partition can be assigned to the job.</p>
+
+<p>To get current details on all partitions use the following scontrol command:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ scontrol show partitions
+</code></pre></div></div>
+
+<h3 id="allocation-of-cores">Allocation of Cores</h3>
+
+<p>On Ceres hyper-threading is turned on. That means that each physical core on a node appears as two separate processors to the operating system and can run two threads. The smallest unit of allocation per job is a single hyper-threaded core, or 2 logical cores, corresponding to specifying  <code class="language-plaintext highlighter-rouge">-n 2</code>  on  <code class="language-plaintext highlighter-rouge">salloc/srun/sbatch</code>  commands (i.e. jobs cannot access a single hyper-thread within a core). If a job requests an odd number of cores (<code class="language-plaintext highlighter-rouge">-n 1, -n 3,</code>…) SLURM will automatically allocate the next larger even number of cores.</p>
+
+<h3 id="allocation-of-memory">Allocation of Memory</h3>
+
+<p>Each allocated core comes with a default amount of memory listed in the table above for different SLURM partitions. If a job attempts to use more memory than what was allocated to a job it will be killed by SLURM. In order to make more memory available to a given job, users can either request the appropriate total number of cores or request more memory per core via the  <code class="language-plaintext highlighter-rouge">--mem-per-cpu</code>  flag to  <code class="language-plaintext highlighter-rouge">salloc/srun/sbatch</code>  commands.</p>
+
+<p>For example, to support a job that requires 60GB of memory in the short partition, a user could request 20 logical cores (<code class="language-plaintext highlighter-rouge">-n 20</code>) with their default allocation of 3000MB or 2 logical cores with 30GB of memory per core via  <code class="language-plaintext highlighter-rouge">--mem-per-cpu 30GB</code>. Please note that a single hyper-threaded core (2 logical cores) is the smallest unit of allocation. Of course, any other mix of memory per core and total number of cores totaling 60GB would work as well depending on the CPU characteristics of the underlying simulation software.</p>
+
+<h3 id="allocation-of-time">Allocation of Time</h3>
+
+<p>When submitting interactive or batch job users can specify time limit by using the  <code class="language-plaintext highlighter-rouge">-t</code>  (<code class="language-plaintext highlighter-rouge">–time=</code>) option on  <code class="language-plaintext highlighter-rouge">salloc/srun/sbatch</code>  commands. If the time limit is not explicitly specified, it will be set to the partition’s Maximum Simulation Time (see the table above).</p>
+
+<h2 id="slurm-accounts">Slurm accounts</h2>
+
+<p>To provide better Ceres usage report all Ceres users have been assigned Slurm accounts based on their project groups. If you don’t have a project, then your default and only Slurm account is scinet. If you have more than one project, then your default Slurm account is one of the project names. You can specify a different Slurm account when submitting a job by using “-A <account_name>” option on salloc/srun/sbatch command or adding “#SBATCH -A <account_name>” to the job script.</account_name></account_name></p>
+
+<p>To see all your Slurm accounts and your default account at any time, use “sacctmgr -Pns show user format=account,defaultaccount”</p>
+
+<p>You can change your default Slurm account running slurm-account-selector.sh on the login node.</p>
+
+<h2 id="interactive-mode">Interactive Mode</h2>
+
+<p>A user can request an interactive session on Ceres using SLURM’s  <code class="language-plaintext highlighter-rouge">srun</code>  or  <code class="language-plaintext highlighter-rouge">salloc</code>  commands. The simplest way to request an interactive job is by entering the command  <code class="language-plaintext highlighter-rouge">salloc</code>:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ salloc
+</code></pre></div></div>
+
+<p>which will place you in an interactive shell. This interactive shell has a duration of 2 days and will request a single hyper-threaded core (2 logical cores) with 6000 MB of allocated memory on one of the compute nodes.</p>
+
+<p>To prevent users from requesting interactive nodes and then not using them, there is an inactivity timeout set up. If there is no command running on a node for an hour and a half, the job will be terminated. Otherwise the interactive job is terminated when the user types exit or the allocated time runs out.</p>
+
+<p>For more fine grained control over the interactive environment you can use the  <code class="language-plaintext highlighter-rouge">srun</code>  command. Issue the  <code class="language-plaintext highlighter-rouge">srun</code>  command from a login node. Command syntax is:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ srun --pty -p queue -t hh:mm:ss -n tasks -N nodes /bin/bash -l
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Option</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>-p</td>
+      <td>queue (partition)</td>
+    </tr>
+    <tr>
+      <td>-t</td>
+      <td>maximum runtime</td>
+    </tr>
+    <tr>
+      <td>-n</td>
+      <td>number of cores</td>
+    </tr>
+    <tr>
+      <td>-N</td>
+      <td>number of nodes</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The following example commands illustrate an interactive session where the user requests 1 hour in the short queue, using 1 compute node and 20 logical cores (half of the cores available on the original compute node), using the bash shell, followed by a BLAST search of a protein database.</p>
+
+<p>Start the interactive session:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ srun --pty -p short -t 01:00:00 -n 20 -N 1 /bin/bash -l
+</code></pre></div></div>
+
+<p>Load NCBI-BLAST+ on the compute node:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ module load blast+
+</code></pre></div></div>
+
+<p>Uncompress the nr.gz FASTA file that contains your sequence database:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ gzip -d nr.gz
+</code></pre></div></div>
+
+<p>Generate the blast database:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ makeblastdb -in nr -dbtype prot
+</code></pre></div></div>
+
+<p>Search the nr database in serial mode with a set of queries in the FASTA file blastInputs.fa:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ blastp -db nr -query blastInputs.fa -out blastout
+</code></pre></div></div>
+
+<p>Return to the login node:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ exit
+</code></pre></div></div>
+
+<h2 id="requesting-the-proper-number-of-nodes-and-cores">Requesting the Proper Number of Nodes and Cores</h2>
+
+<p>SLURM allows you to precisely choose the allocation of compute cores across nodes. Below are a number of examples that show different ways to allocate an 8 core job across the Ceres cluster</p>
+
+<table>
+  <thead>
+    <tr>
+      <th><code class="language-plaintext highlighter-rouge">salloc/srun/sbatch</code>  options</th>
+      <th>core distribution across nodes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">-n 8</code></td>
+      <td>pick any available cores across the cluster (may be on several nodes or not)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">-n 8 -N 8</code></td>
+      <td>spread 8 cores across 8 distinct nodes (i.e. one core per node)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">-n 8 --ntasks-per-node=1</code></td>
+      <td>same as  <code class="language-plaintext highlighter-rouge">-n 8 -N 8</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">-n 8 -N 4</code></td>
+      <td>request 8 cores on 4 nodes (however the spread might be uneven, i.e. one node could end up with 5 cores and one core each for the remaining 3 nodes)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">-n 8 --ntasks-per-node=2</code></td>
+      <td>request 8 cores on 4 nodes with 2 cores per node</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">-n 8 -N 1</code></td>
+      <td>request 8 cores on a single node</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">-n 8 --ntasks-per-node=8</code></td>
+      <td>same as  <code class="language-plaintext highlighter-rouge">-n 8 -N 1</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="batch-mode">Batch Mode</h2>
+<h3 id="serial-job">Serial Job</h3>
+
+<p>Jobs can be submitted to various partitions or queues using SLURM’s <code class="language-plaintext highlighter-rouge">sbatch</code> command. The following is an example of how to run a blastp serial job using a job script named “blastSerialJob.sh”. The content of blastSerialJob.sh is as follows:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+<span class="c">#SBATCH --job-name="blastp"   #name of this job</span>
+<span class="c">#SBATCH -p short              #name of the partition (queue) you are submitting to</span>
+<span class="c">#SBATCH -N 1                  #number of nodes in this job</span>
+<span class="c">#SBATCH -n 40                 #number of cores/tasks in this job, you get all 20 physical cores with 2 threads per core with hyper-threading</span>
+<span class="c">#SBATCH -t 01:00:00           #time allocated for this job hours:mins:seconds</span>
+<span class="c">#SBATCH --mail-user=emailAddress   #enter your email address to receive emails</span>
+<span class="c">#SBATCH --mail-type=BEGIN,END,FAIL #will receive an email when job starts, ends or fails</span>
+<span class="c">#SBATCH -o "stdout.%j.%N"     # standard output, %j adds job number to output file name and %N adds the node name</span>
+<span class="c">#SBATCH -e "stderr.%j.%N"     #optional, prints our standard error</span>
+<span class="nb">date</span>                          <span class="c">#optional, prints out timestamp at the start of the job in stdout file</span>
+module load blast+            <span class="c">#loading latest NCBI BLAST+ module</span>
+blastp <span class="nt">-db</span> nr <span class="nt">-query</span> blastInputs <span class="nt">-out</span> blastout  <span class="c"># protein blast search against nr database</span>
+<span class="nb">date</span>                          <span class="c">#optional, prints out timestamp when the job ends</span>
+<span class="c">#End of file</span>
+</code></pre></div></div>
+
+<p>Launch the job like this:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sbatch blastSerialJob.sh
+</code></pre></div></div>
+
+<h3 id="running-a-simple-openmp-job">Running a Simple OpenMP Job</h3>
+
+<p>The following example will demonstrate how to use threads. We will use the following OpenMP C code to print “hello world” on each thread. First copy and paste this code into a file, e.g. “testOpenMP.c”.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#include &lt;omp.h&gt;
+#include &lt;stdio.h&gt;
+int main(int argc, char* argv[]){
+ int id;
+ #pragma omp parallel private(id)
+  {
+  id=omp_get_thread_num();
+  printf("%d: hello world \n",id);
+ }
+ return 0;
+}
+</code></pre></div></div>
+
+<p>Now load the gcc module and compile the code :</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ module load gcc
+$ gcc testOpenMP.c -fopenmp -o testOpenMP
+</code></pre></div></div>
+
+<p>Now create a batch job script (OMPjob.sh) to test number of threads you requested:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+<span class="c">#SBATCH --job-name=OpenMP</span>
+<span class="c">#SBATCH -p short</span>
+<span class="c">#SBATCH -N 1</span>
+<span class="c">#SBATCH -n 20</span>
+<span class="c">#SBATCH --threads-per-core=1</span>
+<span class="c">#SBATCH -t 00:30:00</span>
+<span class="c">#SBATCH -o "stdout.%j.%N"</span>
+<span class="c">#SET the number of openmp threads</span>
+<span class="nb">export </span><span class="nv">OMP_NUM_THREADS</span><span class="o">=</span>20
+./testOpenMP
+<span class="c"># End of file</span>
+</code></pre></div></div>
+
+<p>Launch the job using the batch script like this:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sbatch OMPjob.sh
+</code></pre></div></div>
+
+<p>The stdout* file from the above job script should contain 20 lines with “hello world” from each thread.</p>
+
+<h3 id="parallel-mpi-job">Parallel MPI Job</h3>
+
+<p>The following is the example to run Hybrid RAxML which uses both MPI and PTHREADS. It will start 2 MPI processes (one per node) and each process will run 40 threads (one thread per logical core).</p>
+
+<p>Create a SLURM script like this (for example, RAxMLjob.sh, but use your own alignment file rather than “align.fasta”):</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+<span class="c">#SBATCH --job-name=raxmlMPI</span>
+<span class="c">#SBATCH -p short</span>
+<span class="c">#SBATCH -N 2</span>
+<span class="c">#SBATCH --ntasks-per-node=40</span>
+<span class="c">#SBATCH -t 01:00:00</span>
+<span class="c">#SBATCH -o "stdout.%j.%N"</span>
+<span class="c"># We requested 2 nodes, 40 logical cores per node for a total of 80 logical cores for this job</span>
+module load raxml            <span class="c">#loading latest raxml module, which will also load an MPI module</span>
+mpirun <span class="nt">-np</span> 2 raxmlHPC-MPI-AVX <span class="nt">-T</span> 40 <span class="nt">-n</span> raxmlMPI <span class="nt">-f</span> a <span class="nt">-x</span> 12345 <span class="nt">-p</span> 12345 <span class="nt">-m</span> GTRGAMMA -# 100 <span class="nt">-s</span> align.fasta
+<span class="c"># End of file</span>
+</code></pre></div></div>
+
+<p>And execute it with sbatch:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sbatch RAxMLjob.sh
+</code></pre></div></div>
+
+<h2 id="useful-slurm-commands">Useful SLURM Commands</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Command</th>
+      <th>Description</th>
+      <th>Example</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">squeue</code></td>
+      <td>Gives information about jobs</td>
+      <td><code class="language-plaintext highlighter-rouge">squeue</code>  or  <code class="language-plaintext highlighter-rouge">squeue -u jane.webb</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">scancel</code></td>
+      <td>Stop and remove jobs</td>
+      <td><code class="language-plaintext highlighter-rouge">scancel &lt;job id&gt;</code>  or  <code class="language-plaintext highlighter-rouge">scancel -u jane.webb</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">sinfo</code></td>
+      <td>Gives information about queues (partitions) or nodes</td>
+      <td><code class="language-plaintext highlighter-rouge">sinfo</code>  or  <code class="language-plaintext highlighter-rouge">sinfo -N -l</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">scontrol</code></td>
+      <td>Provides more detailed information about jobs, partitions or nodes</td>
+      <td><code class="language-plaintext highlighter-rouge">scontrol show job &lt;job id&gt;</code>  or  <code class="language-plaintext highlighter-rouge">scontrol show partition &lt;partition name&gt;</code>  or  <code class="language-plaintext highlighter-rouge">scontrol show nodes</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">seff</code></td>
+      <td>Provides resource usage report for a finished job</td>
+      <td><code class="language-plaintext highlighter-rouge">seff &lt;job id&gt;</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="local-scratch-space">Local Scratch Space</h2>
+
+<p>All compute nodes have 1.5 TB of fast local temporary data file storage space supported by SSDs. This local scratch space is significantly faster and supports more input/output operations per second (IOPS) than the mounted filesystems on which the home and project directories reside. A job sets up a unique local space accessible available only with the job script via the environmental $TMPDIR variable. You can use this for any scratch space disk space you need, or if you plan to compute on an existing large data set (such as a sequence assembly job) it might be beneficial to copy all your input data to this space at the beginning of your job, and then do all your computation on $TMPDIR. You must copy any output data you need to keep back to permanent storage before the job ends, since $TMPDIR will be erased upon job exit. The following example shows how to copy data in, and then run from $TMPDIR.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+<span class="c">#SBATCH --job-name="my sequence assembly"   #name of the job submitted</span>
+<span class="c">#SBATCH -p short              #name of the queue you are submitting job to</span>
+<span class="c">#SBATCH -N 1                  #number of nodes in this job</span>
+<span class="c">#SBATCH -n 40                 #number of cores/tasks in this job, you get all 20 cores with 2 threads per core with hyper-threading</span>
+<span class="c">#SBATCH -t 01:00:00           #time allocated for this job hours:mins:seconds</span>
+<span class="c">#SBATCH --mail-user=emailAddress   #enter your email address to receive emails</span>
+<span class="c">#SBATCH --mail-type=BEGIN,END,FAIL #will receive an email when job starts, ends or fails</span>
+<span class="c">#SBATCH -o "stdout.%j.%N"     # standard out %j adds job number to output file name and %N adds the node name</span>
+<span class="c">#SBATCH -e "stderr.%j.%N"     #optional, it prints out standard error</span>
+
+<span class="c"># start staging data to the job temporary directory in $TMPDIR</span>
+<span class="nv">MYDIR</span><span class="o">=</span><span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>
+/bin/cp –r <span class="nv">$MYDIR</span> <span class="nv">$TMPDIR</span>/
+<span class="nb">cd</span> <span class="nv">$TMPDIR</span>
+ 
+<span class="c"># add regular job commands like module load and running scientific software</span>
+ 
+<span class="c"># copy output data off of local scratch</span>
+/bin/cp <span class="nt">-r</span> output <span class="nv">$MYDIR</span>/output
+ 
+<span class="c"># If you do not know the output names, you can issue:</span>
+<span class="c">#   rsync –a $TMPDIR/*  $MYDIR/</span>
+<span class="c"># which will only copy back new or changed files, but rsync takes longer.</span>
+ 
+<span class="c">#End of file</span>
+</code></pre></div></div>
+
+<h1 id="compiling-software-installing-rperlpython-packages-and-using-containers">Compiling Software, Installing R/Perl/Python Packages and Using Containers</h1>
+
+<p>The Ceres login node provides access to a wide variety of scientific software tools that users can access and use via the module system. These software tools were compiled and optimized for use on Ceres by members of the Virtual Research Support Core (VRSC) team. Most users will find the software tools they need for their research among the provided packages and thus will not need to compile their own software packages.</p>
+
+<p>If users would like to compile their own software with GNU compilers, they will need to load the gcc module. It is recommended to <strong>compile on compute nodes and not on the login node</strong>. However, before embarking on compiling their own software packages we strongly encourage users to contact the VRSC team to ensure that their required tool(s) might not be better distributed as a shared package within the official software modules tree. All new software needs to be approved by SOC committee before being centrally installed on the system. To request a new software package to be installed, visit the <a href="/support/request-software">Request Software</a> page.</p>
+
+<p>The popular R, Perl, and Python languages have many packages/modules available. Some of the packages are installed on Ceres and are available with the r/perl/python_2/python_3 modules. To see the list of installed packages, visit the <a href="/guide/software">Software Overview</a> page or use  <code class="language-plaintext highlighter-rouge">module help &lt;module_name&gt;</code>  command. If users need packages that are not available, they can either request VRSC to add packages, or they can download and install packages in their home/project directories. We recommend installing packages in the project directories since collaborators on the same project most probably would need the same packages. In addition, home quotas are much lower than project directories quotas. See the <a href="/guide/packageinstall/">Guide to Installing R, Python, and Perl Packages</a> for instructions and examples on how to add packages/modules for these languages.</p>
+
+<p>Another resource for installing your own software programs is the Conda package manager. See the <a href="/guide/conda">User-Installed Software on Ceres Using Conda Guide</a>.</p>
+
+<p>Some software packages may not be available for the version of Linux running on the Ceres cluster. In this case users may want to run containers. Containers are self-contained application execution environments that contain all necessary software to run an application or workflow, so users don’t need to worry about installing all the dependencies. There are many pre-built container images for scientific applications available for download and use. See the document <a href="/guide/singularity">Singularity on Ceres</a> for instructions and examples on how to download and run Docker and Singularity containers on Ceres.</p>
+
+<h1 id="scinet-citationacknowledgment-in-publications">SCINet Citation/Acknowledgment in Publications</h1>
+
+<p>Add the following sentence as an acknowledgment for using CERES as a resource in your manuscripts meant for publication:</p>
+
+<p><strong>“This research used resources provided by the SCINet project of the USDA Agricultural Research Service, ARS project number 0500-00093-001-00-D.”</strong></p>
+
+      </main>
+    </div>
+  </div>
+</div>
+
+      </main>
+    
+
+    
+
+    
+
+
+  
+<footer class="usa-footer usa-footer--big">
+
+  
+    <div class="grid-container">
+      <p>Last updated: June 23, 2021 at 09:30 PM</p>
+    </div>
+  
+
+  
+    <div class="grid-container usa-footer__return-to-top">
+      <a href="#">Return to top</a>
+    </div>
+  
+
+
+
+  
+    
+    
+    
+  <div class="usa-footer__primary-section">
+    <div class="grid-container">
+      <div class="grid-row grid-gap">
+        <div class="">
+          <nav class="usa-footer__nav" aria-label="Footer navigation">
+            <div class="grid-row grid-gap-4">
+              
+              <div class="mobile-lg:grid-col-6 desktop:grid-col-4">
+                <section class="usa-footer__primary-content usa-footer__primary-content--collapsible">
+                  
+                    <h4 class="usa-footer__primary-link"></h4>
+                    <ul class="usa-list usa-list--unstyled">
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://usda.gov/policies-and-links">
+                          Policies and Links
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://usda.gov/our-agency/about-usda/performance">
+                          Our Performance
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://www.usda.gov/our-agency/careers">
+                          Careers
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://www.usda.gov/oig/forms/contractor-fraud">
+                          Report Fraud on USDA
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://www.usda.gov/oig/">
+                          Visit OIG
+                        </a>
+                      </li>
+                      
+                    </ul>
+                  
+                </section>
+              </div>
+              
+              <div class="mobile-lg:grid-col-6 desktop:grid-col-4">
+                <section class="usa-footer__primary-content usa-footer__primary-content--collapsible">
+                  
+                    <h4 class="usa-footer__primary-link"></h4>
+                    <ul class="usa-list usa-list--unstyled">
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://usda.gov/plain-writing">
+                          Plain Writing
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://usda.gov/open">
+                          Open
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://www.dm.usda.gov/foia/">
+                          FOIA
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://usda.gov/accessibility-statement">
+                          Accessibility Statement
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://usda.gov/privacy-policy">
+                          Privacy Policy
+                        </a>
+                      </li>
+                      
+                    </ul>
+                  
+                </section>
+              </div>
+              
+              <div class="mobile-lg:grid-col-6 desktop:grid-col-4">
+                <section class="usa-footer__primary-content usa-footer__primary-content--collapsible">
+                  
+                    <h4 class="usa-footer__primary-link"></h4>
+                    <ul class="usa-list usa-list--unstyled">
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://usda.gov/non-discrimination-statement">
+                          Non-Discrimination Statement
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://www.ascr.usda.gov/civil-rights-statements">
+                          Anti-Harassment Policy
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://www.ocio.usda.gov/policy-directives-records-forms/information-quality-activities">
+                          Information Quality
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://www.usa.gov">
+                          USA.gov
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://www.whitehouse.gov">
+                          WhiteHouse.gov
+                        </a>
+                      </li>
+                      
+                    </ul>
+                  
+                </section>
+              </div>
+              
+              <div class="mobile-lg:grid-col-6 desktop:grid-col-4">
+                <section class="usa-footer__primary-content usa-footer__primary-content--collapsible">
+                  
+                    <h4 class="usa-footer__primary-link"></h4>
+                    <ul class="usa-list usa-list--unstyled">
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://usda.gov/federal-web-site-inventory">
+                          eGov
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="mailto:scinet_vrsc@usda.gov">
+                          Feedback
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://usda.gov/nofear">
+                          No FEAR Act Data
+                        </a>
+                      </li>
+                      
+                    </ul>
+                  
+                </section>
+              </div>
+              
+            </div>
+          </nav>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  
+
+  
+  <div class="usa-footer__secondary-section">
+    <div class="grid-container">
+      <div class="grid-row grid-gap">
+        <div class="usa-footer__logo grid-row mobile-lg:grid-col-6 mobile-lg:grid-gap-2">
+          
+
+          
+          <div class="mobile-lg:grid-col-auto">
+            <h3 class="usa-footer__logo-heading">USDA Agricultural Research Service</h3>
+          </div>
+          
+        </div>
+
+        
+        <div class="usa-footer__contact-links mobile-lg:grid-col-6">
+          
+          
+            <div class="usa-footer__social-links grid-row grid-gap-1">
+              <div class="grid-col-auto">
+                
+                  <a class="usa-social-link usa-social-link--twitter" href="https://twitter.com/USDA_ARS">
+                    <span>Twitter</span>
+                  </a>
+                
+              </div>
+            </div>
+          
+          
+            <h3 class="usa-footer__contact-heading">Contact us</h3>
+            
+            
+              <address class="usa-footer__address">
+                
+                <div class="usa-footer__contact-info grid-row grid-gap">
+                
+                    <div class="grid-col-auto">
+                      <a href="mailto:scinet_vrsc@usda.gov">
+                        scinet_vrsc@usda.gov
+                      </a>
+                    </div>
+                
+                </div>
+              </address>
+          
+        
+      </div>
+      
+      </div>
+    </div>
+  </div>
+  
+
+</footer>
+
+
+
+
+
+    
+
+
+
+
+
+  
+    
+      <script src="/assets/uswds/js/uswds.min.js" async></script>
+    
+
+  
+    
+      <script src="/assets/js/vendor/anchor.min.js"></script>
+    
+
+  
+    
+      <script src="/assets/js/main.js"></script>
+    
+
+  
+    
+
+
+
+
+<script type="text/javascript">
+//<![CDATA[
+      var usasearch_config = { siteHandle:"scinet-usda" };
+
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src = "//search.usa.gov/javascripts/remote.loader.js";
+      document.getElementsByTagName("head")[0].appendChild(script);
+
+//]]>
+</script>
+
+
+
+  </body>
+</html>

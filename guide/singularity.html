@@ -1,0 +1,1314 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<title>Singularity on Ceres | SCINet | USDA Scientific Computing Initiative</title>
+
+
+
+<meta name="description" content="A guide for building and running containers on Ceres">
+
+
+
+<link rel="shortcut icon" type="image/ico"
+  href="/assets/uswds/img/favicons/favicon.ico">
+
+<link rel="icon" type="image/png"
+  href="/assets/uswds/img/favicons/favicon.png">
+
+<link rel="icon" type="image/png"
+  sizes="192x192"
+  href="/assets/uswds/img/favicons/favicon-192.png">
+
+<link rel="apple-touch-icon-precomposed" type=""
+  href="/assets/uswds/img/favicons/favicon-57.png">
+
+<link rel="apple-touch-icon-precomposed" type=""
+  sizes="72x72"
+  href="/assets/uswds/img/favicons/favicon-72.png">
+
+<link rel="apple-touch-icon-precomposed" type=""
+  sizes="114x114"
+  href="/assets/uswds/img/favicons/favicon-114.png">
+
+<link rel="apple-touch-icon-precomposed" type=""
+  sizes="144x144"
+  href="/assets/uswds/img/favicons/favicon-144.png">
+
+
+
+    
+
+
+
+<link rel="stylesheet"
+  href="/assets/css/uswds-theme.css"
+  media="screen">
+
+
+    
+      
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-27627304-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { dataLayer.push(arguments); }
+  gtag('js', new Date());
+
+  // `forceSSL` was used for analytics.js (the older Google Analytics script). It isn't documented for gtag.js, but the term occurs in the gtag.js code; figure it doesn't hurt to leave it in. -@afeld, 5/29/19
+  gtag('config', 'UA-27627304-1', { 'anonymize_ip': true, 'forceSSL': true });
+</script>
+
+
+
+<!-- Digital Analytics Program roll-up, see https://analytics.usa.gov for data -->
+<script id="_fed_an_ua_tag" src="https://dap.digitalgov.gov/Universal-Federated-Analytics-Min.js?agency=USDA&subagency=ARS"></script>
+
+
+    
+  </head>
+  <body class="  site-90%">
+
+    <a class="usa-skipnav" href="#main-content">Skip to main content</a>
+
+    
+
+
+  <section class="usa-banner" aria-label="Official government website">
+  <div class="usa-accordion">
+    <header class="usa-banner__header">
+      <div class="usa-banner__inner">
+        <div class="grid-col-auto">
+          <img class="usa-banner__header-flag" src="/assets/uswds/img/us_flag_small.png" alt="U.S. flag">
+        </div>
+        <div class="grid-col-fill tablet:grid-col-auto">
+          <p class="usa-banner__header-text">An official website of the United States government</p>
+          <p class="usa-banner__header-action" aria-hidden="true">Here’s how you know</p>
+        </div>
+        <button class="usa-accordion__button usa-banner__button"
+          aria-expanded="false" aria-controls="gov-banner">
+          <span class="usa-banner__button-text">Here’s how you know</span>
+        </button>
+      </div>
+    </header>
+    <div class="usa-banner__content usa-accordion__content" id="gov-banner">
+      <div class="grid-row grid-gap-lg">
+        <div class="usa-banner__guidance tablet:grid-col-6">
+          <img class="usa-banner__icon usa-media-block__img" src="/assets/uswds/img/icon-dot-gov.svg" role="img" alt="Dot gov">
+          <div class="usa-media-block__body">
+            <p>
+              <strong>Official websites use .gov</strong>
+              <br/>
+              A <strong>.gov</strong> website belongs to an official government organization in the United States.
+            </p>
+          </div>
+        </div>
+        <div class="usa-banner__guidance tablet:grid-col-6">
+          <img class="usa-banner__icon usa-media-block__img" src="/assets/uswds/img/icon-https.svg" role="img" alt="Https">
+          <div class="usa-media-block__body">
+            <p>
+              <strong>Secure .gov websites use HTTPS</strong>
+              <br/>
+              A <strong>lock</strong> (
+<span class="icon-lock"><svg xmlns="http://www.w3.org/2000/svg" width="52" height="64" viewBox="0 0 52 64" class="usa-banner__lock-image" role="img" aria-labelledby="banner-lock-title banner-lock-description"><title id="banner-lock-title">Lock</title><desc id="banner-lock-description">A locked padlock</desc><path fill="#000000" fill-rule="evenodd" d="M26 0c10.493 0 19 8.507 19 19v9h3a4 4 0 0 1 4 4v28a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4V32a4 4 0 0 1 4-4h3v-9C7 8.507 15.507 0 26 0zm0 8c-5.979 0-10.843 4.77-10.996 10.712L15 19v9h22v-9c0-6.075-4.925-11-11-11z"/></svg></span>
+) or <strong>https://</strong> means you’ve safely connected to the .gov website. Share sensitive information only on official, secure websites.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+  <div class="usa-overlay"></div>
+
+  <header class="usa-header usa-header--extended" role="banner">
+
+
+  
+    <div class="usa-navbar">
+      <div class="usa-logo" id="header-logo">
+        <a
+          href="/"
+          title="Home">
+          
+            <img
+              class="usa-logo-img"
+              src="/assets/img/usda-symbol-rgb-color.svg"
+              alt="USDA-ARS">
+          
+          <em class="usa-logo__text">
+            SCINet Scientific Computing
+          </em>
+        </a>
+      </div>
+      <button class="usa-menu-btn">Menu</button>
+    </div>
+
+    <nav role="navigation" class="usa-nav">
+      <div class="usa-nav__inner">
+        <button class="usa-nav__close">
+          <img src="/assets/uswds/img/close.svg" alt="close">
+        </button>
+
+        
+        
+        
+        <ul class="usa-nav__primary usa-accordion">
+          
+          <li class="usa-nav__primary-item">
+            
+              <a class=" usa-nav__link  " href="/signup/">
+                <span>Sign up for an account</span>
+              </a>
+            
+          </li>
+          
+          <li class="usa-nav__primary-item">
+            
+              
+              
+              
+            <button class="usa-accordion__button usa-nav__link" aria-expanded="false" aria-controls="nav-2">
+              <span>News</span>
+            </button>
+            
+            <ul id="nav-2" class="usa-nav__submenu">
+            
+            
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/downtime/">System Downtime</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/announcements/">Announcements</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/stories/">User Stories</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/newsletter/">Newsletter</a>
+                </li>
+                
+              
+            
+            </ul>
+            
+            
+            
+          </li>
+          
+          <li class="usa-nav__primary-item">
+            
+              
+              
+              
+            <button class="usa-accordion__button usa-nav__link" aria-expanded="false" aria-controls="nav-3">
+              <span>User Guides</span>
+            </button>
+            
+            <ul id="nav-3" class="usa-nav__submenu">
+            
+            
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/quickstart">Quick Start</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/ceres">Ceres HPC User manual</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="https://www.hpc.msstate.edu/computing/atlas">Atlas HPC User Guide</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/multifactor">Set up multifactor authentication</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/storage">SCINet Storage Guide</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/software">Software Overview</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/packageinstall">Installing R/Python/Perl Packages</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/conda">Installing Software with Conda</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/file-transfer">Transferring files</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/rclone">Rclone</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/clc">CLC Workbench</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/jupyter">Jupyter</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/rstudio">Rstudio</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/geneious">Geneious</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/galaxy">Galaxy on SCINet</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/singularity">Containers</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/smrtlink">SMRTLink using Command Line</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/AWS/documentation">AWS Resources</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/vpn">SCINet VPN</a>
+                </li>
+                
+              
+            
+            </ul>
+            
+            
+            
+          </li>
+          
+          <li class="usa-nav__primary-item">
+            
+              
+              
+              
+            <button class="usa-accordion__button usa-nav__link" aria-expanded="false" aria-controls="nav-4">
+              <span>Working Groups</span>
+            </button>
+            
+            <ul id="nav-4" class="usa-nav__submenu">
+            
+            
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/working-groups">Overview</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/working-groups/ag100pest">Ag100Pest</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/working-groups/arthropods">Arthropod Genomics</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/working-groups/geospatial">Geospatial Research</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/working-groups/microbiome">Microbiome</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/working-groups/LTARphenology">LTAR Phenology</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/working-groups/policy">SCINet Policy Committee</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/working-groups/webdev">SCINet Website Developers</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/working-groups/workbooks">Workbook Developers</a>
+                </li>
+                
+              
+            
+            </ul>
+            
+            
+            
+          </li>
+          
+          <li class="usa-nav__primary-item">
+            
+              
+              
+              
+            <button class="usa-accordion__button usa-nav__link" aria-expanded="false" aria-controls="nav-5">
+              <span>Training</span>
+            </button>
+            
+            <ul id="nav-5" class="usa-nav__submenu">
+            
+            
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/training/">Overview</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/training/tutorials/">ARS Science Tutorials</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/training/free-online-training">Free Online Training</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/training-archive/">Training Event Archive</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/training/bioinformatics-workbook">Bioinformatics Workbook</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/training/useful-links">Useful Links</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/training/coursera">Coursera</a>
+                </li>
+                
+              
+            
+            </ul>
+            
+            
+            
+          </li>
+          
+          <li class="usa-nav__primary-item">
+            
+              
+              
+              
+            <button class="usa-accordion__button usa-nav__link" aria-expanded="false" aria-controls="nav-6">
+              <span>Use Cases</span>
+            </button>
+            
+            <ul id="nav-6" class="usa-nav__submenu">
+            
+            
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/user/genomics/">Genomics</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/user/plant-breeding/">Plant breeding</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/user/geospatial/">Geospatial</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/user/hydrology/">Hydrology</a>
+                </li>
+                
+              
+            
+            </ul>
+            
+            
+            
+          </li>
+          
+          <li class="usa-nav__primary-item">
+            
+              
+              
+              
+            <button class="usa-accordion__button usa-nav__link" aria-expanded="false" aria-controls="nav-7">
+              <span>Support</span>
+            </button>
+            
+            <ul id="nav-7" class="usa-nav__submenu">
+            
+            
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/support/vrsc/">Virtual Research Support Core (VSRC)</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/support/faq/">FAQ's</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="https://forum.scinet.usda.gov">USDA-ARS SCINet Forum</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/support/request-storage">Request Project Storage</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/support/request-software">Request Software</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/support/request-AWS">Request AWS</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/support/ceres-job-script">Ceres Job Script Generator</a>
+                </li>
+                
+              
+            
+            </ul>
+            
+            
+            
+          </li>
+          
+          <li class="usa-nav__primary-item">
+            
+              
+              
+              
+            <button class="usa-accordion__button usa-nav__link" aria-expanded="false" aria-controls="nav-8">
+              <span>About</span>
+            </button>
+            
+            <ul id="nav-8" class="usa-nav__submenu">
+            
+            
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/about/compute">Computer Systems</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/about/organization">Organization</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/about/contact">Contact</a>
+                </li>
+                
+              
+            
+            </ul>
+            
+            
+            
+          </li>
+          
+          <li class="usa-nav__primary-item">
+            
+              
+              
+              
+            <button class="usa-accordion__button usa-nav__link" aria-expanded="false" aria-controls="nav-9">
+              <span>Opportunities</span>
+            </button>
+            
+            <ul id="nav-9" class="usa-nav__submenu">
+            
+            
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/opportunities/SAC">SAC Membership</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/opportunities/request-workshop">Request a Workshop</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/opportunities/postdocs">Fellowships (PhD & MS)</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/opportunities/events">Upcoming Events</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/opportunities/ai-innovation">AI Innovation fund</a>
+                </li>
+                
+              
+            
+            </ul>
+            
+            
+            
+          </li>
+          
+        </ul>
+        
+
+        
+
+        
+          
+          <div class="usa-nav__secondary">
+            <ul class="usa-unstyled-list usa-nav__secondary-links">
+              
+              
+                <li class="usa-nav__secondary-item">
+                  <a href=""
+                  >
+                    
+                  </a>
+                </li>
+              
+            </ul>
+            
+              <form
+                accept-charset="UTF-8"
+                action="https://search.usa.gov/search"
+                id="search_form"
+                method="get"
+                class="usa-search usa-search--small js-search-form">
+              <input
+                name="utf8"
+                type="hidden"
+                value="&#x2713;" />
+              <input
+                type="hidden"
+                name="affiliate"
+                id="affiliate"
+                value="scinet-usda" />
+                <div role="search">
+                  <label
+                    for="query" class="usa-sr-only">Enter search terms</label>
+                  <input
+                    autocomplete="off"
+                    class="usa-input usagov-search-autocomplete"
+                    id="query"
+                    name="query"
+                    type="search" />
+                  <button
+                    class="usa-button"
+                    type="submit"
+                    name="commit">
+                    <span class="usa-sr-only">Search</span>
+                  </button>
+                </div>
+              </form>
+            
+          </div>
+          
+
+
+        </div>
+      </div>
+    </nav>
+  
+  </header>
+
+
+
+
+    
+    
+
+
+    
+
+    
+
+    
+      
+      
+
+
+
+
+    
+    
+
+    
+      <main id="main-content" class="usa-layout-docs usa-layout-docs__main desktop:grid-col-9 usa-prose">
+        <div class="usa-section">
+  <div class="grid-container">
+    <div class="grid-row grid-gap flex-align-start">
+      
+      
+
+      <main class="usa-layout-docs usa-layout-docs__main usa-prose" id="main-content">
+        
+          <h1>Singularity on Ceres</h1>
+        
+        <h4 id="table-of-contents">Table of Contents</h4>
+<ol>
+  <li><a href="#1-introduction">Introduction</a></li>
+  <li><a href="#2-prerequisites">Prerequisites</a></li>
+  <li><a href="#3-container-images">Container Images</a></li>
+  <li><a href="#4-docker-images">Docker Images</a></li>
+  <li><a href="#5-singularity-images">Singularity Images</a></li>
+  <li><a href="#6-executing-containers">Executing Containers</a></li>
+  <li><a href="#7-ceres-container-repository">Ceres Container Repository</a></li>
+  <li><a href="#8-support">Support</a></li>
+</ol>
+
+<h1 id="1-introduction">1. Introduction</h1>
+
+<p>Singularity <a href="https://sylabs.io/">https://sylabs.io/</a> is an application for running containers on an HPC cluster. Containers are self-contained application execution environments that contain all necessary software to run an application or workflow, so you don’t need to worry about installing all the dependencies. There are many pre-built container images for scientific applications available for download and use, see section <a href="#3-container-images">Container Images</a>.</p>
+
+<h1 id="2-prerequisites">2. Prerequisites</h1>
+
+<p>To run containers on Ceres, you’ll need to execute the singularity command from a compute node. For example, to run an interactive session on a compute node, use the SLURM salloc command:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>user.name@ceres ~]<span class="nv">$ </span>salloc
+salloc: Granted job allocation 1695904
+salloc: Waiting <span class="k">for </span>resource configuration
+salloc: Nodes ceres14-compute-36 are ready <span class="k">for </span>job
+<span class="nb">export </span><span class="nv">TMPDIR</span><span class="o">=</span>/local/bgfs//1695904
+<span class="nb">export </span><span class="nv">TMOUT</span><span class="o">=</span>5400
+<span class="o">[</span>user.name@sn-cn-11-2 ~]<span class="nv">$ </span><span class="nb">type </span>singularity
+singularity is hashed <span class="o">(</span>/usr/bin/singularity<span class="o">)</span>  
+</code></pre></div></div>
+
+<p>NOTE: salloc by default runs on a single hyper-threaded core (2 logical cores) with 6000 MB of allocated memory on one of the compute nodes. The session will last for 2 days, but will timeout after 1.5 hours of inactivity (no commands runnning). See the <a href="/guide/ceres/">Ceres User Manual</a> for more info on how to request resources for interactive jobs.</p>
+
+<p>NOTE: on Atlas singularity is available through environment module. Before issuing any singularity command, load the module by issuing “module load singularity” command.</p>
+
+<h1 id="3-container-images">3. Container Images</h1>
+
+<p>Singularity executes a container from a Singularity container image either created by the user or downloaded from Singularity Library <a href="https://cloud.sylabs.io/library">https://cloud.sylabs.io/library</a>, and can also import and execute Docker <a href="https://www.docker.com/">https://www.docker.com/</a> container images, either directly uploaded by the user, or downloaded from Docker Hub <a href="https://hub.docker.com/">https://hub.docker.com/</a>.</p>
+
+<p>BioContainers is a “community-driven project that provides the infrastructure and basic guidelines to create, manage and distribute Bioinformatics [Docker] containers with special focus in Proteomics, Genomics, Transcriptomics and Metabolomics.”</p>
+
+<p>BioContainers can be obtained either via docker <a href="https://hub.docker.com/u/biocontainers/">https://hub.docker.com/u/biocontainers/</a> or via Quay <a href="https://quay.io/">https://quay.io/</a></p>
+
+<p>For leveraging GPU using containers, Nvidia provides a container library NGC. <a href="https://ngc.nvidia.com/catalog/all">https://ngc.nvidia.com/catalog/all</a></p>
+
+<blockquote>
+  <p>NGC offers a comprehensive catalog of GPU-accelerated software for deep learning, machine learning, and HPC. NGC containers deliver powerful and easy-to-deploy software proven to deliver the fastest results. By taking care of the plumbing, NGC enables users to focus on building lean models, producing optimal solutions and gathering faster insights.</p>
+</blockquote>
+
+<h1 id="4-docker-images">4. Docker Images</h1>
+
+<p>While Singularity can only execute containers from Singularity images, it can easily import Docker images directly from Docker Hub to create a Singularity image. For example, to download a Docker image of the R programming language from Docker Hub [https://hub.docker.com/<em>/r-base/](https://hub.docker.com/</em>/r-base/) and import it into a Singularity image, change the docker pull rbase command listed at the aforementioned URL to the equivalent Singularity command  <code class="language-plaintext highlighter-rouge">singularity pull docker://r-base</code>  (where specifying “docker://” before the image name lets Singularity know the image is a Docker image, and by default fetch the image from Docker Hub):</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>user.name@sn-cn-11-2 ~]<span class="nv">$ </span>singularity pull docker://r-base
+INFO:    Converting OCI blobs to SIF format
+INFO:    Starting build...
+Getting image <span class="nb">source </span>signatures
+Copying blob 1fcd5305bc72 <span class="k">done</span>
+ ...
+INFO:    Creating SIF file...
+INFO:    Build <span class="nb">complete</span>: r-base_latest.sif  
+</code></pre></div></div>
+
+<p>The resulting singularity image (r-base.img) contains a complete environment (operating system, libraries, R installation) for running R.
+A tag may be specified when selecting the Docker image to download; e.g., a list of tags for r-base is at: <a href="https://hub.docker.com/r/library/r-base/tags/">https://hub.docker.com/r/library/r-base/tags/</a>. To specify a specific tag, append “:TAG” to the image name (e.g.,  <code class="language-plaintext highlighter-rouge">singularity pull docker://r-base:3.3.3</code> ). If the tag is omitted, Singularity will look for an image labeled with the “latest” tag (note that the “latest” tag is merely a Docker Hub convention, and is not guaranteed to exist, nor is it guaranteed to point to the latest image—when in doubt, specify the tag).</p>
+
+<p><strong>Note on Home directory and Singularity</strong></p>
+
+<p>While pulling/building the containers, pay attention to the home directory as the cached image blobs will be saved in ${HOME}/.singularity .
+Since the home directory has a limited amount of space, this can fill up quite easily. Users can change where the files will be cached by setting SINGULARITY_CACHEDIR and SINGULARITY_TMPDIR environment variables. Setting both to $TMPDIR is suggested:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>export SINGULARITY_CACHEDIR=$TMPDIR 
+export SINGULARITY_TMPDIR=$TMPDIR
+</code></pre></div></div>
+<p>One can also use —disable-cache option to avoid saving cached image blobs (e.g., <code class="language-plaintext highlighter-rouge">singularity pull —disable-cache docker://r-base:3.3.3</code> ).</p>
+
+<p>In case the home directory is full, it is safe to delete the contents of ~/.singularity folder.</p>
+
+<p>NOTE: As of April 14, 2021, $TMPDIR is not set on Atlas. Atlas users are advised to use the —disable-cache option when pulling docker containers.</p>
+
+<h1 id="5-singularity-images">5. Singularity Images</h1>
+
+<h3 id="singularity-library">Singularity Library</h3>
+
+<p>Singularity Library is a service that builds Singularity images from community-provided recipes (called “bootstrap files”) stored in GitHub repositories and makes them available for search and download. To download a singularity image, search the Singularity Library container collections, and follow the instructions to download and execute the container. This is similar to the directions for container
+images from Docker Hub, except replace the “docker://” URI prefix with “library://”.</p>
+
+<h3 id="creating-your-own-singularity-images">Creating Your Own Singularity Images</h3>
+
+<p>Root access is needed to create a Singularity image from a bootstrap file. As Ceres users do not have root access, to create your own Singularity image, you can paste the bootstrap file to Singualrity cloud builder <a href="https://cloud.sylabs.io/builder">https://cloud.sylabs.io/builder</a>.</p>
+
+<p>Bootstrap examples - https://github.com/sylabs/singularity/tree/master/examples</p>
+
+<h1 id="6-executing-containers">6. Executing Containers</h1>
+
+<p>Three commands may be used to execute applications inside Singularity containers:</p>
+
+<p><code class="language-plaintext highlighter-rouge">singularity run</code>,</p>
+
+<p><code class="language-plaintext highlighter-rouge">singularity exec</code>,</p>
+
+<p>and (less commonly) <code class="language-plaintext highlighter-rouge">singularity shell</code></p>
+
+<p>Note that applications executing within a container do not have access to applications installed outside of the container (e.g., environment modules, or executables installed in /usr/bin on the compute node).</p>
+
+<h3 id="singularity-run"><code class="language-plaintext highlighter-rouge">singularity run</code></h3>
+
+<p>Singularity images may have a run script (Docker: ENTRYPOINT) that is executed when the singularity run command is used. To see the run script defined by the container (if any), use the singularity inspect command:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>user.name@sn-cn-11-2 ~]<span class="nv">$ </span>singularity inspect <span class="nt">--runscript</span> r-base.img
+<span class="c">#!/bin/sh</span>
+<span class="nb">exec </span>R <span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span>
+</code></pre></div></div>
+
+<p>The output above shows that in the aforementioned Docker image for the R programming language retrieved from Docker Hub,  <code class="language-plaintext highlighter-rouge">singularity run r-base.img</code>  will run R interactively in the container environment. Your home directory is automatically mounted in the container, so any files therein can be accessed (and R packages installed within the container, as illustrated in the example below):</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>user.name@sn-cn-11-2 ~]<span class="nv">$ </span>singularity run r-base.img
+R version 3.4.0 <span class="o">(</span>2017-04-21<span class="o">)</span> <span class="nt">--</span> <span class="s2">"You Stupid Darkness"</span>
+Copyright <span class="o">(</span>C<span class="o">)</span> 2017 The R Foundation <span class="k">for </span>Statistical Computing
+Platform: x86_64-pc-linux-gnu <span class="o">(</span>64-bit<span class="o">)</span>
+...
+<span class="o">&gt;</span> install.packages<span class="o">(</span><span class="s2">"stringr"</span><span class="o">)</span>
+Installing package into <span class="s1">'/usr/local/lib/R/site-library'</span>
+<span class="o">(</span>as <span class="s1">'lib'</span> is unspecified<span class="o">)</span>
+Warning <span class="k">in </span>install.packages<span class="o">(</span><span class="s2">"stringr"</span><span class="o">)</span> :
+<span class="s1">'lib = "/usr/local/lib/R/site-library"'</span> is not writable
+Would you like to use a personal library instead? <span class="o">(</span>y/n<span class="o">)</span> y
+Would you like to create a personal library
+/home/user.name/R/x86_64-pc-linux-gnu-library/3.4
+to <span class="nb">install </span>packages into? <span class="o">(</span>y/n<span class="o">)</span> y
+trying URL <span class="s1">'https://cran.rstudio.com/src/contrib/stringr_1.2.0.tar.gz'</span>
+Content <span class="nb">type</span> <span class="s1">'application/x-gzip'</span> length 94095 bytes <span class="o">(</span>91 KB<span class="o">)</span>
+<span class="o">==================================================</span>
+downloaded 91 KB
+<span class="k">*</span> installing <span class="k">*</span><span class="nb">source</span><span class="k">*</span> package <span class="s1">'stringr'</span> ...
+...
+<span class="k">*</span> DONE <span class="o">(</span>stringr<span class="o">)</span>
+The downloaded <span class="nb">source </span>packages are <span class="k">in</span>
+<span class="s1">'/tmp/RtmpwP5YNn/downloaded_packages'</span>
+<span class="o">&gt;</span> library<span class="o">(</span>stringr<span class="o">)</span>
+<span class="o">&gt;</span>
+</code></pre></div></div>
+
+<h3 id="singularity-exec"><code class="language-plaintext highlighter-rouge">singularity exec</code></h3>
+
+<p>A container image can contain many executables / scripts. The singularity exec command can be used to select which program to run in the container. For example, to run a simple R script using the Rscript command in the container, prefix the Rscript command with  <code class="language-plaintext highlighter-rouge">singularity exec r-base.img</code>:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>user.name@sn-cn-11-2 ~]<span class="nv">$ </span><span class="nb">cat </span>test.R
+summary<span class="o">(</span>c<span class="o">(</span>1:10<span class="o">))</span>
+<span class="o">[</span>user.name@sn-cn-11-2 ~]<span class="nv">$ </span>singularity <span class="nb">exec </span>r-base.img Rscript test.R
+Min. 1st Qu. Median Mean 3rd Qu. Max.
+1.00 3.25 5.50 5.50 7.75 10.00
+</code></pre></div></div>
+
+<h3 id="singularity-shell"><code class="language-plaintext highlighter-rouge">singularity shell</code></h3>
+
+<p>singularity shell starts an interactive shell within the container image, allowing you to inspect files (and execute programs) within the container. For example, here we see that the r-base.img container image was created using Debian Linux as the base operating system:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>user.name@sn-cn-11-2 ~]<span class="nv">$ </span><span class="nb">type </span>R
+bash: <span class="nb">type</span>: R: not found
+<span class="o">[</span>user.name@sn-cn-11-2 ~]<span class="nv">$ </span>singularity shell r-base.img
+Singularity: Invoking an interactive shell within container...
+Singularity r-base.img:~&gt; <span class="nb">type </span>R
+R is /usr/bin/R
+Singularity r-base.img:~&gt; <span class="nb">cat</span> /etc/os-release
+<span class="nv">PRETTY_NAME</span><span class="o">=</span><span class="s2">"Debian GNU/Linux 9 (stretch)"</span>
+<span class="nv">NAME</span><span class="o">=</span><span class="s2">"Debian GNU/Linux"</span>
+<span class="nv">VERSION_ID</span><span class="o">=</span><span class="s2">"9"</span>
+<span class="nv">VERSION</span><span class="o">=</span><span class="s2">"9 (stretch)"</span>
+<span class="nv">ID</span><span class="o">=</span>debian
+<span class="nv">HOME_URL</span><span class="o">=</span><span class="s2">"https://www.debian.org/"</span>
+<span class="nv">SUPPORT_URL</span><span class="o">=</span><span class="s2">"https://www.debian.org/support"</span>
+<span class="nv">BUG_REPORT_URL</span><span class="o">=</span><span class="s2">"https://bugs.debian.org/"</span>
+Singularity r-base.img:~&gt; <span class="nb">exit
+exit</span>
+<span class="o">[</span>user.name@sn-cn-11-2 ~]<span class="err">$</span>
+</code></pre></div></div>
+
+<h1 id="7-ceres-container-repository">7. Ceres Container Repository</h1>
+
+<p>There are some containers locally available on Ceres at
+/reference/containers</p>
+
+<p>These are available via modules, so the user doesn’t have to perform any additional tasks.</p>
+
+<p><strong>List of containers</strong>
+(may be out of date, <code class="language-plaintext highlighter-rouge">ls /reference/containers</code> on Ceres for the most up to date info):</p>
+
+<ul>
+  <li>RStudio</li>
+  <li>agbase_interproscan</li>
+  <li>antismash</li>
+  <li>bamm_groopm_checkm_refinem</li>
+  <li>bigscape</li>
+  <li>braker</li>
+  <li>cDNA_cupcake</li>
+  <li>cactus</li>
+  <li>cnvnator</li>
+  <li>combine_gafs</li>
+  <li>concoct</li>
+  <li>dastool</li>
+  <li>envi-jupyter</li>
+  <li>faststructure</li>
+  <li>funannotate</li>
+  <li>gatk</li>
+  <li>goanna</li>
+  <li>intarna</li>
+  <li>itasser</li>
+  <li>jupyter_notebook</li>
+  <li>kobas</li>
+  <li>metawrap</li>
+  <li>minimac4</li>
+  <li>nanopolish</li>
+  <li>nanopolish_500kbp</li>
+  <li>opendronemap</li>
+  <li>pb_assembly</li>
+  <li>plasflow</li>
+  <li>python36</li>
+  <li>qiime</li>
+  <li>qiime2</li>
+  <li>redundans</li>
+  <li>revbayes</li>
+  <li>rgi</li>
+  <li>roary</li>
+  <li>salmon</li>
+  <li>salsa</li>
+  <li>toil_vg</li>
+  <li>trinityrnaseq</li>
+</ul>
+
+<h1 id="8-support">8. Support</h1>
+
+<p>The SCINet Virtual Research Support Core (VRSC) can provide support for the Singularity application itself, but has no control over the contents of and cannot be expected to support container images.</p>
+
+<p>Questions about application-specific container images may be directed to the SCINet community via the <a href="https://forum.scinet.usda.gov">SCINet Forum</a> (must have a SCINet account to access), or to the community responsible for maintaining the container image.</p>
+
+      </main>
+    </div>
+  </div>
+</div>
+
+      </main>
+    
+
+    
+
+    
+
+
+  
+<footer class="usa-footer usa-footer--big">
+
+  
+    <div class="grid-container">
+      <p>Last updated: June 06, 2021 at 04:53 PM</p>
+    </div>
+  
+
+  
+    <div class="grid-container usa-footer__return-to-top">
+      <a href="#">Return to top</a>
+    </div>
+  
+
+
+
+  
+    
+    
+    
+  <div class="usa-footer__primary-section">
+    <div class="grid-container">
+      <div class="grid-row grid-gap">
+        <div class="">
+          <nav class="usa-footer__nav" aria-label="Footer navigation">
+            <div class="grid-row grid-gap-4">
+              
+              <div class="mobile-lg:grid-col-6 desktop:grid-col-4">
+                <section class="usa-footer__primary-content usa-footer__primary-content--collapsible">
+                  
+                    <h4 class="usa-footer__primary-link"></h4>
+                    <ul class="usa-list usa-list--unstyled">
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://usda.gov/policies-and-links">
+                          Policies and Links
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://usda.gov/our-agency/about-usda/performance">
+                          Our Performance
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://www.usda.gov/our-agency/careers">
+                          Careers
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://www.usda.gov/oig/forms/contractor-fraud">
+                          Report Fraud on USDA
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://www.usda.gov/oig/">
+                          Visit OIG
+                        </a>
+                      </li>
+                      
+                    </ul>
+                  
+                </section>
+              </div>
+              
+              <div class="mobile-lg:grid-col-6 desktop:grid-col-4">
+                <section class="usa-footer__primary-content usa-footer__primary-content--collapsible">
+                  
+                    <h4 class="usa-footer__primary-link"></h4>
+                    <ul class="usa-list usa-list--unstyled">
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://usda.gov/plain-writing">
+                          Plain Writing
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://usda.gov/open">
+                          Open
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://www.dm.usda.gov/foia/">
+                          FOIA
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://usda.gov/accessibility-statement">
+                          Accessibility Statement
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://usda.gov/privacy-policy">
+                          Privacy Policy
+                        </a>
+                      </li>
+                      
+                    </ul>
+                  
+                </section>
+              </div>
+              
+              <div class="mobile-lg:grid-col-6 desktop:grid-col-4">
+                <section class="usa-footer__primary-content usa-footer__primary-content--collapsible">
+                  
+                    <h4 class="usa-footer__primary-link"></h4>
+                    <ul class="usa-list usa-list--unstyled">
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://usda.gov/non-discrimination-statement">
+                          Non-Discrimination Statement
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://www.ascr.usda.gov/civil-rights-statements">
+                          Anti-Harassment Policy
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://www.ocio.usda.gov/policy-directives-records-forms/information-quality-activities">
+                          Information Quality
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://www.usa.gov">
+                          USA.gov
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://www.whitehouse.gov">
+                          WhiteHouse.gov
+                        </a>
+                      </li>
+                      
+                    </ul>
+                  
+                </section>
+              </div>
+              
+              <div class="mobile-lg:grid-col-6 desktop:grid-col-4">
+                <section class="usa-footer__primary-content usa-footer__primary-content--collapsible">
+                  
+                    <h4 class="usa-footer__primary-link"></h4>
+                    <ul class="usa-list usa-list--unstyled">
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://usda.gov/federal-web-site-inventory">
+                          eGov
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="mailto:scinet_vrsc@usda.gov">
+                          Feedback
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://usda.gov/nofear">
+                          No FEAR Act Data
+                        </a>
+                      </li>
+                      
+                    </ul>
+                  
+                </section>
+              </div>
+              
+            </div>
+          </nav>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  
+
+  
+  <div class="usa-footer__secondary-section">
+    <div class="grid-container">
+      <div class="grid-row grid-gap">
+        <div class="usa-footer__logo grid-row mobile-lg:grid-col-6 mobile-lg:grid-gap-2">
+          
+
+          
+          <div class="mobile-lg:grid-col-auto">
+            <h3 class="usa-footer__logo-heading">USDA Agricultural Research Service</h3>
+          </div>
+          
+        </div>
+
+        
+        <div class="usa-footer__contact-links mobile-lg:grid-col-6">
+          
+          
+            <div class="usa-footer__social-links grid-row grid-gap-1">
+              <div class="grid-col-auto">
+                
+                  <a class="usa-social-link usa-social-link--twitter" href="https://twitter.com/USDA_ARS">
+                    <span>Twitter</span>
+                  </a>
+                
+              </div>
+            </div>
+          
+          
+            <h3 class="usa-footer__contact-heading">Contact us</h3>
+            
+            
+              <address class="usa-footer__address">
+                
+                <div class="usa-footer__contact-info grid-row grid-gap">
+                
+                    <div class="grid-col-auto">
+                      <a href="mailto:scinet_vrsc@usda.gov">
+                        scinet_vrsc@usda.gov
+                      </a>
+                    </div>
+                
+                </div>
+              </address>
+          
+        
+      </div>
+      
+      </div>
+    </div>
+  </div>
+  
+
+</footer>
+
+
+
+
+
+    
+
+
+
+
+
+  
+    
+      <script src="/assets/uswds/js/uswds.min.js" async></script>
+    
+
+  
+    
+      <script src="/assets/js/vendor/anchor.min.js"></script>
+    
+
+  
+    
+      <script src="/assets/js/main.js"></script>
+    
+
+  
+    
+
+
+
+
+<script type="text/javascript">
+//<![CDATA[
+      var usasearch_config = { siteHandle:"scinet-usda" };
+
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src = "//search.usa.gov/javascripts/remote.loader.js";
+      document.getElementsByTagName("head")[0].appendChild(script);
+
+//]]>
+</script>
+
+
+
+  </body>
+</html>

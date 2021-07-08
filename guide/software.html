@@ -1,0 +1,4358 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<title>Software preinstalled on Ceres | SCINet | USDA Scientific Computing Initiative</title>
+
+
+
+<meta name="description" content="Software preinstalled on Ceres">
+
+
+
+<link rel="shortcut icon" type="image/ico"
+  href="/assets/uswds/img/favicons/favicon.ico">
+
+<link rel="icon" type="image/png"
+  href="/assets/uswds/img/favicons/favicon.png">
+
+<link rel="icon" type="image/png"
+  sizes="192x192"
+  href="/assets/uswds/img/favicons/favicon-192.png">
+
+<link rel="apple-touch-icon-precomposed" type=""
+  href="/assets/uswds/img/favicons/favicon-57.png">
+
+<link rel="apple-touch-icon-precomposed" type=""
+  sizes="72x72"
+  href="/assets/uswds/img/favicons/favicon-72.png">
+
+<link rel="apple-touch-icon-precomposed" type=""
+  sizes="114x114"
+  href="/assets/uswds/img/favicons/favicon-114.png">
+
+<link rel="apple-touch-icon-precomposed" type=""
+  sizes="144x144"
+  href="/assets/uswds/img/favicons/favicon-144.png">
+
+
+
+    
+
+
+
+<link rel="stylesheet"
+  href="/assets/css/uswds-theme.css"
+  media="screen">
+
+
+    
+      
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-27627304-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { dataLayer.push(arguments); }
+  gtag('js', new Date());
+
+  // `forceSSL` was used for analytics.js (the older Google Analytics script). It isn't documented for gtag.js, but the term occurs in the gtag.js code; figure it doesn't hurt to leave it in. -@afeld, 5/29/19
+  gtag('config', 'UA-27627304-1', { 'anonymize_ip': true, 'forceSSL': true });
+</script>
+
+
+
+<!-- Digital Analytics Program roll-up, see https://analytics.usa.gov for data -->
+<script id="_fed_an_ua_tag" src="https://dap.digitalgov.gov/Universal-Federated-Analytics-Min.js?agency=USDA&subagency=ARS"></script>
+
+
+    
+  </head>
+  <body class="  site-90%">
+
+    <a class="usa-skipnav" href="#main-content">Skip to main content</a>
+
+    
+
+
+  <section class="usa-banner" aria-label="Official government website">
+  <div class="usa-accordion">
+    <header class="usa-banner__header">
+      <div class="usa-banner__inner">
+        <div class="grid-col-auto">
+          <img class="usa-banner__header-flag" src="/assets/uswds/img/us_flag_small.png" alt="U.S. flag">
+        </div>
+        <div class="grid-col-fill tablet:grid-col-auto">
+          <p class="usa-banner__header-text">An official website of the United States government</p>
+          <p class="usa-banner__header-action" aria-hidden="true">Here’s how you know</p>
+        </div>
+        <button class="usa-accordion__button usa-banner__button"
+          aria-expanded="false" aria-controls="gov-banner">
+          <span class="usa-banner__button-text">Here’s how you know</span>
+        </button>
+      </div>
+    </header>
+    <div class="usa-banner__content usa-accordion__content" id="gov-banner">
+      <div class="grid-row grid-gap-lg">
+        <div class="usa-banner__guidance tablet:grid-col-6">
+          <img class="usa-banner__icon usa-media-block__img" src="/assets/uswds/img/icon-dot-gov.svg" role="img" alt="Dot gov">
+          <div class="usa-media-block__body">
+            <p>
+              <strong>Official websites use .gov</strong>
+              <br/>
+              A <strong>.gov</strong> website belongs to an official government organization in the United States.
+            </p>
+          </div>
+        </div>
+        <div class="usa-banner__guidance tablet:grid-col-6">
+          <img class="usa-banner__icon usa-media-block__img" src="/assets/uswds/img/icon-https.svg" role="img" alt="Https">
+          <div class="usa-media-block__body">
+            <p>
+              <strong>Secure .gov websites use HTTPS</strong>
+              <br/>
+              A <strong>lock</strong> (
+<span class="icon-lock"><svg xmlns="http://www.w3.org/2000/svg" width="52" height="64" viewBox="0 0 52 64" class="usa-banner__lock-image" role="img" aria-labelledby="banner-lock-title banner-lock-description"><title id="banner-lock-title">Lock</title><desc id="banner-lock-description">A locked padlock</desc><path fill="#000000" fill-rule="evenodd" d="M26 0c10.493 0 19 8.507 19 19v9h3a4 4 0 0 1 4 4v28a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4V32a4 4 0 0 1 4-4h3v-9C7 8.507 15.507 0 26 0zm0 8c-5.979 0-10.843 4.77-10.996 10.712L15 19v9h22v-9c0-6.075-4.925-11-11-11z"/></svg></span>
+) or <strong>https://</strong> means you’ve safely connected to the .gov website. Share sensitive information only on official, secure websites.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+  <div class="usa-overlay"></div>
+
+  <header class="usa-header usa-header--extended" role="banner">
+
+
+  
+    <div class="usa-navbar">
+      <div class="usa-logo" id="header-logo">
+        <a
+          href="/"
+          title="Home">
+          
+            <img
+              class="usa-logo-img"
+              src="/assets/img/usda-symbol-rgb-color.svg"
+              alt="USDA-ARS">
+          
+          <em class="usa-logo__text">
+            SCINet Scientific Computing
+          </em>
+        </a>
+      </div>
+      <button class="usa-menu-btn">Menu</button>
+    </div>
+
+    <nav role="navigation" class="usa-nav">
+      <div class="usa-nav__inner">
+        <button class="usa-nav__close">
+          <img src="/assets/uswds/img/close.svg" alt="close">
+        </button>
+
+        
+        
+        
+        <ul class="usa-nav__primary usa-accordion">
+          
+          <li class="usa-nav__primary-item">
+            
+              <a class=" usa-nav__link  " href="/signup/">
+                <span>Sign up for an account</span>
+              </a>
+            
+          </li>
+          
+          <li class="usa-nav__primary-item">
+            
+              
+              
+              
+            <button class="usa-accordion__button usa-nav__link" aria-expanded="false" aria-controls="nav-2">
+              <span>News</span>
+            </button>
+            
+            <ul id="nav-2" class="usa-nav__submenu">
+            
+            
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/downtime/">System Downtime</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/announcements/">Announcements</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/stories/">User Stories</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/newsletter/">Newsletter</a>
+                </li>
+                
+              
+            
+            </ul>
+            
+            
+            
+          </li>
+          
+          <li class="usa-nav__primary-item">
+            
+              
+              
+              
+            <button class="usa-accordion__button usa-nav__link" aria-expanded="false" aria-controls="nav-3">
+              <span>User Guides</span>
+            </button>
+            
+            <ul id="nav-3" class="usa-nav__submenu">
+            
+            
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/quickstart">Quick Start</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/ceres">Ceres HPC User manual</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="https://www.hpc.msstate.edu/computing/atlas">Atlas HPC User Guide</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/multifactor">Set up multifactor authentication</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/storage">SCINet Storage Guide</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/software">Software Overview</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/packageinstall">Installing R/Python/Perl Packages</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/conda">Installing Software with Conda</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/file-transfer">Transferring files</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/rclone">Rclone</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/clc">CLC Workbench</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/jupyter">Jupyter</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/rstudio">Rstudio</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/geneious">Geneious</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/galaxy">Galaxy on SCINet</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/singularity">Containers</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/smrtlink">SMRTLink using Command Line</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/AWS/documentation">AWS Resources</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/guide/vpn">SCINet VPN</a>
+                </li>
+                
+              
+            
+            </ul>
+            
+            
+            
+          </li>
+          
+          <li class="usa-nav__primary-item">
+            
+              
+              
+              
+            <button class="usa-accordion__button usa-nav__link" aria-expanded="false" aria-controls="nav-4">
+              <span>Working Groups</span>
+            </button>
+            
+            <ul id="nav-4" class="usa-nav__submenu">
+            
+            
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/working-groups">Overview</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/working-groups/ag100pest">Ag100Pest</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/working-groups/arthropods">Arthropod Genomics</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/working-groups/geospatial">Geospatial Research</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/working-groups/microbiome">Microbiome</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/working-groups/LTARphenology">LTAR Phenology</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/working-groups/policy">SCINet Policy Committee</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/working-groups/webdev">SCINet Website Developers</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/working-groups/workbooks">Workbook Developers</a>
+                </li>
+                
+              
+            
+            </ul>
+            
+            
+            
+          </li>
+          
+          <li class="usa-nav__primary-item">
+            
+              
+              
+              
+            <button class="usa-accordion__button usa-nav__link" aria-expanded="false" aria-controls="nav-5">
+              <span>Training</span>
+            </button>
+            
+            <ul id="nav-5" class="usa-nav__submenu">
+            
+            
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/training/">Overview</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/training/tutorials/">ARS Science Tutorials</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/training/free-online-training">Free Online Training</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/training-archive/">Training Event Archive</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/training/bioinformatics-workbook">Bioinformatics Workbook</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/training/useful-links">Useful Links</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/training/coursera">Coursera</a>
+                </li>
+                
+              
+            
+            </ul>
+            
+            
+            
+          </li>
+          
+          <li class="usa-nav__primary-item">
+            
+              
+              
+              
+            <button class="usa-accordion__button usa-nav__link" aria-expanded="false" aria-controls="nav-6">
+              <span>Use Cases</span>
+            </button>
+            
+            <ul id="nav-6" class="usa-nav__submenu">
+            
+            
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/user/genomics/">Genomics</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/user/plant-breeding/">Plant breeding</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/user/geospatial/">Geospatial</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/user/hydrology/">Hydrology</a>
+                </li>
+                
+              
+            
+            </ul>
+            
+            
+            
+          </li>
+          
+          <li class="usa-nav__primary-item">
+            
+              
+              
+              
+            <button class="usa-accordion__button usa-nav__link" aria-expanded="false" aria-controls="nav-7">
+              <span>Support</span>
+            </button>
+            
+            <ul id="nav-7" class="usa-nav__submenu">
+            
+            
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/support/vrsc/">Virtual Research Support Core (VSRC)</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/support/faq/">FAQ's</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="https://forum.scinet.usda.gov">USDA-ARS SCINet Forum</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/support/request-storage">Request Project Storage</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/support/request-software">Request Software</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/support/request-AWS">Request AWS</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/support/ceres-job-script">Ceres Job Script Generator</a>
+                </li>
+                
+              
+            
+            </ul>
+            
+            
+            
+          </li>
+          
+          <li class="usa-nav__primary-item">
+            
+              
+              
+              
+            <button class="usa-accordion__button usa-nav__link" aria-expanded="false" aria-controls="nav-8">
+              <span>About</span>
+            </button>
+            
+            <ul id="nav-8" class="usa-nav__submenu">
+            
+            
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/about/compute">Computer Systems</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/about/organization">Organization</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/about/contact">Contact</a>
+                </li>
+                
+              
+            
+            </ul>
+            
+            
+            
+          </li>
+          
+          <li class="usa-nav__primary-item">
+            
+              
+              
+              
+            <button class="usa-accordion__button usa-nav__link" aria-expanded="false" aria-controls="nav-9">
+              <span>Opportunities</span>
+            </button>
+            
+            <ul id="nav-9" class="usa-nav__submenu">
+            
+            
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/opportunities/SAC">SAC Membership</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/opportunities/request-workshop">Request a Workshop</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/opportunities/postdocs">Fellowships (PhD & MS)</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/opportunities/events">Upcoming Events</a>
+                </li>
+                
+              
+                
+                <li class="usa-nav__submenu-item">
+                  <a href="/opportunities/ai-innovation">AI Innovation fund</a>
+                </li>
+                
+              
+            
+            </ul>
+            
+            
+            
+          </li>
+          
+        </ul>
+        
+
+        
+
+        
+          
+          <div class="usa-nav__secondary">
+            <ul class="usa-unstyled-list usa-nav__secondary-links">
+              
+              
+                <li class="usa-nav__secondary-item">
+                  <a href=""
+                  >
+                    
+                  </a>
+                </li>
+              
+            </ul>
+            
+              <form
+                accept-charset="UTF-8"
+                action="https://search.usa.gov/search"
+                id="search_form"
+                method="get"
+                class="usa-search usa-search--small js-search-form">
+              <input
+                name="utf8"
+                type="hidden"
+                value="&#x2713;" />
+              <input
+                type="hidden"
+                name="affiliate"
+                id="affiliate"
+                value="scinet-usda" />
+                <div role="search">
+                  <label
+                    for="query" class="usa-sr-only">Enter search terms</label>
+                  <input
+                    autocomplete="off"
+                    class="usa-input usagov-search-autocomplete"
+                    id="query"
+                    name="query"
+                    type="search" />
+                  <button
+                    class="usa-button"
+                    type="submit"
+                    name="commit">
+                    <span class="usa-sr-only">Search</span>
+                  </button>
+                </div>
+              </form>
+            
+          </div>
+          
+
+
+        </div>
+      </div>
+    </nav>
+  
+  </header>
+
+
+
+
+    
+    
+
+
+    
+
+    
+
+    
+      
+      
+
+
+
+
+    
+    
+
+    
+      <main id="main-content" class="usa-layout-docs usa-layout-docs__main desktop:grid-col-9 usa-prose">
+        <div class="usa-section">
+  <div class="grid-container">
+    <div class="grid-row grid-gap flex-align-start">
+      
+      
+
+      <main class="usa-layout-docs usa-layout-docs__main usa-prose" id="main-content">
+        
+          <h1>Software preinstalled on Ceres</h1>
+        
+        <h1 id="graphical-software">Graphical Software</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Software</th>
+      <th>information</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Galaxy Server</td>
+      <td>SCINet Runs its own <a href="https://galaxy.scinet.usda.gov">Galaxy Server</a>.  Galaxy is an open source, web-based platform for data intensive bioinformatic research.</td>
+    </tr>
+    <tr>
+      <td><a href="/guide/clc/">CLC Workbench</a></td>
+      <td>SCINet has a license key to CLC Workbench</td>
+    </tr>
+    <tr>
+      <td><a href="/guide/geneious">Geneious</a></td>
+      <td>SCINet has a license key to Geneious</td>
+    </tr>
+    <tr>
+      <td><a href="/guide/rstudio">Rstudio</a></td>
+      <td>SCINet runs a R studio Server</td>
+    </tr>
+    <tr>
+      <td>Jupyter</td>
+      <td><a href="https://jupyter.org/">Project Jupyter</a> notebooks, Lab, and Hub can be run on Ceres</td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="command-line-software-on-scinet-clusters">Command-line Software on SCINet Clusters</h1>
+
+<p>Each SCINet cluster has software preinstalled on it. Some general software is available in the global environment but most specialized scientific software is managed by the Module system. This software can be loaded with a command like</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>module load bamtools
+</code></pre></div></div>
+<p>or a specific version can be selected with</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>module load bamtools/2.5.1
+</code></pre></div></div>
+<p>Available modules are listed below in the section <a href="#ceres-command-line-software-managed-by-the-module-system">Ceres Command-line Software Managed by the Module System</a>.</p>
+
+<h2 id="the-command-line-software-i-need-is-not-on-the-list">The command-line software I need is not on the list!</h2>
+
+<p>No problem. You have two options: 1) you can install the software yourself or 2) you can request the software be installed for you.</p>
+
+<h3 id="option-1-install-the-software-yourself">Option 1: Install the software yourself</h3>
+
+<p>The easiest way to do this is to use a <a href="https://docs.conda.io/en/latest/">conda</a> environment. Often times installing the software you need is as easy as typing</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>conda create --name my_environment my_program
+</code></pre></div></div>
+<p>Thousands of biological packages and their dependencies can be installed with a single command using the Bioconda repository for the Conda package manager. You can also install a package directly from Github or elsewhere and compile it yourself. For more on installing Conda see <a href="/guide/conda">User-installed Software on Ceres with Conda</a>.</p>
+
+<p>You can also install and or compile software manually in your  <code class="language-plaintext highlighter-rouge">$HOME</code>  or  <code class="language-plaintext highlighter-rouge">$PROJECT</code>  directories. This is the fastest and easiest way to get your software.</p>
+
+<h3 id="option-2-request-a-new-module-be-installed">Option 2: Request a new module be installed</h3>
+
+<p>If you need software that you think will be useful to many SCINet users you can request that the software be installed as a module. Doing this requires an agency-level security review and takes a few weeks. Modules can be requested with the <a href="https://e.arsnet.usda.gov/sites/OCIO/scinet/Pages/SCINet-New-Application.aspx">Software request form</a> (eAuthentication required, non-ARS users should contact their sponsor).</p>
+
+<h2 id="ceres-command-line-software-managed-by-the-module-system">Ceres Command-line Software Managed by the Module System</h2>
+
+<p>List updated October 9, 2020. To generate this list run  <code class="language-plaintext highlighter-rouge">module avail</code>.</p>
+
+<table>
+    <caption>Software available through the Module system on Ceres </caption>
+
+    <thead>
+    
+        <th>Application</th>
+    
+        <th>Version(s)</th>
+    
+    </thead>
+    <tbody>
+    
+        <tr>
+        
+            <td>TBB</td>
+        
+            <td>4.4</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>a5_miseq</td>
+        
+            <td>20160825--pl5.22.0_0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>abricate</td>
+        
+            <td>0.5</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>abyss</td>
+        
+            <td>2.0.2</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>ace</td>
+        
+            <td>1</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>admixture</td>
+        
+            <td>1.3.0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>agbase</td>
+        
+            <td>1.0.0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>agbase_interproscan</td>
+        
+            <td>5.36-75.0_0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>allmaps</td>
+        
+            <td>1.0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>allpathslg</td>
+        
+            <td>52488</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>alphaimpute</td>
+        
+            <td>1.9.2</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>amap</td>
+        
+            <td>2.2</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>amos</td>
+        
+            <td>3.1.0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>amphora</td>
+        
+            <td>2.0.0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>antismash</td>
+        
+            <td>4.2.0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>antlr</td>
+        
+            <td>2.7.7</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>anvio</td>
+        
+            <td>6.2</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>arcs</td>
+        
+            <td>1.0.0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>argtable2</td>
+        
+            <td>2.13</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>arrowgrid</td>
+        
+            <td>1.0.0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>augustus</td>
+        
+            <td>3.2.3, 3.3.2</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>bamm</td>
+        
+            <td>1.7.3</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>bamm_groopm_checkm_refinem</td>
+        
+            <td>latest</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>bamtools</td>
+        
+            <td>2.4.0, 2.5.1</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>barrnap</td>
+        
+            <td>0.8</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>bayestraits</td>
+        
+            <td>2.0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>bazel</td>
+        
+            <td>0.4.5</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>bbtools</td>
+        
+            <td>36.92, 37.02, 38.79</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>bcftools</td>
+        
+            <td>1.2, 1.4.1, 1.9</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>bcl2fastq</td>
+        
+            <td>2.2</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>beagle-geno</td>
+        
+            <td>4.1, 5.0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>beagle</td>
+        
+            <td>2.1.2, 3.1.1</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>beast</td>
+        
+            <td>1.8.2, 1.10.4</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>beast2</td>
+        
+            <td>2.5.2, 2.6.2</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>bedtools</td>
+        
+            <td>2.25.0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>beopest</td>
+        
+            <td>14.02</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>bigscape</td>
+        
+            <td>latest</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>binutils</td>
+        
+            <td>2.25</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>bio_polyploid_tools</td>
+        
+            <td>1.1.2</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>bismark</td>
+        
+            <td>0.16.2</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>blast+</td>
+        
+            <td>2.2.31, 2.6.0, 2.9.0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>blast</td>
+        
+            <td>2.2.26</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>blat</td>
+        
+            <td>35, 36</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>blobtools</td>
+        
+            <td>1.0.1, 1.1.1</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>blupf90</td>
+        
+            <td>20190531</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>boost</td>
+        
+            <td>1.62.0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>bowtie</td>
+        
+            <td>1.1.2</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>bowtie2</td>
+        
+            <td>2.2.6, 2.3.4</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>braker</td>
+        
+            <td>2.1.2, 2.1.5</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>braker1</td>
+        
+            <td>1.9</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>breakdancer</td>
+        
+            <td>1.4.5</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>busco</td>
+        
+            <td>1.1b1</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>busco2</td>
+        
+            <td>2.0.1</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>busco3</td>
+        
+            <td>3.0.2, 3.1.0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>busco4</td>
+        
+            <td>4.0.2</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>bwa</td>
+        
+            <td>0.7.12, 0.7.17</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>bzip2</td>
+        
+            <td>1.0.6</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>cDNA_cupcake</td>
+        
+            <td>5.8.0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>cactus</td>
+        
+            <td>2019.03.01--py27hdbcaa40_1</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>canu</td>
+        
+            <td>latest, 1.6, 1.6.0, 1.7.0, 1.7.1_0828, 1.7.1_0830, 1.7.1, 1.8, 1.9, 2.0, 2.1</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>canu16</td>
+        
+            <td>1.6.0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>cap3</td>
+        
+            <td>3</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>card</td>
+        
+            <td>1.1.3</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>cd-hit</td>
+        
+            <td>4.6.4</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>censor</td>
+        
+            <td>4.2.29</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>centrifuge</td>
+        
+            <td>1.0.4-beta</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>cfncluster</td>
+        
+            <td>1.3.1</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>checkm</td>
+        
+            <td>v1.0.11, 1.1.2</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>circlator</td>
+        
+            <td>1.5.0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>circos</td>
+        
+            <td>0.69.6</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>cisa</td>
+        
+            <td>2014.03.04</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>clark</td>
+        
+            <td>1.2.3.2, 1.2.5.1</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>clustalomega</td>
+        
+            <td>1.2.3, 1.2.4</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>cmake</td>
+        
+            <td>3.10.0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>cnvnator</td>
+        
+            <td>v0.3.3, 0.4.1</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>cogent</td>
+        
+            <td>2.1</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>combine_gafs</td>
+        
+            <td>1.0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>cometgazer</td>
+        
+            <td>1.0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>concoct</td>
+        
+            <td>latest, 1.0.0--py36h88e4a8a_5, 1.1.0--py36h88e4a8a_0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>consensuscore</td>
+        
+            <td>1.0.0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>crl_scripts</td>
+        
+            <td>1.0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>cuda</td>
+        
+            <td>9.2, 10.0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>cudnn</td>
+        
+            <td>7.4.1, 7.5.0.56</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>cufflinks</td>
+        
+            <td>2.2.1</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>curl</td>
+        
+            <td>7.54.0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>cutadapt</td>
+        
+            <td>1.16</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>daccord</td>
+        
+            <td>0.0.17</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>daligner</td>
+        
+            <td>2020.01.15, 2020.05.04, 2020.07.27</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>damapper</td>
+        
+            <td>2020.05.04</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>damasker</td>
+        
+            <td>2020.05.04</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>dascrubber</td>
+        
+            <td>1.1</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>dastool</td>
+        
+            <td>1.1.0, 1.1.1</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>dazz_db</td>
+        
+            <td>2020.05.04</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>delly</td>
+        
+            <td>0.8.1</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>dentist</td>
+        
+            <td>1.0.0-beta.1, 1.0.0-beta.3</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>diamond</td>
+        
+            <td>0.8.29, 0.9.18, 0.9.28</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>discovar</td>
+        
+            <td>52488</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>discovardenovo</td>
+        
+            <td>52488</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>dna_3d</td>
+        
+            <td>1.0.0, 180922</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>eautils</td>
+        
+            <td>1.04.807</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>eccodes</td>
+        
+            <td>2.7.3</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>edirect</td>
+        
+            <td>11.7</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>eigen</td>
+        
+            <td>3.2.6, 3.3.7</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>emboss</td>
+        
+            <td>6.6.0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>envi</td>
+        
+            <td>5.5</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>epic</td>
+        
+            <td>0810</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>esmf</td>
+        
+            <td>7.1.0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>evm</td>
+        
+            <td>1.1.1</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>exabayes</td>
+        
+            <td>1.4.1</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>exonerate</td>
+        
+            <td>2.2.0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>express</td>
+        
+            <td>f845cab</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>falcon</td>
+        
+            <td>0.3.0, 0.4.2</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>fargene</td>
+        
+            <td>1.0.0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>fasta</td>
+        
+            <td>36.3.8e</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>fastaindex</td>
+        
+            <td>0.11c</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>fastme</td>
+        
+            <td>2.1.6.1</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>fastqc</td>
+        
+            <td>0.11.5, 0.11.9</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>faststructure</td>
+        
+            <td>latest, 1.0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>fasttreemp</td>
+        
+            <td>2.1.8</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>fastx</td>
+        
+            <td>0.0.14</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>flexbar</td>
+        
+            <td>2.5.0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>flye</td>
+        
+            <td>2.5, 2.6, 2.7</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>fraggenescan</td>
+        
+            <td>1.3.0, 1.31</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>frc_align</td>
+        
+            <td>1.0.0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>freebayes</td>
+        
+            <td>1.1.0, 1.2.0, 1.3.1</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>funannotate</td>
+        
+            <td>1.5.3, 1.7.4</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>gapcloser</td>
+        
+            <td>1.12</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>garli</td>
+        
+            <td>2.01</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>gatk</td>
+        
+            <td>3.6, 3.8-1, 4.0.8.1</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>gcc</td>
+        
+            <td>5.3.0, 8.1.0, 9.1.0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>gdal</td>
+        
+            <td>2.4.2</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>geant4</td>
+        
+            <td>10.1.2, 10.4.0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>gemma</td>
+        
+            <td>0.96</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>geneious</td>
+        
+            <td>11.1.5, 11.1.5</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>genemark</td>
+        
+            <td>4.33, 4.59</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>genomestrip</td>
+        
+            <td>2.00.1685</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>genometools</td>
+        
+            <td>1.5.9</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>genomicconsensus</td>
+        
+            <td>1.0.0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>gensel</td>
+        
+            <td>4.90</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>get_homologues</td>
+        
+            <td>3.2.3</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>git</td>
+        
+            <td>2.7.1</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>glimmer3</td>
+        
+            <td>3.02</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>glpk</td>
+        
+            <td>4.55</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>gmap_gsnap</td>
+        
+            <td>2017-03-17, 2020-04-08</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>gmp</td>
+        
+            <td>6.1.0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>gnuplot</td>
+        
+            <td>4.6.7</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>goanna</td>
+        
+            <td>2.0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>google_cloud_sdk</td>
+        
+            <td>211.0.0, 308.0.0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>grib-api</td>
+        
+            <td>1.26.1</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>groopm</td>
+        
+            <td>1.7.3</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>gsl</td>
+        
+            <td>2.3</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>gtdbtk</td>
+        
+            <td>0.3.2, 1.2.0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>guppy-cpu</td>
+        
+            <td>3.1.5, 3.6.1</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>guppy-gpu</td>
+        
+            <td>3.1.5, 3.6.1</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>gzip</td>
+        
+            <td>1.9</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>h2o</td>
+        
+            <td>3.2.0.3</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>h5py</td>
+        
+            <td>2.5.0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>haplomerger2</td>
+        
+            <td>20180603</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>hawk</td>
+        
+            <td>0.9.8</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>hdf5</td>
+        
+            <td>1.8.9, 1.8.16, 1.8.19</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>hgtector</td>
+        
+            <td>0.2.1</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>hisat2</td>
+        
+            <td>2.0.5, 2.2.0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>hmmer3</td>
+        
+            <td>3.1b2, 3.2.1</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>htslib</td>
+        
+            <td>1.10</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>htstream</td>
+        
+            <td>1.0.0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>humann2</td>
+        
+            <td>0.11.1</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>idba</td>
+        
+            <td>1.1.2</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>igvtools</td>
+        
+            <td>2.8.2</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>infernal</td>
+        
+            <td>1.1.2</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>intarna</td>
+        
+            <td>3.1.3--h176a8bc_0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>intel</td>
+        
+            <td>2017.3</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>interproscan</td>
+        
+            <td>5.24-63.0, 5.42-78.0, 5.44-79.0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>iq_tree</td>
+        
+            <td>1.5.3, 1.5.5-omp, 1.6.8, 1.6.10, 1.6.12, 2.0-rc1</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>isescan</td>
+        
+            <td>1.5.4.3</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>itasser</td>
+        
+            <td>5.0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>itsx</td>
+        
+            <td>1.1b</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>java</td>
+        
+            <td>1.7.0_80, 1.8.0_121, 11.0.2</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>java_8_sdk</td>
+        
+            <td>1.8.0_121</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>jellyfish</td>
+        
+            <td>1.1.11</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>jellyfish2</td>
+        
+            <td>2.2.9</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>jemalloc</td>
+        
+            <td>4.0.4</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>juicer</td>
+        
+            <td>latest, 1.6.2</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>kaiju</td>
+        
+            <td>1.5.0, 1.6.0, 1.6.3, 1.7.2</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>kallisto</td>
+        
+            <td>0.42.4</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>kentutils</td>
+        
+            <td>302</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>kineros2</td>
+        
+            <td>2.0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>kobas</td>
+        
+            <td>3.0.3_0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>kraken</td>
+        
+            <td>0.10.5-beta, 1.1</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>kraken2</td>
+        
+            <td>2.0.7-beta, 2.0.8-beta</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>ksnp3</td>
+        
+            <td>3.021</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>kstat</td>
+        
+            <td>0.0.1</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>ldt</td>
+        
+            <td>7.2r</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>libevent</td>
+        
+            <td>2.0.22</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>libexpat</td>
+        
+            <td>2.2.0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>libgd</td>
+        
+            <td>2.2.3</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>libgtextutils</td>
+        
+            <td>0.7</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>libmaus2</td>
+        
+            <td>2.0.717, 2018.11.29</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>libpng</td>
+        
+            <td>1.6.28</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>lis</td>
+        
+            <td>7.2r</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>llvm</td>
+        
+            <td>5.0.0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>lordec</td>
+        
+            <td>0.8</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>lumpy</td>
+        
+            <td>0.2.13, 0.3.0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>mafft</td>
+        
+            <td>7.307, 7.429</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>maker-mpich</td>
+        
+            <td>2.31.10</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>maker</td>
+        
+            <td>2.31.10</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>maker3</td>
+        
+            <td>3.01.03</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>maker_centos7</td>
+        
+            <td>3.00.0-beta</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>manta</td>
+        
+            <td>1.1.1</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>mariadb</td>
+        
+            <td>10.1</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>masurca</td>
+        
+            <td>3.1.3, 3.2.4, 3.3.1, 3.3.6</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>matlab_runtime</td>
+        
+            <td>R2017b</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>mauve</td>
+        
+            <td>2015-02-13</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>maxbin</td>
+        
+            <td>2.2.5, 2.2.7</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>mcl</td>
+        
+            <td>14-137</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>mcscanx</td>
+        
+            <td>1.0.0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>mdust</td>
+        
+            <td>1.0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>mecat</td>
+        
+            <td>1.0.0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>mecat2</td>
+        
+            <td>2019.03.04, 20190314, 20200228</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>med-foes</td>
+        
+            <td>0.6</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>megahit</td>
+        
+            <td>1.1.1, 1.2.9</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>megan</td>
+        
+            <td>6.17.0, 6.18.4</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>merqury</td>
+        
+            <td>1.0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>meryl</td>
+        
+            <td>1.0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>metabat</td>
+        
+            <td>0.32.4, 2.12.1</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>metabgc</td>
+        
+            <td>1.1.0, 1.2</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>metagenemark</td>
+        
+            <td>3.26</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>metaphian2</td>
+        
+            <td>2.6.0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>metavelvet</td>
+        
+            <td>1.2.02</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>metawrap</td>
+        
+            <td>1.1--0, 1.2--0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>methpipe</td>
+        
+            <td>3.4.3</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>metis</td>
+        
+            <td>5.1.0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>minced</td>
+        
+            <td>0.3.0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>miniasm</td>
+        
+            <td>0.3</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>miniconda</td>
+        
+            <td>3.6, 4.7.12</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>minimac4</td>
+        
+            <td>latest</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>minimap2</td>
+        
+            <td>2.6, 2.16</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>minpath</td>
+        
+            <td>1.2</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>mira</td>
+        
+            <td>4.9.6</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>miranda</td>
+        
+            <td>aug2010</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>mitehunter</td>
+        
+            <td>11-2011</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>mocat2</td>
+        
+            <td>2.0.0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>mothur</td>
+        
+            <td>1.39.5, 1.40.1, 1.44.2</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>mpc</td>
+        
+            <td>1.0.3</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>mpfr</td>
+        
+            <td>3.1.3</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>mpich</td>
+        
+            <td>3.2</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>mrbayes</td>
+        
+            <td>3.2.5</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>mstmap</td>
+        
+            <td>1.0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>mugsy</td>
+        
+            <td>1.2.3</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>mummer</td>
+        
+            <td>3.23, 4.0.0beta2</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>muscle</td>
+        
+            <td>3.8.31</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>nanopolish</td>
+        
+            <td>latest</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>nanopolish_500kbp</td>
+        
+            <td>0.11.1, 0.12.5--h7185e64_0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>necat</td>
+        
+            <td>2020.01.19</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>nek5000-intel</td>
+        
+            <td>1.0.0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>nek5000</td>
+        
+            <td>1.0.0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>netcdf-fortran</td>
+        
+            <td>4.4.3</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>netcdf</td>
+        
+            <td>4.3.3.1</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>newick_utils</td>
+        
+            <td>1.0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>nextflow</td>
+        
+            <td>20.07.1</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>ngmlr-avx2</td>
+        
+            <td>0.2.7</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>nseg</td>
+        
+            <td>1.0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>octave</td>
+        
+            <td>4.2.1</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>openblas</td>
+        
+            <td>0.2.15</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>opendronemap</td>
+        
+            <td>latest</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>openmpi</td>
+        
+            <td>2.0.2, 3.0.0, 3.1.3</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>openssl</td>
+        
+            <td>1.1.0c</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>orthofinder</td>
+        
+            <td>2.2.6, 2.2.7</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>pacasus</td>
+        
+            <td>1.1</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>papi</td>
+        
+            <td>5.4.1</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>parallel</td>
+        
+            <td>20151022</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>parsnp</td>
+        
+            <td>1.2</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>pasa</td>
+        
+            <td>2.2.0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>paup</td>
+        
+            <td>4a152</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>pb-assembly</td>
+        
+            <td>0.0.4--py27_6, 0.0.6, 0.0.8, 0.0.8.1</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>pbsuite</td>
+        
+            <td>15.8.24</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>pbsuite_new</td>
+        
+            <td>15.8.24</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>pbzip2</td>
+        
+            <td>1.1.13</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>pcre</td>
+        
+            <td>8.41</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>pear</td>
+        
+            <td>0.9.10</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>perl</td>
+        
+            <td>5.22.0, 5.24.1, 5.32.0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>pgap</td>
+        
+            <td>2020-07-09.build4716</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>phyloflash</td>
+        
+            <td>3.3b4</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>phylosift</td>
+        
+            <td>1.0.1</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>phyml</td>
+        
+            <td>20151014</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>picard</td>
+        
+            <td>2.9.2, 2.22.3</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>piggy</td>
+        
+            <td>1.2</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>pigz</td>
+        
+            <td>2.3.3</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>pilon</td>
+        
+            <td>1.22, 1.23</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>pindel</td>
+        
+            <td>1.0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>plasflow</td>
+        
+            <td>1.0.7</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>platanus</td>
+        
+            <td>1.2.4</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>plink</td>
+        
+            <td>1.07, 1.9, 2.0_avx2, 2.0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>porechop</td>
+        
+            <td>0.2.3</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>poretools</td>
+        
+            <td>0.6.0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>postgresql</td>
+        
+            <td>9.6.1</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>pplacer</td>
+        
+            <td>v1.1.alpha19</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>prodigalorffinder</td>
+        
+            <td>2.6.3</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>proj4</td>
+        
+            <td>4.9.2, 4.9.3</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>prokka</td>
+        
+            <td>1.12, 1.13, 1.14.0, 1.14.5</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>protexcluder</td>
+        
+            <td>1.2</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>provean</td>
+        
+            <td>1.1.5</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>pspp</td>
+        
+            <td>1.0.1</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>pullseq</td>
+        
+            <td>1.0.2</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>purge_dups</td>
+        
+            <td>1.0, 1.0.1</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>purge_haplotigs</td>
+        
+            <td>1.1.1</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>pyscaf</td>
+        
+            <td>0.12a4</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>python36</td>
+        
+            <td>2-alpine3.6</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>python_2</td>
+        
+            <td>2.7.10, 2.7.12, 2.7.13, 2.7.14, 2.7.18</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>python_3</td>
+        
+            <td>3.5.0, 3.6.6</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>qiime</td>
+        
+            <td>latest, 1.9.1--np112py27_1</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>qiime2</td>
+        
+            <td>latest, 2.2017.12, 2.2018.2, 2019.4, 2019.10, 2020.2, 2020.6</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>qiime_vsearch</td>
+        
+            <td>1.9.1</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>qtlcart</td>
+        
+            <td>1.17f</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>quast</td>
+        
+            <td>3.1, 5.0.2</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>quickmerge</td>
+        
+            <td>0.2</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>r-gcc-9.1.0</td>
+        
+            <td>3.6.1</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>r-intel</td>
+        
+            <td>3.6.1</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>r</td>
+        
+            <td>3.4.0, 3.4.1, 3.4.3, 3.5.2, 3.6.1</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>racon</td>
+        
+            <td>1.3.0, 1.4.3</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>ragtag</td>
+        
+            <td>1.0.1</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>raxml</td>
+        
+            <td>8.2.3, 8.2.12</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>reads2resistome</td>
+        
+            <td>0.0.1</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>recon</td>
+        
+            <td>1.08</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>redundans</td>
+        
+            <td>latest</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>refinem</td>
+        
+            <td>1.7.3</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>repeatmasker</td>
+        
+            <td>4.0.6, 4.0.7, 4.1.0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>repeatmodeler</td>
+        
+            <td>1.0.8</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>repeatscout</td>
+        
+            <td>1.0.5</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>revbayes</td>
+        
+            <td>1.3.1</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>rgi</td>
+        
+            <td>3.1.1, 4.0.3, 5.1.0--py36hed695b0_0, 5.1.0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>rmblast</td>
+        
+            <td>2.2.28</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>roary</td>
+        
+            <td>3.12.0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>rsem</td>
+        
+            <td>1.2.23, 1.3.0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>ruby</td>
+        
+            <td>2.7.1</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>salmon</td>
+        
+            <td>0.9.1, 0.10.0, 0.10.1</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>salsa</td>
+        
+            <td>2.0.0, 2.2</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>samtools</td>
+        
+            <td>1.3, 1.4.1, 1.9, 1.10</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>sbt</td>
+        
+            <td>0.13.13</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>seqkit</td>
+        
+            <td>0.10.1</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>seqtk</td>
+        
+            <td>1.2</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>sga</td>
+        
+            <td>0.10.13</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>sickle</td>
+        
+            <td>1.33</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>smart-bs-seq</td>
+        
+            <td>2.2.7</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>smartdenovo</td>
+        
+            <td>1.0.0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>smrtanalysis</td>
+        
+            <td>2.3.0.140936</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>smrtlink</td>
+        
+            <td>7.0.0, 8.0.0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>smrtsv</td>
+        
+            <td>1.0.0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>snakemake</td>
+        
+            <td>5.25.0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>snap</td>
+        
+            <td>1.0beta.18</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>snap_ucdavis</td>
+        
+            <td>2013.11.29</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>sniffles</td>
+        
+            <td>1.0.8</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>snoscan</td>
+        
+            <td>0.9.1</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>snpeff</td>
+        
+            <td>4.3</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>soapdenovo2</td>
+        
+            <td>2.04</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>soapdenovotrans</td>
+        
+            <td>1.03, 1.04</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>soapindel</td>
+        
+            <td>2.1.7.17</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>sortmerna</td>
+        
+            <td>4.0.0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>spades</td>
+        
+            <td>3.7.1, 3.10.1, 3.11.1, 3.12.0, 3.14.0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>sparsehash</td>
+        
+            <td>2.0.3</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>speedseq</td>
+        
+            <td>0.1.2</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>sqlite3</td>
+        
+            <td>3.2.0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>sratoolkit</td>
+        
+            <td>2.5.8, 2.9.0, 2.9.6, 2.10.7</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>stacks</td>
+        
+            <td>1.44</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>star</td>
+        
+            <td>2.5.2b, 2.7.2b</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>stringtie</td>
+        
+            <td>1.3.3b, 2.1.1</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>structure</td>
+        
+            <td>2.3.4</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>subread</td>
+        
+            <td>1.5.2</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>superfocus</td>
+        
+            <td>0.27</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>supernova</td>
+        
+            <td>1.2.0, 2.0.0, 2.1.1</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>svdetect</td>
+        
+            <td>0.8b</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>swat</td>
+        
+            <td>627</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>swig</td>
+        
+            <td>3.0.12</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>symap</td>
+        
+            <td>4.2</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>tabix</td>
+        
+            <td>1.3.2</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>tassel5</td>
+        
+            <td>5.2.37</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>tcltk</td>
+        
+            <td>8.6.6</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>tcoffee</td>
+        
+            <td>11.00.8cbe486</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>tmux</td>
+        
+            <td>2.1, 3.0-rc5</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>toil_vg</td>
+        
+            <td>latest, 1.4.1, 1.6.0a1.dev132, 1.6.0a1</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>tophat2</td>
+        
+            <td>2.1.0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>trf</td>
+        
+            <td>4.09</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>trim_isoseq_polyA</td>
+        
+            <td>1.0.0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>trimmomatic</td>
+        
+            <td>0.38</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>trinityrnaseq</td>
+        
+            <td>2.1.1, 2.5.1, 2.6.6, 2.8.4, 2.10.0, 2.11.0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>trinotate</td>
+        
+            <td>2.0.2, 3.1.1</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>trnascanse</td>
+        
+            <td>1.3.1, 1.23, 2.0.5</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>uclust</td>
+        
+            <td>1.2.22</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>udunits</td>
+        
+            <td>2.2.24</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>unicycler</td>
+        
+            <td>0.4.4, 0.4.7</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>usearch</td>
+        
+            <td>11.0.667</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>vasp</td>
+        
+            <td>5.4.4</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>vaspvtst</td>
+        
+            <td>5.4.4</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>vcftools</td>
+        
+            <td>0.1.15, 0.1.16</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>velvet</td>
+        
+            <td>1.2.10</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>vicuna</td>
+        
+            <td>1.0.0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>vsearch</td>
+        
+            <td>2.4.0</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>wgs_assembler</td>
+        
+            <td>8.3rc2</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>xz</td>
+        
+            <td>5.2.3</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>zlib</td>
+        
+            <td>1.2.7</td>
+        
+        </tr>
+    
+        <tr>
+        
+            <td>zorro</td>
+        
+            <td>1.0.0</td>
+        
+        </tr>
+    
+    </tbody>
+</table>
+
+      </main>
+    </div>
+  </div>
+</div>
+
+      </main>
+    
+
+    
+
+    
+
+
+  
+<footer class="usa-footer usa-footer--big">
+
+  
+    <div class="grid-container">
+      <p>Last updated: April 15, 2021 at 08:28 PM</p>
+    </div>
+  
+
+  
+    <div class="grid-container usa-footer__return-to-top">
+      <a href="#">Return to top</a>
+    </div>
+  
+
+
+
+  
+    
+    
+    
+  <div class="usa-footer__primary-section">
+    <div class="grid-container">
+      <div class="grid-row grid-gap">
+        <div class="">
+          <nav class="usa-footer__nav" aria-label="Footer navigation">
+            <div class="grid-row grid-gap-4">
+              
+              <div class="mobile-lg:grid-col-6 desktop:grid-col-4">
+                <section class="usa-footer__primary-content usa-footer__primary-content--collapsible">
+                  
+                    <h4 class="usa-footer__primary-link"></h4>
+                    <ul class="usa-list usa-list--unstyled">
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://usda.gov/policies-and-links">
+                          Policies and Links
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://usda.gov/our-agency/about-usda/performance">
+                          Our Performance
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://www.usda.gov/our-agency/careers">
+                          Careers
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://www.usda.gov/oig/forms/contractor-fraud">
+                          Report Fraud on USDA
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://www.usda.gov/oig/">
+                          Visit OIG
+                        </a>
+                      </li>
+                      
+                    </ul>
+                  
+                </section>
+              </div>
+              
+              <div class="mobile-lg:grid-col-6 desktop:grid-col-4">
+                <section class="usa-footer__primary-content usa-footer__primary-content--collapsible">
+                  
+                    <h4 class="usa-footer__primary-link"></h4>
+                    <ul class="usa-list usa-list--unstyled">
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://usda.gov/plain-writing">
+                          Plain Writing
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://usda.gov/open">
+                          Open
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://www.dm.usda.gov/foia/">
+                          FOIA
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://usda.gov/accessibility-statement">
+                          Accessibility Statement
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://usda.gov/privacy-policy">
+                          Privacy Policy
+                        </a>
+                      </li>
+                      
+                    </ul>
+                  
+                </section>
+              </div>
+              
+              <div class="mobile-lg:grid-col-6 desktop:grid-col-4">
+                <section class="usa-footer__primary-content usa-footer__primary-content--collapsible">
+                  
+                    <h4 class="usa-footer__primary-link"></h4>
+                    <ul class="usa-list usa-list--unstyled">
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://usda.gov/non-discrimination-statement">
+                          Non-Discrimination Statement
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://www.ascr.usda.gov/civil-rights-statements">
+                          Anti-Harassment Policy
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://www.ocio.usda.gov/policy-directives-records-forms/information-quality-activities">
+                          Information Quality
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://www.usa.gov">
+                          USA.gov
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://www.whitehouse.gov">
+                          WhiteHouse.gov
+                        </a>
+                      </li>
+                      
+                    </ul>
+                  
+                </section>
+              </div>
+              
+              <div class="mobile-lg:grid-col-6 desktop:grid-col-4">
+                <section class="usa-footer__primary-content usa-footer__primary-content--collapsible">
+                  
+                    <h4 class="usa-footer__primary-link"></h4>
+                    <ul class="usa-list usa-list--unstyled">
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://usda.gov/federal-web-site-inventory">
+                          eGov
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="mailto:scinet_vrsc@usda.gov">
+                          Feedback
+                        </a>
+                      </li>
+                      
+                      <li class="usa-footer__secondary-link">
+                        <a href="https://usda.gov/nofear">
+                          No FEAR Act Data
+                        </a>
+                      </li>
+                      
+                    </ul>
+                  
+                </section>
+              </div>
+              
+            </div>
+          </nav>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  
+
+  
+  <div class="usa-footer__secondary-section">
+    <div class="grid-container">
+      <div class="grid-row grid-gap">
+        <div class="usa-footer__logo grid-row mobile-lg:grid-col-6 mobile-lg:grid-gap-2">
+          
+
+          
+          <div class="mobile-lg:grid-col-auto">
+            <h3 class="usa-footer__logo-heading">USDA Agricultural Research Service</h3>
+          </div>
+          
+        </div>
+
+        
+        <div class="usa-footer__contact-links mobile-lg:grid-col-6">
+          
+          
+            <div class="usa-footer__social-links grid-row grid-gap-1">
+              <div class="grid-col-auto">
+                
+                  <a class="usa-social-link usa-social-link--twitter" href="https://twitter.com/USDA_ARS">
+                    <span>Twitter</span>
+                  </a>
+                
+              </div>
+            </div>
+          
+          
+            <h3 class="usa-footer__contact-heading">Contact us</h3>
+            
+            
+              <address class="usa-footer__address">
+                
+                <div class="usa-footer__contact-info grid-row grid-gap">
+                
+                    <div class="grid-col-auto">
+                      <a href="mailto:scinet_vrsc@usda.gov">
+                        scinet_vrsc@usda.gov
+                      </a>
+                    </div>
+                
+                </div>
+              </address>
+          
+        
+      </div>
+      
+      </div>
+    </div>
+  </div>
+  
+
+</footer>
+
+
+
+
+
+    
+
+
+
+
+
+  
+    
+      <script src="/assets/uswds/js/uswds.min.js" async></script>
+    
+
+  
+    
+      <script src="/assets/js/vendor/anchor.min.js"></script>
+    
+
+  
+    
+      <script src="/assets/js/main.js"></script>
+    
+
+  
+    
+
+
+
+
+<script type="text/javascript">
+//<![CDATA[
+      var usasearch_config = { siteHandle:"scinet-usda" };
+
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src = "//search.usa.gov/javascripts/remote.loader.js";
+      document.getElementsByTagName("head")[0].appendChild(script);
+
+//]]>
+</script>
+
+
+
+  </body>
+</html>
